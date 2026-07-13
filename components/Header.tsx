@@ -3,10 +3,15 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { MobileNav } from "@/components/MobileNav";
 import { Logo } from "@/components/Logo";
 
-const NAV = [
+interface NavItem {
+  label: string;
+  href: string;
+  external?: boolean;
+}
+
+const NAV: NavItem[] = [
   { label: "Services", href: "/services" },
   { label: "About", href: "/about" },
-  { label: "Market Reports", href: "https://market-reports.com", external: true },
   { label: "Contact", href: "/contact" },
 ];
 

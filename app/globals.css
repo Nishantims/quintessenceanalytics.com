@@ -8,23 +8,27 @@
    purple = premium/enterprise) and combined in the hero gradient only,
    never blurred together everywhere.
 ------------------------------------------------------------------------- */
+/* Dark is the unconditional default (client requirement) — it does NOT
+   follow the OS prefers-color-scheme. :root carries the dark palette
+   directly; :root[data-theme="light"] is the only way to get the light
+   palette, set by ThemeToggle when a visitor opts in. */
 :root {
-  --ink:           #0A0A0A;
-  --paper:         #FFFFFF;
-  --text-primary:  #0A0A0A;
-  --text-secondary: #4A4A4A;
-  --text-muted:    #7A7A7A;
-  --border:        #D9D9D9;
-  --surface:       #FFFFFF;
-  --surface-raised: #FAFAFA;
-  --grey:          #D9D9D9;
+  --ink:           #FFFFFF;
+  --paper:         #0A0A0A;
+  --text-primary:  #FFFFFF;
+  --text-secondary: #C7C7C7;
+  --text-muted:    #8C8C8C;
+  --border:        #2B2B2B;
+  --surface:       #141414;
+  --surface-raised: #1B1B1B;
+  --grey:          #2B2B2B;
 
-  --pink:   #FF6699;
-  --blue:   #0066FF;
-  --purple: #9900CC;
-  --pink-ink:   #C20050;
-  --blue-ink:   #0047B3;
-  --purple-ink: #700099;
+  --pink:   #FF80AD;
+  --blue:   #3D8BFF;
+  --purple: #C24DE0;
+  --pink-ink:   #FF80AD;
+  --blue-ink:   #3D8BFF;
+  --purple-ink: #C24DE0;
 
   --shadow-color: 0 0% 0%;
 }
@@ -48,25 +52,23 @@
   --purple-ink: #C24DE0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --ink:           #FFFFFF;
-    --paper:         #0A0A0A;
-    --text-primary:  #FFFFFF;
-    --text-secondary: #C7C7C7;
-    --text-muted:    #8C8C8C;
-    --border:        #2B2B2B;
-    --surface:       #141414;
-    --surface-raised: #1B1B1B;
-    --grey:          #2B2B2B;
+:root[data-theme="light"] {
+  --ink:           #0A0A0A;
+  --paper:         #FFFFFF;
+  --text-primary:  #0A0A0A;
+  --text-secondary: #4A4A4A;
+  --text-muted:    #7A7A7A;
+  --border:        #D9D9D9;
+  --surface:       #FFFFFF;
+  --surface-raised: #FAFAFA;
+  --grey:          #D9D9D9;
 
-    --pink:   #FF80AD;
-    --blue:   #3D8BFF;
-    --purple: #C24DE0;
-    --pink-ink:   #FF80AD;
-    --blue-ink:   #3D8BFF;
-    --purple-ink: #C24DE0;
-  }
+  --pink:   #FF6699;
+  --blue:   #0066FF;
+  --purple: #9900CC;
+  --pink-ink:   #C20050;
+  --blue-ink:   #0047B3;
+  --purple-ink: #700099;
 }
 
 @theme inline {
@@ -139,7 +141,8 @@ h1, h2, h3, h4 {
 }
 
 @keyframes qa-draw-line {
-  to { stroke-dashoffset: 0; }
+  from { stroke-dashoffset: 1; }
+  to   { stroke-dashoffset: 0; }
 }
 
 @keyframes qa-grow-up {

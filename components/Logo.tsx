@@ -21,13 +21,21 @@ export function LogoMark({ size = 32 }: { size?: number }) {
   );
 }
 
+// Short, domain-style wordmark ("QA." + a small tracked tagline) rather than
+// spelling out the full company name at header size — reads punchier at a
+// glance, the way linear.app / notion.so style marks do.
 export function Logo({ size = 32, wordmark = true }: { size?: number; wordmark?: boolean }) {
   return (
     <span className="flex items-center gap-2.5">
       <LogoMark size={size} />
       {wordmark && (
-        <span className="font-display text-[19px] font-semibold leading-none tracking-tight text-text-primary">
-          Quintessence <span className="text-text-muted font-normal">Analytics</span>
+        <span className="flex flex-col leading-none">
+          <span className="font-body text-[21px] font-extrabold tracking-tight text-text-primary">
+            QA<span style={{ color: "var(--pink)" }}>.</span>
+          </span>
+          <span className="mt-0.5 text-[9px] font-semibold uppercase tracking-[0.14em] text-text-muted">
+            Quintessence Analytics
+          </span>
         </span>
       )}
     </span>
