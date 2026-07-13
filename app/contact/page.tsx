@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/ContactForm";
+import { IntelligenceScene } from "@/components/IntelligenceScene";
 
 export const metadata: Metadata = {
   title: "Contact — Quintessence Analytics",
@@ -34,6 +35,10 @@ export default function ContactPage() {
                 Browse Market Reports ↗
               </a>
             </div>
+          </div>
+
+          <div className="mt-10">
+            <IntelligenceScene variant="compact" />
           </div>
         </div>
 

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { AiNetworkVisual } from "@/components/AiNetworkVisual";
+import { IntelligenceScene } from "@/components/IntelligenceScene";
 import { ServiceCard } from "@/components/ServiceCard";
 import { AiProductCard } from "@/components/AiProductCard";
 import { CapabilityMarquee } from "@/components/CapabilityMarquee";
@@ -72,7 +72,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <AiNetworkVisual />
+          <IntelligenceScene variant="large" />
         </div>
       </section>
 

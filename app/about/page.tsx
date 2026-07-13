@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { IntelligenceScene } from "@/components/IntelligenceScene";
 
 export const metadata: Metadata = {
   title: "About — Quintessence Analytics",
@@ -46,6 +47,10 @@ export default function AboutPage() {
           our research methodology. This page exists because the methodology is the product, whichever
           form it ships in.
         </p>
+      </section>
+
+      <section className="mx-auto max-w-3xl px-6 pb-16">
+        <IntelligenceScene variant="compact" />
       </section>
 
       <section className="mx-auto max-w-5xl px-6 pb-24">

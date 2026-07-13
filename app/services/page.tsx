@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SERVICES } from "@/lib/services-data";
+import { IntelligenceScene } from "@/components/IntelligenceScene";
 
 export const metadata: Metadata = {
   title: "Services — Quintessence Analytics",
@@ -27,6 +28,10 @@ export default function ServicesPage() {
           Every engagement — bespoke or off-the-shelf — runs through the same triangulated methodology.
           Pick the discipline you need, or bring us a question that spans all six.
         </p>
+      </section>
+
+      <section className="mx-auto max-w-3xl px-6 pb-16">
+        <IntelligenceScene variant="compact" />
       </section>
 
       <section className="mx-auto max-w-5xl divide-y divide-border px-6 pb-24">

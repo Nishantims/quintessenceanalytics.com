@@ -23,30 +23,32 @@ export function Header() {
           <Logo size={24} />
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
-          {NAV.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              target={item.external ? "_blank" : undefined}
-              rel={item.external ? "noopener noreferrer" : undefined}
-              className="text-[13px] font-semibold uppercase tracking-wide text-text-secondary transition-colors hover:text-pink"
-            >
-              {item.label}
-              {item.external && <span aria-hidden> ↗</span>}
-            </Link>
-          ))}
-        </nav>
+        <div className="flex items-center gap-10">
+          <nav className="hidden items-center gap-8 md:flex">
+            {NAV.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                target={item.external ? "_blank" : undefined}
+                rel={item.external ? "noopener noreferrer" : undefined}
+                className="text-[13px] font-semibold uppercase tracking-wide text-text-secondary transition-colors hover:text-pink"
+              >
+                {item.label}
+                {item.external && <span aria-hidden> ↗</span>}
+              </Link>
+            ))}
+          </nav>
 
-        <div className="flex items-center gap-3">
-          <ThemeToggle />
-          <Link
-            href="/contact"
-            className="hidden rounded-full bg-ink px-5 py-2.5 text-[13px] font-semibold text-paper transition-transform hover:scale-[1.03] sm:inline-block"
-          >
-            Talk to an Analyst
-          </Link>
-          <MobileNav items={NAV} />
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
+            <Link
+              href="/contact"
+              className="hidden rounded-full bg-ink px-5 py-2.5 text-[13px] font-semibold text-paper transition-transform hover:scale-[1.03] sm:inline-block"
+            >
+              Talk to an Analyst
+            </Link>
+            <MobileNav items={NAV} />
+          </div>
         </div>
       </div>
     </header>
