@@ -1,18 +1,14 @@
 import type { Metadata } from "next";
-import { Fraunces, Manrope, IBM_Plex_Mono } from "next/font/google";
+import { Inter, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ThemeScript } from "@/components/ThemeScript";
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const manrope = Manrope({
-  variable: "--font-manrope",
+// Inter everywhere — matches market-reports.com's own font exactly, per
+// explicit request, instead of this site having its own separate typeface.
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
 });
@@ -46,7 +42,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${manrope.variable} ${plexMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${plexMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <head>

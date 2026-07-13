@@ -11,7 +11,7 @@ export function AiProductCard({ product }: { product: AiProduct }) {
   const accent = ACCENT_VAR[product.accent];
   return (
     <div
-      className="relative flex flex-col rounded-2xl border p-7"
+      className="relative flex h-full flex-col rounded-2xl border p-7"
       style={{
         borderColor: product.featured ? accent : "var(--border)",
         borderWidth: product.featured ? 2 : 1,

@@ -1,18 +1,11 @@
 import Link from "next/link";
-import { AnalyticsDashboardVisual } from "@/components/AnalyticsDashboardVisual";
+import { AiNetworkVisual } from "@/components/AiNetworkVisual";
 import { ServiceCard } from "@/components/ServiceCard";
 import { AiProductCard } from "@/components/AiProductCard";
 import { CapabilityMarquee } from "@/components/CapabilityMarquee";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { SERVICES } from "@/lib/services-data";
 import { AI_PRODUCTS } from "@/lib/ai-products-data";
-
-const STATS = [
-  { value: "8", unit: "", label: "Independent sizing methods triangulated per market" },
-  { value: "40", unit: "+", label: "Weighted growth factors scored per forecast" },
-  { value: "3", unit: "", label: "Scenarios modelled — bull, base, and bear — every time" },
-  { value: "100", unit: "%", label: "Of AI-generated output reviewed by an analyst before delivery" },
-];
 
 const PROCESS = [
   {
@@ -45,12 +38,13 @@ export default function HomePage() {
         <div className="grid items-center gap-14 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-border px-3.5 py-1.5 text-[12px] font-semibold uppercase tracking-wide text-text-secondary">
-              <span className="h-1.5 w-1.5 rounded-full qa-gradient-bg" />
+              <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--pink)" }} />
               AI-powered market intelligence
             </span>
-            <h1 className="mt-6 font-display text-[42px] font-semibold leading-[1.08] tracking-tight text-text-primary sm:text-[54px]">
+            <h1 className="mt-6 font-display text-[42px] font-bold leading-[1.08] tracking-tight text-text-primary sm:text-[54px]">
               The essence of your market —{" "}
-              <span className="qa-gradient-text">distilled to a decision.</span>
+              <span style={{ color: "var(--blue)" }}>distilled</span> to a{" "}
+              <span style={{ color: "var(--pink)" }}>decision.</span>
             </h1>
             <p className="mt-6 max-w-lg text-[17px] leading-relaxed text-text-secondary">
               Quintessence Analytics pairs AI-driven research automation with senior analyst review to turn
@@ -64,7 +58,8 @@ export default function HomePage() {
             <div className="mt-9 flex flex-wrap items-center gap-4">
               <Link
                 href="/contact"
-                className="rounded-full px-6 py-3.5 text-[14px] font-semibold text-white transition-transform hover:scale-[1.03] qa-gradient-bg"
+                className="rounded-full px-6 py-3.5 text-[14px] font-semibold text-white transition-transform hover:scale-[1.03]"
+                style={{ background: "var(--blue)" }}
               >
                 Start a project
               </Link>
@@ -77,26 +72,11 @@ export default function HomePage() {
             </div>
           </div>
 
-          <AnalyticsDashboardVisual />
+          <AiNetworkVisual />
         </div>
       </section>
 
       <CapabilityMarquee />
-
-      {/* ── Stat strip ── */}
-      <section className="border-b border-border bg-surface">
-        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-8 px-6 py-14 sm:grid-cols-4">
-          {STATS.map((s) => (
-            <div key={s.label}>
-              <p className="font-data text-[34px] font-semibold text-text-primary">
-                {s.value}
-                <span style={{ color: "var(--pink)" }}>{s.unit}</span>
-              </p>
-              <p className="mt-2 text-[13px] leading-snug text-text-secondary">{s.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* ── Services overview ── */}
       <section className="mx-auto max-w-6xl px-6 py-24">
@@ -104,8 +84,8 @@ export default function HomePage() {
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <span className="text-[13px] font-semibold uppercase tracking-wide text-blue-ink">What we do</span>
-              <h2 className="mt-3 max-w-lg font-display text-[32px] font-semibold leading-tight text-text-primary">
-                Six ways we turn evidence into a decision
+              <h2 className="mt-3 max-w-lg font-display text-[32px] font-bold leading-tight text-text-primary">
+                Six ways we turn <span style={{ color: "var(--blue)" }}>evidence</span> into a decision
               </h2>
             </div>
             <Link
@@ -133,8 +113,9 @@ export default function HomePage() {
               <span className="text-[13px] font-semibold uppercase tracking-wide" style={{ color: "var(--purple)" }}>
                 AI products
               </span>
-              <h2 className="mx-auto mt-3 max-w-xl font-display text-[32px] font-semibold leading-tight text-text-primary">
-                AI-driven decision systems, priced for how serious you are
+              <h2 className="mx-auto mt-3 max-w-xl font-display text-[32px] font-bold leading-tight text-text-primary">
+                AI-driven decision systems, priced for how{" "}
+                <span style={{ color: "var(--purple)" }}>serious</span> you are
               </h2>
               <p className="mx-auto mt-4 max-w-lg text-[15px] leading-relaxed text-text-secondary">
                 From an affordable self-serve dashboard to a fully bespoke enterprise partnership — the same
@@ -142,9 +123,9 @@ export default function HomePage() {
               </p>
             </div>
           </ScrollReveal>
-          <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-3">
+          <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-3 items-stretch">
             {AI_PRODUCTS.map((product, i) => (
-              <ScrollReveal key={product.name} delayMs={i * 80}>
+              <ScrollReveal key={product.name} delayMs={i * 80} className="h-full">
                 <AiProductCard product={product} />
               </ScrollReveal>
             ))}
@@ -159,8 +140,9 @@ export default function HomePage() {
             <span className="text-[13px] font-semibold uppercase tracking-wide" style={{ color: "var(--pink)" }}>
               How we work
             </span>
-            <h2 className="mt-3 max-w-lg font-display text-[32px] font-semibold leading-tight text-dark-text">
-              A repeatable process, not a bespoke guess every time
+            <h2 className="mt-3 max-w-lg font-display text-[32px] font-bold leading-tight text-dark-text">
+              A repeatable process, not a{" "}
+              <span style={{ color: "var(--pink)" }}>bespoke guess</span> every time
             </h2>
           </ScrollReveal>
           <div className="mt-14 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
@@ -185,8 +167,9 @@ export default function HomePage() {
               <span className="text-[13px] font-semibold uppercase tracking-wide" style={{ color: "var(--pink)" }}>
                 Our flagship product
               </span>
-              <h2 className="mt-3 font-display text-[28px] font-semibold leading-snug text-text-primary">
-                Market Reports is Quintessence Analytics&apos; syndicated research platform
+              <h2 className="mt-3 font-display text-[28px] font-bold leading-snug text-text-primary">
+                Market Reports is Quintessence Analytics&apos;{" "}
+                <span style={{ color: "var(--blue)" }}>syndicated research platform</span>
               </h2>
               <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-text-secondary">
                 Every methodology on this page — the eight-method sizing model, driver-level CAGR
@@ -210,17 +193,19 @@ export default function HomePage() {
 
       {/* ── Final CTA ── */}
       <section className="mx-auto max-w-6xl px-6 pb-28">
-        <div className="rounded-3xl px-8 py-16 text-center sm:px-16 qa-gradient-bg">
-          <h2 className="mx-auto max-w-xl font-display text-[30px] font-semibold leading-tight text-white">
-            Bring us the question. We&apos;ll bring the evidence.
+        <div className="rounded-3xl bg-black px-8 py-16 text-center sm:px-16">
+          <h2 className="mx-auto max-w-xl font-display text-[30px] font-bold leading-tight text-white">
+            Bring us the <span style={{ color: "var(--pink)" }}>question</span>. We&apos;ll bring the{" "}
+            <span style={{ color: "var(--purple)" }}>evidence</span>.
           </h2>
-          <p className="mx-auto mt-4 max-w-md text-[15px] leading-relaxed text-white/80">
+          <p className="mx-auto mt-4 max-w-md text-[15px] leading-relaxed text-white/70">
             Tell us the market and the decision riding on it — we&apos;ll scope an engagement within a
             few business days.
           </p>
           <Link
             href="/contact"
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-black px-7 py-4 text-[14px] font-semibold text-white transition-transform hover:scale-[1.03]"
+            className="mt-8 inline-flex items-center gap-2 rounded-full px-7 py-4 text-[14px] font-semibold text-white transition-transform hover:scale-[1.03]"
+            style={{ background: "var(--blue)" }}
           >
             Start a project →
           </Link>

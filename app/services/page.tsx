@@ -19,8 +19,9 @@ export default function ServicesPage() {
     <>
       <section className="mx-auto max-w-4xl px-6 pt-20 pb-14 text-center">
         <span className="text-[13px] font-semibold uppercase tracking-wide text-blue-ink">Services</span>
-        <h1 className="mx-auto mt-4 max-w-2xl font-display text-[40px] font-semibold leading-[1.1] text-text-primary">
-          Six disciplines. One standard of evidence.
+        <h1 className="mx-auto mt-4 max-w-2xl font-display text-[40px] font-bold leading-[1.1] text-text-primary">
+          Six <span style={{ color: "var(--purple)" }}>disciplines</span>. One standard of{" "}
+          <span style={{ color: "var(--blue)" }}>evidence</span>.
         </h1>
         <p className="mx-auto mt-5 max-w-xl text-[16px] leading-relaxed text-text-secondary">
           Every engagement — bespoke or off-the-shelf — runs through the same triangulated methodology.
@@ -41,8 +42,11 @@ export default function ServicesPage() {
                 />
               </div>
               <div>
-                <h2 className="font-display text-[26px] font-semibold leading-snug text-text-primary">
-                  {service.title}
+                <h2 className="font-display text-[26px] font-bold leading-snug text-text-primary">
+                  {service.title.split(" ").slice(0, -1).join(" ")}{" "}
+                  <span style={{ color: ACCENT_VAR[service.accent] }}>
+                    {service.title.split(" ").slice(-1)}
+                  </span>
                 </h2>
                 <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-text-secondary">
                   {service.description}
@@ -67,8 +71,9 @@ export default function ServicesPage() {
 
       <section className="mx-auto max-w-6xl px-6 pb-28">
         <div className="rounded-3xl px-8 py-16 text-center sm:px-16" style={{ background: "var(--dark-surface)" }}>
-          <h2 className="mx-auto max-w-lg font-display text-[28px] font-semibold leading-tight text-dark-text">
-            Not sure which discipline fits? Tell us the decision — we&apos;ll scope the mix.
+          <h2 className="mx-auto max-w-lg font-display text-[28px] font-bold leading-tight text-dark-text">
+            Not sure which discipline fits? Tell us the{" "}
+            <span style={{ color: "var(--pink)" }}>decision</span> — we&apos;ll scope the mix.
           </h2>
           <Link
             href="/contact"

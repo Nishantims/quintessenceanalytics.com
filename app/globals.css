@@ -97,8 +97,8 @@
   --color-dark-surface: var(--dark-surface);
   --color-dark-text: var(--dark-text);
 
-  --font-display: var(--font-fraunces);
-  --font-body: var(--font-manrope);
+  --font-display: var(--font-inter);
+  --font-body: var(--font-inter);
   --font-data: var(--font-plex-mono);
 }
 
@@ -114,23 +114,13 @@ body {
 
 h1, h2, h3, h4 {
   font-family: var(--font-display);
+  font-weight: 700;
   text-wrap: balance;
 }
 
 .font-data {
   font-family: var(--font-data);
   font-variant-numeric: tabular-nums;
-}
-
-.qa-gradient-text {
-  background: linear-gradient(100deg, var(--pink) 0%, var(--purple) 55%, var(--blue) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.qa-gradient-bg {
-  background: linear-gradient(135deg, var(--pink) 0%, var(--purple) 55%, var(--blue) 100%);
 }
 
 /* ── Scroll-reveal (components/ScrollReveal.tsx) ── */

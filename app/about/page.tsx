@@ -36,8 +36,9 @@ export default function AboutPage() {
     <>
       <section className="mx-auto max-w-4xl px-6 pt-20 pb-16 text-center">
         <span className="text-[13px] font-semibold uppercase tracking-wide text-blue-ink">About</span>
-        <h1 className="mx-auto mt-4 max-w-2xl font-display text-[40px] font-semibold leading-[1.1] text-text-primary">
-          We built the research engine first, then the reports on top of it.
+        <h1 className="mx-auto mt-4 max-w-2xl font-display text-[40px] font-bold leading-[1.1] text-text-primary">
+          We built the <span style={{ color: "var(--blue)" }}>research engine</span> first, then the
+          reports on top of it.
         </h1>
         <p className="mx-auto mt-5 max-w-xl text-[16px] leading-relaxed text-text-secondary">
           Quintessence Analytics is a data and market-intelligence consultancy. Market Reports — our
@@ -50,7 +51,9 @@ export default function AboutPage() {
       <section className="mx-auto max-w-5xl px-6 pb-24">
         <div className="grid gap-10 rounded-3xl border border-border bg-surface p-10 lg:grid-cols-2 lg:p-14">
           <div>
-            <h2 className="font-display text-[24px] font-semibold text-text-primary">Why &quot;Quintessence&quot;</h2>
+            <h2 className="font-display text-[24px] font-bold text-text-primary">
+              Why <span style={{ color: "var(--purple)" }}>&quot;Quintessence&quot;</span>
+            </h2>
             <p className="mt-4 text-[15px] leading-relaxed text-text-secondary">
               The word originally meant the fifth element — the pure substance left once everything
               inessential has been stripped away. That&apos;s the job: a market throws off an enormous
@@ -60,7 +63,9 @@ export default function AboutPage() {
             </p>
           </div>
           <div>
-            <h2 className="font-display text-[24px] font-semibold text-text-primary">Why we also sell reports</h2>
+            <h2 className="font-display text-[24px] font-bold text-text-primary">
+              Why we also <span style={{ color: "var(--blue)" }}>sell reports</span>
+            </h2>
             <p className="mt-4 text-[15px] leading-relaxed text-text-secondary">
               A custom engagement is expensive to run for every market that exists. Market Reports is how
               we make the same triangulated methodology available off the shelf, for the markets common
@@ -75,8 +80,8 @@ export default function AboutPage() {
         <span className="text-[13px] font-semibold uppercase tracking-wide" style={{ color: "var(--pink)" }}>
           How we hold ourselves accountable
         </span>
-        <h2 className="mt-3 max-w-lg font-display text-[30px] font-semibold leading-tight text-text-primary">
-          Three principles that don&apos;t change per engagement
+        <h2 className="mt-3 max-w-lg font-display text-[30px] font-bold leading-tight text-text-primary">
+          Three <span style={{ color: "var(--pink)" }}>principles</span> that don&apos;t change per engagement
         </h2>
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-3">
           {PRINCIPLES.map((p) => (
@@ -86,7 +91,7 @@ export default function AboutPage() {
                 style={{ background: ACCENT_VAR[p.accent] }}
                 aria-hidden
               />
-              <h3 className="mt-4 font-display text-[18px] font-semibold leading-snug text-text-primary">
+              <h3 className="mt-4 font-display text-[18px] font-bold leading-snug text-text-primary">
                 {p.title}
               </h3>
               <p className="mt-3 text-[14px] leading-relaxed text-text-secondary">{p.body}</p>
@@ -98,8 +103,9 @@ export default function AboutPage() {
       <section className="mx-auto max-w-6xl px-6 pb-28">
         <div className="grid items-center gap-8 rounded-3xl border border-border bg-surface p-10 sm:grid-cols-[1fr_auto] lg:p-14">
           <div>
-            <h2 className="font-display text-[24px] font-semibold leading-snug text-text-primary">
-              Want to see the methodology in production first?
+            <h2 className="font-display text-[24px] font-bold leading-snug text-text-primary">
+              Want to see the <span style={{ color: "var(--purple)" }}>methodology</span> in production
+              first?
             </h2>
             <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-text-secondary">
               Market Reports runs on the same engine described throughout this site — browse a live

@@ -5,7 +5,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 // Wraps a section in a fade-up-on-scroll reveal (app/globals.css .qa-reveal).
 // One IntersectionObserver per instance is fine at this page's scale (a
 // handful of sections), so no shared-observer optimization is needed here.
-export function ScrollReveal({ children, delayMs = 0 }: { children: ReactNode; delayMs?: number }) {
+export function ScrollReveal({ children, delayMs = 0, className = "" }: { children: ReactNode; delayMs?: number; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const [revealed, setRevealed] = useState(false);
 
@@ -27,7 +27,7 @@ export function ScrollReveal({ children, delayMs = 0 }: { children: ReactNode; d
   }, [delayMs]);
 
   return (
-    <div ref={ref} className={`qa-reveal ${revealed ? "qa-revealed" : ""}`}>
+    <div ref={ref} className={`qa-reveal ${revealed ? "qa-revealed" : ""} ${className}`}>
       {children}
     </div>
   );

@@ -15,9 +15,12 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-6 py-16">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-[1.3fr_1fr_1fr_1fr]">
           <div>
-            <div className="flex items-center gap-2.5">
+            <div className="flex flex-col leading-none">
               <span className="font-body text-[19px] font-extrabold tracking-tight text-dark-text">
-                QA<span style={{ color: "var(--pink)" }}>.com</span>
+                QA<span style={{ color: "var(--blue)" }}>.com</span>
+              </span>
+              <span className="mt-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-dark-text/50">
+                Quintessence Analytics
               </span>
             </div>
             <p className="mt-4 max-w-xs text-[14px] leading-relaxed text-dark-text/60">
