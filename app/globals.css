@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+/* ── Design tokens ─────────────────────────────────────────────────────────
+   Quintessence Analytics — the parent research/analytics company behind
+   Market Reports. Palette reads "distilled signal from noise": a deep
+   indigo-ink ground, three vivid accents standing in for distinct data
+   signals (never used as a single blur-gradient), on a cool paper ground —
+   deliberately not the warm-cream/terracotta combination this look usually
+   defaults to.
+------------------------------------------------------------------------- */
+:root {
+  --ink:           #0D1321;
+  --ink-2:         #171F33;
+  --paper:         #F4F5F9;
+  --paper-2:       #FFFFFF;
+  --text-primary:  #0D1321;
+  --text-secondary: #545C72;
+  --text-muted:    #8891A6;
+  --border:        #E1E4EE;
+  --surface:       #FFFFFF;
+  --surface-raised: #FFFFFF;
+
+  --coral: #FF5A3C;   /* primary accent — CTAs, headline emphasis */
+  --teal:  #12A594;   /* secondary accent — analytics/signal */
+  --gold:  #F2A93B;   /* tertiary accent — highlights, stats */
+  --coral-ink: #7A2213; /* accessible coral-on-paper text variant */
+  --teal-ink:  #0A4A43;
+
+  --shadow-color: 220 40% 10%;
+}
+
+:root[data-theme="dark"] {
+  --ink:           #F4F5F9;
+  --ink-2:         #F4F5F9;
+  --paper:         #0D1321;
+  --paper-2:       #131A2B;
+  --text-primary:  #F4F5F9;
+  --text-secondary: #A9B0C4;
+  --text-muted:    #6B7390;
+  --border:        #262E45;
+  --surface:       #131A2B;
+  --surface-raised: #171F33;
+
+  --coral: #FF7256;
+  --teal:  #2BD9C4;
+  --gold:  #FFC35C;
+  --coral-ink: #FF7256;
+  --teal-ink:  #2BD9C4;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink:           #F4F5F9;
+    --ink-2:         #F4F5F9;
+    --paper:         #0D1321;
+    --paper-2:       #131A2B;
+    --text-primary:  #F4F5F9;
+    --text-secondary: #A9B0C4;
+    --text-muted:    #6B7390;
+    --border:        #262E45;
+    --surface:       #131A2B;
+    --surface-raised: #171F33;
+
+    --coral: #FF7256;
+    --teal:  #2BD9C4;
+    --gold:  #FFC35C;
+    --coral-ink: #FF7256;
+    --teal-ink:  #2BD9C4;
+  }
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-border: var(--border);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-coral: var(--coral);
+  --color-teal: var(--teal);
+  --color-gold: var(--gold);
+  --color-coral-ink: var(--coral-ink);
+  --color-teal-ink: var(--teal-ink);
+
+  --font-display: var(--font-fraunces);
+  --font-body: var(--font-manrope);
+  --font-data: var(--font-plex-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--paper);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  text-wrap: balance;
+}
+
+.font-data {
+  font-family: var(--font-data);
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes qa-fade-in {
+  from { opacity: 0; transform: scale(0.4); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes qa-draw-line {
+  to { stroke-dashoffset: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
