@@ -3,6 +3,8 @@ import { ImageResponse } from "next/og";
 export const size = { width: 32, height: 32 };
 export const contentType = "image/png";
 
+// Plain "Q" letterform, transparent background — no icon box, no bar
+// shapes, matching the text-only "QA.com" logo used everywhere else.
 export default function Icon() {
   return new ImageResponse(
     (
@@ -11,17 +13,14 @@ export default function Icon() {
           width: "100%",
           height: "100%",
           display: "flex",
-          alignItems: "flex-end",
+          alignItems: "center",
           justifyContent: "center",
-          gap: 2,
-          padding: "6px 7px",
-          background: "linear-gradient(135deg, #FF6699 0%, #9900CC 55%, #0066FF 100%)",
-          borderRadius: 8,
+          fontSize: 26,
+          fontWeight: 800,
+          color: "#FF6699",
         }}
       >
-        <div style={{ width: 3, height: 8, borderRadius: 2, background: "#fff", display: "flex" }} />
-        <div style={{ width: 3, height: 13, borderRadius: 2, background: "#fff", display: "flex" }} />
-        <div style={{ width: 3, height: 18, borderRadius: 2, background: "#fff", display: "flex" }} />
+        Q
       </div>
     ),
     size

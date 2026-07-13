@@ -20,7 +20,7 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-border bg-paper/85 backdrop-blur-md">
       <div className="mx-auto flex h-18 max-w-6xl items-center justify-between px-6 py-4">
         <Link href="/" className="group flex items-center gap-2.5">
-          <Logo size={34} />
+          <Logo size={24} />
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">

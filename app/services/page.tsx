@@ -66,8 +66,8 @@ export default function ServicesPage() {
       </section>
 
       <section className="mx-auto max-w-6xl px-6 pb-28">
-        <div className="rounded-3xl px-8 py-16 text-center sm:px-16" style={{ background: "var(--ink)" }}>
-          <h2 className="mx-auto max-w-lg font-display text-[28px] font-semibold leading-tight text-paper">
+        <div className="rounded-3xl px-8 py-16 text-center sm:px-16" style={{ background: "var(--dark-surface)" }}>
+          <h2 className="mx-auto max-w-lg font-display text-[28px] font-semibold leading-tight text-dark-text">
             Not sure which discipline fits? Tell us the decision — we&apos;ll scope the mix.
           </h2>
           <Link

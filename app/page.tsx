@@ -153,13 +153,13 @@ export default function HomePage() {
       </section>
 
       {/* ── Process ── */}
-      <section className="bg-ink text-paper">
+      <section className="bg-dark-surface text-dark-text">
         <div className="mx-auto max-w-6xl px-6 py-24">
           <ScrollReveal>
             <span className="text-[13px] font-semibold uppercase tracking-wide" style={{ color: "var(--pink)" }}>
               How we work
             </span>
-            <h2 className="mt-3 max-w-lg font-display text-[32px] font-semibold leading-tight text-paper">
+            <h2 className="mt-3 max-w-lg font-display text-[32px] font-semibold leading-tight text-dark-text">
               A repeatable process, not a bespoke guess every time
             </h2>
           </ScrollReveal>
@@ -167,9 +167,9 @@ export default function HomePage() {
             {PROCESS.map((p, i) => (
               <ScrollReveal key={p.step} delayMs={i * 80}>
                 <div className="relative border-t-2 pt-6" style={{ borderColor: "var(--pink)" }}>
-                  <span className="font-data text-[13px] text-paper/40">{p.step}</span>
-                  <h3 className="mt-3 font-display text-[19px] font-semibold text-paper">{p.title}</h3>
-                  <p className="mt-3 text-[14px] leading-relaxed text-paper/65">{p.body}</p>
+                  <span className="font-data text-[13px] text-dark-text/40">{p.step}</span>
+                  <h3 className="mt-3 font-display text-[19px] font-semibold text-dark-text">{p.title}</h3>
+                  <p className="mt-3 text-[14px] leading-relaxed text-dark-text/65">{p.body}</p>
                 </div>
               </ScrollReveal>
             ))}

@@ -30,6 +30,13 @@
   --blue-ink:   #3D8BFF;
   --purple-ink: #C24DE0;
 
+  /* Fixed, theme-independent — for sections that are DELIBERATELY always a
+     dark banner regardless of the light/dark toggle (Footer, the "How we
+     work" band, CTA banners) — --ink/--paper themselves swap meaning between
+     light and dark mode, so they're the wrong tokens for "always dark". */
+  --dark-surface: #0A0A0A;
+  --dark-text:    #FFFFFF;
+
   --shadow-color: 0 0% 0%;
 }
 
@@ -87,6 +94,8 @@
   --color-pink-ink: var(--pink-ink);
   --color-blue-ink: var(--blue-ink);
   --color-purple-ink: var(--purple-ink);
+  --color-dark-surface: var(--dark-surface);
+  --color-dark-text: var(--dark-text);
 
   --font-display: var(--font-fraunces);
   --font-body: var(--font-manrope);
