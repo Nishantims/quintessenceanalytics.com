@@ -6,27 +6,27 @@ import { IntelligenceScene } from "@/components/IntelligenceScene";
 export const metadata: Metadata = {
   title: "Services — Quintessence Analytics",
   description:
-    "Custom market research, predictive analytics, business intelligence dashboards, competitive benchmarking, regulatory tracking, and AI-augmented research automation.",
+    "Ten core AI analytics services: predictive analytics, decision intelligence, market intelligence, customer analytics, operational analytics, financial & risk analytics, executive dashboards, generative AI, AI process automation, and custom AI consulting.",
 };
 
 const ACCENT_VAR: Record<string, string> = {
   pink: "var(--pink)",
   blue: "var(--blue)",
-  purple: "var(--purple)",
+  green: "var(--green)",
 };
 
 export default function ServicesPage() {
   return (
     <>
       <section className="mx-auto max-w-4xl px-6 pt-20 pb-14 text-center">
-        <span className="text-[13px] font-semibold uppercase tracking-wide text-blue-ink">Services</span>
+        <span className="text-[13px] font-semibold uppercase tracking-wide" style={{ color: "var(--pink)" }}>Services</span>
         <h1 className="mx-auto mt-4 max-w-2xl font-display text-[40px] font-bold leading-[1.1] text-text-primary">
-          Six <span style={{ color: "var(--purple)" }}>disciplines</span>. One standard of{" "}
+          Ten <span style={{ color: "var(--green)" }}>disciplines</span>. One standard of{" "}
           <span style={{ color: "var(--blue)" }}>evidence</span>.
         </h1>
         <p className="mx-auto mt-5 max-w-xl text-[16px] leading-relaxed text-text-secondary">
           Every engagement — bespoke or off-the-shelf — runs through the same triangulated methodology.
-          Pick the discipline you need, or bring us a question that spans all six.
+          Pick the discipline you need, or bring us a question that spans all ten.
         </p>
       </section>
 

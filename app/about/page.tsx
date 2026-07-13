@@ -5,7 +5,7 @@ import { IntelligenceScene } from "@/components/IntelligenceScene";
 export const metadata: Metadata = {
   title: "About — Quintessence Analytics",
   description:
-    "Quintessence Analytics is a data and market-intelligence consultancy, and the parent company of Market Reports.",
+    "Quintessence Analytics is an AI analytics and decision intelligence company, and the parent company of Market Reports.",
 };
 
 const PRINCIPLES = [
@@ -22,14 +22,14 @@ const PRINCIPLES = [
   {
     title: "Say plainly what you don't know",
     body: "A confidence band is more honest than false precision. Where the evidence is thin, we say so instead of quietly rounding to a clean number.",
-    accent: "purple",
+    accent: "green",
   },
 ];
 
 const ACCENT_VAR: Record<string, string> = {
   pink: "var(--pink)",
   blue: "var(--blue)",
-  purple: "var(--purple)",
+  green: "var(--green)",
 };
 
 export default function AboutPage() {
@@ -38,14 +38,14 @@ export default function AboutPage() {
       <section className="mx-auto max-w-4xl px-6 pt-20 pb-16 text-center">
         <span className="text-[13px] font-semibold uppercase tracking-wide text-blue-ink">About</span>
         <h1 className="mx-auto mt-4 max-w-2xl font-display text-[40px] font-bold leading-[1.1] text-text-primary">
-          We built the <span style={{ color: "var(--blue)" }}>research engine</span> first, then the
-          reports on top of it.
+          We built the <span style={{ color: "var(--pink)" }}>AI engine</span> first, then the reports
+          on top of it.
         </h1>
         <p className="mx-auto mt-5 max-w-xl text-[16px] leading-relaxed text-text-secondary">
-          Quintessence Analytics is a data and market-intelligence consultancy. Market Reports — our
-          subscription platform of syndicated industry reports — is the first product built on top of
-          our research methodology. This page exists because the methodology is the product, whichever
-          form it ships in.
+          Quintessence Analytics is an AI analytics and decision intelligence company. Market Reports —
+          our subscription platform of syndicated industry reports — is the first product built on top
+          of our methodology. This page exists because the methodology is the product, whichever form
+          it ships in.
         </p>
       </section>
 
@@ -57,7 +57,7 @@ export default function AboutPage() {
         <div className="grid gap-10 rounded-3xl border border-border bg-surface p-10 lg:grid-cols-2 lg:p-14">
           <div>
             <h2 className="font-display text-[24px] font-bold text-text-primary">
-              Why <span style={{ color: "var(--purple)" }}>&quot;Quintessence&quot;</span>
+              Why <span style={{ color: "var(--green)" }}>&quot;Quintessence&quot;</span>
             </h2>
             <p className="mt-4 text-[15px] leading-relaxed text-text-secondary">
               The word originally meant the fifth element — the pure substance left once everything
@@ -86,7 +86,7 @@ export default function AboutPage() {
           How we hold ourselves accountable
         </span>
         <h2 className="mt-3 max-w-lg font-display text-[30px] font-bold leading-tight text-text-primary">
-          Three <span style={{ color: "var(--pink)" }}>principles</span> that don&apos;t change per engagement
+          Three <span style={{ color: "var(--blue)" }}>principles</span> that don&apos;t change per engagement
         </h2>
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-3">
           {PRINCIPLES.map((p) => (
@@ -109,7 +109,7 @@ export default function AboutPage() {
         <div className="grid items-center gap-8 rounded-3xl border border-border bg-surface p-10 sm:grid-cols-[1fr_auto] lg:p-14">
           <div>
             <h2 className="font-display text-[24px] font-bold leading-snug text-text-primary">
-              Want to see the <span style={{ color: "var(--purple)" }}>methodology</span> in production
+              Want to see the <span style={{ color: "var(--green)" }}>methodology</span> in production
               first?
             </h2>
             <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-text-secondary">

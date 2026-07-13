@@ -20,14 +20,14 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Quintessence Analytics — Distilled Market Intelligence",
+  title: "Quintessence Analytics — AI Analytics & Decision Intelligence",
   description:
-    "Quintessence Analytics is a data and market-intelligence consultancy delivering custom research, predictive analytics, business intelligence, and competitive benchmarking — parent company of Market Reports.",
+    "Quintessence Analytics is an AI analytics and decision intelligence company transforming enterprise data into actionable business decisions with AI, predictive analytics, automation, and executive dashboards — parent company of Market Reports.",
   metadataBase: new URL("https://quintessenceanalytics.com"),
   openGraph: {
-    title: "Quintessence Analytics — Distilled Market Intelligence",
+    title: "Quintessence Analytics — AI Analytics & Decision Intelligence",
     description:
-      "Custom research, predictive analytics, business intelligence, and competitive benchmarking for teams who make decisions on evidence, not instinct.",
+      "AI, predictive analytics, automation, and executive dashboards for enterprise teams who make decisions on evidence, not instinct.",
     url: "https://quintessenceanalytics.com",
     siteName: "Quintessence Analytics",
     type: "website",

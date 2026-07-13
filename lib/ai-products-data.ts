@@ -3,7 +3,7 @@ export interface AiProduct {
   tagline: string;
   price: string;
   features: string[];
-  accent: "pink" | "blue" | "purple";
+  accent: "pink" | "blue" | "green";
   featured?: boolean;
 }
 
@@ -41,6 +41,6 @@ export const AI_PRODUCTS: AiProduct[] = [
       "Direct access to a senior analyst team",
       "Priority delivery and board-ready presentation support",
     ],
-    accent: "purple",
+    accent: "green",
   },
 ];

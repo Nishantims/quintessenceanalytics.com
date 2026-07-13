@@ -4,7 +4,7 @@ import type { Service } from "@/lib/services-data";
 const ACCENT_VAR: Record<Service["accent"], string> = {
   pink: "var(--pink)",
   blue: "var(--blue)",
-  purple: "var(--purple)",
+  green: "var(--green)",
 };
 
 export function ServiceCard({ service, index }: { service: Service; index: number }) {

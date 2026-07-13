@@ -2,11 +2,10 @@
 
 /* ── Design tokens ─────────────────────────────────────────────────────────
    Quintessence Analytics — brand palette per client spec: pink, blue, and
-   purple as the three vivid signal colors, grounded in black/white/grey so
+   green as the three vivid signal colors, grounded in black/white/grey so
    the vibrancy reads as premium rather than loud. The three accents are
    used as distinct identities (pink = flagship/CTA, blue = product/AI,
-   purple = premium/enterprise) and combined in the hero gradient only,
-   never blurred together everywhere.
+   green = growth/outcomes) and never blended into one another.
 ------------------------------------------------------------------------- */
 /* Dark is the unconditional default (client requirement) — it does NOT
    follow the OS prefers-color-scheme. :root carries the dark palette
@@ -25,10 +24,10 @@
 
   --pink:   #FF80AD;
   --blue:   #3D8BFF;
-  --purple: #C24DE0;
+  --green: #33DD88;
   --pink-ink:   #FF80AD;
   --blue-ink:   #3D8BFF;
-  --purple-ink: #C24DE0;
+  --green-ink: #33DD88;
 
   /* Fixed, theme-independent — for sections that are DELIBERATELY always a
      dark banner regardless of the light/dark toggle (Footer, the "How we
@@ -53,10 +52,10 @@
 
   --pink:   #FF80AD;
   --blue:   #3D8BFF;
-  --purple: #C24DE0;
+  --green: #33DD88;
   --pink-ink:   #FF80AD;
   --blue-ink:   #3D8BFF;
-  --purple-ink: #C24DE0;
+  --green-ink: #33DD88;
 }
 
 :root[data-theme="light"] {
@@ -72,10 +71,10 @@
 
   --pink:   #FF6699;
   --blue:   #0066FF;
-  --purple: #9900CC;
+  --green: #00CC66;
   --pink-ink:   #C20050;
   --blue-ink:   #0047B3;
-  --purple-ink: #700099;
+  --green-ink: #00994D;
 }
 
 @theme inline {
@@ -90,10 +89,10 @@
   --color-text-muted: var(--text-muted);
   --color-pink: var(--pink);
   --color-blue: var(--blue);
-  --color-purple: var(--purple);
+  --color-green: var(--green);
   --color-pink-ink: var(--pink-ink);
   --color-blue-ink: var(--blue-ink);
-  --color-purple-ink: var(--purple-ink);
+  --color-green-ink: var(--green-ink);
   --color-dark-surface: var(--dark-surface);
   --color-dark-text: var(--dark-text);
 

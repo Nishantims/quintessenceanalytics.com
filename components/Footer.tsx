@@ -1,12 +1,12 @@
 import Link from "next/link";
 
 const SERVICES = [
-  "Custom Market Research",
-  "Predictive Analytics & Forecasting",
-  "Business Intelligence Dashboards",
-  "Competitive Benchmarking",
-  "Data Strategy & Advisory",
-  "AI-Driven Research Automation",
+  "Predictive Analytics",
+  "Decision Intelligence",
+  "Market Intelligence",
+  "Executive Dashboards",
+  "Generative AI Solutions",
+  "Custom AI Consulting",
 ];
 
 export function Footer() {
@@ -24,8 +24,8 @@ export function Footer() {
               </span>
             </div>
             <p className="mt-4 max-w-xs text-[14px] leading-relaxed text-dark-text/60">
-              A data and market-intelligence consultancy. We distil raw signal — filings, patents, pricing,
-              sentiment — into decisions boards can act on.
+              An AI analytics and decision intelligence company. We turn enterprise data into decisions
+              boards can act on, with a senior analyst reviewing every AI output.
             </p>
             <p className="mt-4 text-[13px] text-dark-text/45">
               Parent company of{" "}

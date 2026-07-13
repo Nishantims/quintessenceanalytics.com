@@ -4,7 +4,7 @@ import type { AiProduct } from "@/lib/ai-products-data";
 const ACCENT_VAR: Record<AiProduct["accent"], string> = {
   pink: "var(--pink)",
   blue: "var(--blue)",
-  purple: "var(--purple)",
+  green: "var(--green)",
 };
 
 export function AiProductCard({ product }: { product: AiProduct }) {
