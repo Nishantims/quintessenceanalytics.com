@@ -2,9 +2,9 @@ import Link from "next/link";
 import type { Service } from "@/lib/services-data";
 
 const ACCENT_VAR: Record<Service["accent"], string> = {
-  coral: "var(--coral)",
-  teal: "var(--teal)",
-  gold: "var(--gold)",
+  pink: "var(--pink)",
+  blue: "var(--blue)",
+  purple: "var(--purple)",
 };
 
 export function ServiceCard({ service, index }: { service: Service; index: number }) {

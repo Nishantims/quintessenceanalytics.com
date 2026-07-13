@@ -11,7 +11,7 @@ export default function ContactPage() {
     <section className="mx-auto max-w-5xl px-6 py-20">
       <div className="grid gap-16 lg:grid-cols-[0.9fr_1.1fr]">
         <div>
-          <span className="text-[13px] font-semibold uppercase tracking-wide text-teal-ink">Contact</span>
+          <span className="text-[13px] font-semibold uppercase tracking-wide text-blue-ink">Contact</span>
           <h1 className="mt-4 font-display text-[36px] font-semibold leading-[1.12] text-text-primary">
             Bring us the question. We&apos;ll bring the evidence.
           </h1>
@@ -23,13 +23,13 @@ export default function ContactPage() {
           <div className="mt-10 space-y-6 border-t border-border pt-8">
             <div>
               <p className="text-[12px] font-semibold uppercase tracking-wide text-text-muted">Email</p>
-              <a href="mailto:contact@market-reports.com" className="mt-1 block text-[15px] font-semibold text-text-primary hover:text-coral">
+              <a href="mailto:contact@market-reports.com" className="mt-1 block text-[15px] font-semibold text-text-primary hover:text-pink">
                 contact@market-reports.com
               </a>
             </div>
             <div>
               <p className="text-[12px] font-semibold uppercase tracking-wide text-text-muted">Already know your market?</p>
-              <a href="https://market-reports.com" target="_blank" rel="noopener noreferrer" className="mt-1 block text-[15px] font-semibold text-teal-ink hover:underline">
+              <a href="https://market-reports.com" target="_blank" rel="noopener noreferrer" className="mt-1 block text-[15px] font-semibold text-blue-ink hover:underline">
                 Browse Market Reports ↗
               </a>
             </div>

@@ -9,16 +9,16 @@ export const metadata: Metadata = {
 };
 
 const ACCENT_VAR: Record<string, string> = {
-  coral: "var(--coral)",
-  teal: "var(--teal)",
-  gold: "var(--gold)",
+  pink: "var(--pink)",
+  blue: "var(--blue)",
+  purple: "var(--purple)",
 };
 
 export default function ServicesPage() {
   return (
     <>
       <section className="mx-auto max-w-4xl px-6 pt-20 pb-14 text-center">
-        <span className="text-[13px] font-semibold uppercase tracking-wide text-teal-ink">Services</span>
+        <span className="text-[13px] font-semibold uppercase tracking-wide text-blue-ink">Services</span>
         <h1 className="mx-auto mt-4 max-w-2xl font-display text-[40px] font-semibold leading-[1.1] text-text-primary">
           Six disciplines. One standard of evidence.
         </h1>
@@ -73,7 +73,7 @@ export default function ServicesPage() {
           <Link
             href="/contact"
             className="mt-8 inline-flex items-center gap-2 rounded-full px-7 py-4 text-[14px] font-semibold text-white transition-transform hover:scale-[1.03]"
-            style={{ background: "var(--coral)" }}
+            style={{ background: "var(--pink)" }}
           >
             Talk to an analyst →
           </Link>

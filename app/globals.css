@@ -1,71 +1,71 @@
 @import "tailwindcss";
 
 /* ── Design tokens ─────────────────────────────────────────────────────────
-   Quintessence Analytics — the parent research/analytics company behind
-   Market Reports. Palette reads "distilled signal from noise": a deep
-   indigo-ink ground, three vivid accents standing in for distinct data
-   signals (never used as a single blur-gradient), on a cool paper ground —
-   deliberately not the warm-cream/terracotta combination this look usually
-   defaults to.
+   Quintessence Analytics — brand palette per client spec: pink, blue, and
+   purple as the three vivid signal colors, grounded in black/white/grey so
+   the vibrancy reads as premium rather than loud. The three accents are
+   used as distinct identities (pink = flagship/CTA, blue = product/AI,
+   purple = premium/enterprise) and combined in the hero gradient only,
+   never blurred together everywhere.
 ------------------------------------------------------------------------- */
 :root {
-  --ink:           #0D1321;
-  --ink-2:         #171F33;
-  --paper:         #F4F5F9;
-  --paper-2:       #FFFFFF;
-  --text-primary:  #0D1321;
-  --text-secondary: #545C72;
-  --text-muted:    #8891A6;
-  --border:        #E1E4EE;
+  --ink:           #0A0A0A;
+  --paper:         #FFFFFF;
+  --text-primary:  #0A0A0A;
+  --text-secondary: #4A4A4A;
+  --text-muted:    #7A7A7A;
+  --border:        #D9D9D9;
   --surface:       #FFFFFF;
-  --surface-raised: #FFFFFF;
+  --surface-raised: #FAFAFA;
+  --grey:          #D9D9D9;
 
-  --coral: #FF5A3C;   /* primary accent — CTAs, headline emphasis */
-  --teal:  #12A594;   /* secondary accent — analytics/signal */
-  --gold:  #F2A93B;   /* tertiary accent — highlights, stats */
-  --coral-ink: #7A2213; /* accessible coral-on-paper text variant */
-  --teal-ink:  #0A4A43;
+  --pink:   #FF6699;
+  --blue:   #0066FF;
+  --purple: #9900CC;
+  --pink-ink:   #C20050;
+  --blue-ink:   #0047B3;
+  --purple-ink: #700099;
 
-  --shadow-color: 220 40% 10%;
+  --shadow-color: 0 0% 0%;
 }
 
 :root[data-theme="dark"] {
-  --ink:           #F4F5F9;
-  --ink-2:         #F4F5F9;
-  --paper:         #0D1321;
-  --paper-2:       #131A2B;
-  --text-primary:  #F4F5F9;
-  --text-secondary: #A9B0C4;
-  --text-muted:    #6B7390;
-  --border:        #262E45;
-  --surface:       #131A2B;
-  --surface-raised: #171F33;
+  --ink:           #FFFFFF;
+  --paper:         #0A0A0A;
+  --text-primary:  #FFFFFF;
+  --text-secondary: #C7C7C7;
+  --text-muted:    #8C8C8C;
+  --border:        #2B2B2B;
+  --surface:       #141414;
+  --surface-raised: #1B1B1B;
+  --grey:          #2B2B2B;
 
-  --coral: #FF7256;
-  --teal:  #2BD9C4;
-  --gold:  #FFC35C;
-  --coral-ink: #FF7256;
-  --teal-ink:  #2BD9C4;
+  --pink:   #FF80AD;
+  --blue:   #3D8BFF;
+  --purple: #C24DE0;
+  --pink-ink:   #FF80AD;
+  --blue-ink:   #3D8BFF;
+  --purple-ink: #C24DE0;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --ink:           #F4F5F9;
-    --ink-2:         #F4F5F9;
-    --paper:         #0D1321;
-    --paper-2:       #131A2B;
-    --text-primary:  #F4F5F9;
-    --text-secondary: #A9B0C4;
-    --text-muted:    #6B7390;
-    --border:        #262E45;
-    --surface:       #131A2B;
-    --surface-raised: #171F33;
+    --ink:           #FFFFFF;
+    --paper:         #0A0A0A;
+    --text-primary:  #FFFFFF;
+    --text-secondary: #C7C7C7;
+    --text-muted:    #8C8C8C;
+    --border:        #2B2B2B;
+    --surface:       #141414;
+    --surface-raised: #1B1B1B;
+    --grey:          #2B2B2B;
 
-    --coral: #FF7256;
-    --teal:  #2BD9C4;
-    --gold:  #FFC35C;
-    --coral-ink: #FF7256;
-    --teal-ink:  #2BD9C4;
+    --pink:   #FF80AD;
+    --blue:   #3D8BFF;
+    --purple: #C24DE0;
+    --pink-ink:   #FF80AD;
+    --blue-ink:   #3D8BFF;
+    --purple-ink: #C24DE0;
   }
 }
 
@@ -75,14 +75,16 @@
   --color-surface: var(--surface);
   --color-surface-raised: var(--surface-raised);
   --color-border: var(--border);
+  --color-grey: var(--grey);
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
   --color-text-muted: var(--text-muted);
-  --color-coral: var(--coral);
-  --color-teal: var(--teal);
-  --color-gold: var(--gold);
-  --color-coral-ink: var(--coral-ink);
-  --color-teal-ink: var(--teal-ink);
+  --color-pink: var(--pink);
+  --color-blue: var(--blue);
+  --color-purple: var(--purple);
+  --color-pink-ink: var(--pink-ink);
+  --color-blue-ink: var(--blue-ink);
+  --color-purple-ink: var(--purple-ink);
 
   --font-display: var(--font-fraunces);
   --font-body: var(--font-manrope);
@@ -109,6 +111,28 @@ h1, h2, h3, h4 {
   font-variant-numeric: tabular-nums;
 }
 
+.qa-gradient-text {
+  background: linear-gradient(100deg, var(--pink) 0%, var(--purple) 55%, var(--blue) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.qa-gradient-bg {
+  background: linear-gradient(135deg, var(--pink) 0%, var(--purple) 55%, var(--blue) 100%);
+}
+
+/* ── Scroll-reveal (components/ScrollReveal.tsx) ── */
+.qa-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.qa-reveal.qa-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 @keyframes qa-fade-in {
   from { opacity: 0; transform: scale(0.4); }
   to   { opacity: 1; transform: scale(1); }
@@ -118,11 +142,34 @@ h1, h2, h3, h4 {
   to { stroke-dashoffset: 0; }
 }
 
+@keyframes qa-grow-up {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+
+@keyframes qa-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(3%, -4%) scale(1.05); }
+}
+
+@keyframes qa-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.qa-marquee-track {
+  animation: qa-marquee 28s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  .qa-reveal {
+    opacity: 1;
+    transform: none;
   }
 }

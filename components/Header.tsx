@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { MobileNav } from "@/components/MobileNav";
+import { Logo } from "@/components/Logo";
 
 const NAV = [
   { label: "Services", href: "/services" },
@@ -14,15 +15,7 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-border bg-paper/85 backdrop-blur-md">
       <div className="mx-auto flex h-18 max-w-6xl items-center justify-between px-6 py-4">
         <Link href="/" className="group flex items-center gap-2.5">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-ink text-paper">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
-              <path d="M4 17 L10 9 L14 13 L20 5" stroke="var(--coral)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-              <circle cx="20" cy="5" r="1.8" fill="var(--gold)" />
-            </svg>
-          </span>
-          <span className="font-display text-[19px] font-semibold leading-none tracking-tight text-text-primary">
-            Quintessence <span className="text-text-muted font-normal">Analytics</span>
-          </span>
+          <Logo size={34} />
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
@@ -32,7 +25,7 @@ export function Header() {
               href={item.href}
               target={item.external ? "_blank" : undefined}
               rel={item.external ? "noopener noreferrer" : undefined}
-              className="text-[13px] font-semibold uppercase tracking-wide text-text-secondary transition-colors hover:text-coral"
+              className="text-[13px] font-semibold uppercase tracking-wide text-text-secondary transition-colors hover:text-pink"
             >
               {item.label}
               {item.external && <span aria-hidden> ↗</span>}

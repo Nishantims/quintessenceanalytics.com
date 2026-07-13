@@ -4,7 +4,7 @@ export interface Service {
   short: string;
   description: string;
   bullets: string[];
-  accent: "coral" | "teal" | "gold";
+  accent: "pink" | "blue" | "purple";
 }
 
 export const SERVICES: Service[] = [
@@ -19,7 +19,7 @@ export const SERVICES: Service[] = [
       "Segment, region, and country-level breakdowns built from the same underlying model",
       "Base, optimistic, and conservative scenarios — every assumption itemized and traceable",
     ],
-    accent: "coral",
+    accent: "pink",
   },
   {
     slug: "predictive-analytics",
@@ -32,7 +32,7 @@ export const SERVICES: Service[] = [
       "Scenario modelling (bull / base / bear) grounded in the same factor set",
       "Ongoing re-forecasting as new filings, pricing, and macro data land",
     ],
-    accent: "teal",
+    accent: "blue",
   },
   {
     slug: "business-intelligence-dashboards",
@@ -45,7 +45,7 @@ export const SERVICES: Service[] = [
       "Exportable views for board decks without losing the underlying detail",
       "Built to sit inside your existing reporting cadence, not replace it",
     ],
-    accent: "gold",
+    accent: "purple",
   },
   {
     slug: "competitive-benchmarking",
@@ -58,7 +58,7 @@ export const SERVICES: Service[] = [
       "Cross-validated against primary filings wherever a company discloses them",
       "Market-share estimates shown with their underlying assumptions, not hidden",
     ],
-    accent: "coral",
+    accent: "pink",
   },
   {
     slug: "regulatory-patent-tracking",
@@ -71,7 +71,7 @@ export const SERVICES: Service[] = [
       "Regulatory and subsidy tracking across the jurisdictions that matter to your market",
       "Flagged as a leading indicator, cross-referenced against the demand forecast",
     ],
-    accent: "teal",
+    accent: "blue",
   },
   {
     slug: "ai-research-automation",
@@ -84,6 +84,6 @@ export const SERVICES: Service[] = [
       "Consistent methodology across markets, so comparisons hold up",
       "The engine that powers Market Reports, available for a market built just for you",
     ],
-    accent: "gold",
+    accent: "purple",
   },
 ];

@@ -11,16 +11,17 @@ export default function Icon() {
           width: "100%",
           height: "100%",
           display: "flex",
-          alignItems: "center",
+          alignItems: "flex-end",
           justifyContent: "center",
-          background: "#0D1321",
-          borderRadius: 7,
+          gap: 2,
+          padding: "6px 7px",
+          background: "linear-gradient(135deg, #FF6699 0%, #9900CC 55%, #0066FF 100%)",
+          borderRadius: 8,
         }}
       >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-          <path d="M4 17 L10 9 L14 13 L20 5" stroke="#FF5A3C" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
-          <circle cx="20" cy="5" r="2.2" fill="#F2A93B" />
-        </svg>
+        <div style={{ width: 3, height: 8, borderRadius: 2, background: "#fff", display: "flex" }} />
+        <div style={{ width: 3, height: 13, borderRadius: 2, background: "#fff", display: "flex" }} />
+        <div style={{ width: 3, height: 18, borderRadius: 2, background: "#fff", display: "flex" }} />
       </div>
     ),
     size

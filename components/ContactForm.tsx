@@ -37,7 +37,7 @@ export function ContactForm() {
       <div className="rounded-2xl border border-border bg-surface p-8 text-center">
         <span
           className="mx-auto flex h-12 w-12 items-center justify-center rounded-full text-white"
-          style={{ background: "var(--teal)" }}
+          style={{ background: "var(--blue)" }}
         >
           <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
             <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
@@ -70,13 +70,13 @@ export function ContactForm() {
           name="message"
           required
           rows={5}
-          className="w-full resize-y rounded-xl border border-border bg-surface px-4 py-3 text-[14px] text-text-primary outline-none transition-colors focus:border-coral"
+          className="w-full resize-y rounded-xl border border-border bg-surface px-4 py-3 text-[14px] text-text-primary outline-none transition-colors focus:border-pink"
           placeholder="What market, what timeframe, and what would a wrong answer cost you?"
         />
       </div>
 
       {status === "error" && (
-        <p className="rounded-lg border border-coral/30 bg-coral/5 px-4 py-3 text-[13px] text-coral-ink">
+        <p className="rounded-lg border border-pink/30 bg-pink/5 px-4 py-3 text-[13px] text-pink-ink">
           {errorMessage}
         </p>
       )}
@@ -85,7 +85,7 @@ export function ContactForm() {
         type="submit"
         disabled={status === "submitting"}
         className="w-full rounded-full px-6 py-3.5 text-[14px] font-semibold text-white transition-transform hover:scale-[1.01] disabled:opacity-60 disabled:hover:scale-100 sm:w-auto"
-        style={{ background: "var(--coral)" }}
+        style={{ background: "var(--pink)" }}
       >
         {status === "submitting" ? "Sending…" : "Send message"}
       </button>
@@ -121,7 +121,7 @@ function Field({
         required={required}
         autoComplete={autoComplete}
         placeholder={placeholder}
-        className="w-full rounded-xl border border-border bg-surface px-4 py-3 text-[14px] text-text-primary outline-none transition-colors focus:border-coral"
+        className="w-full rounded-xl border border-border bg-surface px-4 py-3 text-[14px] text-text-primary outline-none transition-colors focus:border-pink"
       />
     </div>
   );

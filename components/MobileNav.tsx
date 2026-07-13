@@ -39,7 +39,7 @@ export function MobileNav({ items }: { items: NavItem[] }) {
                 target={item.external ? "_blank" : undefined}
                 rel={item.external ? "noopener noreferrer" : undefined}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-3 py-3 text-[15px] font-semibold text-text-primary hover:bg-surface-raised hover:text-coral"
+                className="rounded-lg px-3 py-3 text-[15px] font-semibold text-text-primary hover:bg-surface-raised hover:text-pink"
               >
                 {item.label}
                 {item.external && <span aria-hidden> ↗</span>}

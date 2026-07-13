@@ -11,31 +11,31 @@ const PRINCIPLES = [
   {
     title: "Show the reasoning, not just the number",
     body: "A forecast without its assumptions is an opinion with better formatting. Every figure we deliver comes with the driver behind it.",
-    accent: "coral",
+    accent: "pink",
   },
   {
     title: "Cross-validate before you trust",
     body: "One data source is a claim. Two independent sources that agree are evidence. We reconcile against primary filings wherever they exist rather than trusting a single aggregator.",
-    accent: "teal",
+    accent: "blue",
   },
   {
     title: "Say plainly what you don't know",
     body: "A confidence band is more honest than false precision. Where the evidence is thin, we say so instead of quietly rounding to a clean number.",
-    accent: "gold",
+    accent: "purple",
   },
 ];
 
 const ACCENT_VAR: Record<string, string> = {
-  coral: "var(--coral)",
-  teal: "var(--teal)",
-  gold: "var(--gold)",
+  pink: "var(--pink)",
+  blue: "var(--blue)",
+  purple: "var(--purple)",
 };
 
 export default function AboutPage() {
   return (
     <>
       <section className="mx-auto max-w-4xl px-6 pt-20 pb-16 text-center">
-        <span className="text-[13px] font-semibold uppercase tracking-wide text-teal-ink">About</span>
+        <span className="text-[13px] font-semibold uppercase tracking-wide text-blue-ink">About</span>
         <h1 className="mx-auto mt-4 max-w-2xl font-display text-[40px] font-semibold leading-[1.1] text-text-primary">
           We built the research engine first, then the reports on top of it.
         </h1>
@@ -72,7 +72,7 @@ export default function AboutPage() {
       </section>
 
       <section className="mx-auto max-w-6xl px-6 pb-24">
-        <span className="text-[13px] font-semibold uppercase tracking-wide" style={{ color: "var(--coral)" }}>
+        <span className="text-[13px] font-semibold uppercase tracking-wide" style={{ color: "var(--pink)" }}>
           How we hold ourselves accountable
         </span>
         <h2 className="mt-3 max-w-lg font-display text-[30px] font-semibold leading-tight text-text-primary">
@@ -111,7 +111,7 @@ export default function AboutPage() {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex shrink-0 items-center gap-2 rounded-full px-6 py-3.5 text-[14px] font-semibold text-white transition-transform hover:scale-[1.03]"
-            style={{ background: "var(--teal)" }}
+            style={{ background: "var(--blue)" }}
           >
             Visit Market Reports ↗
           </Link>

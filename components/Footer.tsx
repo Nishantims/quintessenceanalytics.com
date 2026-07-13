@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LogoMark } from "@/components/Logo";
 
 const SERVICES = [
   "Custom Market Research",
@@ -16,12 +17,7 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-[1.3fr_1fr_1fr_1fr]">
           <div>
             <div className="flex items-center gap-2.5">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-paper/10">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
-                  <path d="M4 17 L10 9 L14 13 L20 5" stroke="var(--coral)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-                  <circle cx="20" cy="5" r="1.8" fill="var(--gold)" />
-                </svg>
-              </span>
+              <LogoMark size={32} />
               <span className="font-display text-[18px] font-semibold text-paper">Quintessence Analytics</span>
             </div>
             <p className="mt-4 max-w-xs text-[14px] leading-relaxed text-paper/60">
@@ -30,7 +26,7 @@ export function Footer() {
             </p>
             <p className="mt-4 text-[13px] text-paper/45">
               Parent company of{" "}
-              <Link href="https://market-reports.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-teal hover:underline">
+              <Link href="https://market-reports.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue hover:underline">
                 Market Reports ↗
               </Link>
             </p>
@@ -41,7 +37,7 @@ export function Footer() {
             <ul className="mt-4 space-y-2.5">
               {SERVICES.map((s) => (
                 <li key={s}>
-                  <Link href="/services" className="text-[14px] text-paper/70 hover:text-coral">
+                  <Link href="/services" className="text-[14px] text-paper/70 hover:text-pink">
                     {s}
                   </Link>
                 </li>
@@ -52,10 +48,10 @@ export function Footer() {
           <div>
             <p className="text-[12px] font-semibold uppercase tracking-wide text-paper/45">Company</p>
             <ul className="mt-4 space-y-2.5">
-              <li><Link href="/about" className="text-[14px] text-paper/70 hover:text-coral">About</Link></li>
-              <li><Link href="/services" className="text-[14px] text-paper/70 hover:text-coral">Services</Link></li>
-              <li><Link href="/contact" className="text-[14px] text-paper/70 hover:text-coral">Contact</Link></li>
-              <li><Link href="https://market-reports.com" target="_blank" rel="noopener noreferrer" className="text-[14px] text-paper/70 hover:text-coral">Market Reports ↗</Link></li>
+              <li><Link href="/about" className="text-[14px] text-paper/70 hover:text-pink">About</Link></li>
+              <li><Link href="/services" className="text-[14px] text-paper/70 hover:text-pink">Services</Link></li>
+              <li><Link href="/contact" className="text-[14px] text-paper/70 hover:text-pink">Contact</Link></li>
+              <li><Link href="https://market-reports.com" target="_blank" rel="noopener noreferrer" className="text-[14px] text-paper/70 hover:text-pink">Market Reports ↗</Link></li>
             </ul>
           </div>
 
@@ -63,14 +59,14 @@ export function Footer() {
             <p className="text-[12px] font-semibold uppercase tracking-wide text-paper/45">Get in touch</p>
             <ul className="mt-4 space-y-2.5 text-[14px] text-paper/70">
               <li>
-                <a href="mailto:contact@market-reports.com" className="hover:text-coral">
+                <a href="mailto:contact@market-reports.com" className="hover:text-pink">
                   contact@market-reports.com
                 </a>
               </li>
               <li className="pt-2">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-1.5 rounded-full border border-paper/20 px-4 py-2 text-[13px] font-semibold text-paper transition-colors hover:border-coral hover:text-coral"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-paper/20 px-4 py-2 text-[13px] font-semibold text-paper transition-colors hover:border-pink hover:text-pink"
                 >
                   Start a conversation →
                 </Link>

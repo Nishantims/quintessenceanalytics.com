@@ -27,7 +27,7 @@ export function ThemeToggle() {
     <button
       onClick={toggle}
       aria-label="Toggle color theme"
-      className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-text-secondary transition-colors hover:border-coral hover:text-coral"
+      className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-text-secondary transition-colors hover:border-pink hover:text-pink"
     >
       {theme === "dark" ? (
         <svg aria-hidden viewBox="0 0 24 24" fill="none" className="h-4 w-4">
