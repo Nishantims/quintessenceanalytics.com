@@ -160,7 +160,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Ten Core AI Analytics Services ── */}
+      {/* ── Twelve Core AI Analytics Services ── */}
       <section className="border-y border-border bg-surface">
         <div className="mx-auto max-w-6xl px-6 py-24">
           <ScrollReveal>
@@ -170,7 +170,7 @@ export default function HomePage() {
                   Our services
                 </span>
                 <h2 className="mt-3 max-w-lg font-display text-[32px] font-bold leading-tight text-text-primary">
-                  Ten core AI{" "}
+                  Twelve core AI{" "}
                   <span style={{ color: "var(--blue)" }}>analytics services</span>
                 </h2>
               </div>

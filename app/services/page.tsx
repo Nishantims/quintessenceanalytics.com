@@ -6,7 +6,7 @@ import { DashboardPhoto } from "@/components/DashboardPhoto";
 export const metadata: Metadata = {
   title: "Services — Quintessence Analytics",
   description:
-    "Ten core AI analytics services: predictive analytics, decision intelligence, market intelligence, customer analytics, operational analytics, financial & risk analytics, executive dashboards, generative AI, AI process automation, and custom AI consulting.",
+    "Twelve core AI analytics services: predictive analytics, decision intelligence, market intelligence, customer analytics, operational analytics, financial & risk analytics, executive dashboards, generative AI, AI process automation, custom AI consulting, marketing & growth analytics, and data engineering & AI infrastructure.",
 };
 
 const ACCENT_VAR: Record<string, string> = {
@@ -21,12 +21,12 @@ export default function ServicesPage() {
       <section className="mx-auto max-w-4xl px-6 pt-20 pb-14 text-center">
         <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--pink)" }}>Services</span>
         <h1 className="mx-auto mt-4 max-w-2xl font-display text-[40px] font-bold leading-[1.1] text-text-primary">
-          Ten <span style={{ color: "var(--green)" }}>disciplines</span>. One standard of{" "}
+          Twelve <span style={{ color: "var(--green)" }}>disciplines</span>. One standard of{" "}
           <span style={{ color: "var(--blue)" }}>evidence</span>.
         </h1>
         <p className="mx-auto mt-5 max-w-xl text-[18px] leading-relaxed text-text-secondary">
           Every engagement — bespoke or off-the-shelf — runs through the same triangulated methodology.
-          Pick the discipline you need, or bring us a question that spans all ten.
+          Pick the discipline you need, or bring us a question that spans all twelve.
         </p>
       </section>
 

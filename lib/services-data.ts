@@ -7,7 +7,7 @@ export interface Service {
   accent: "pink" | "blue" | "green";
 }
 
-// Ten core AI analytics services, per the client's content plan.
+// Twelve core AI analytics services, per the client's content plan.
 export const SERVICES: Service[] = [
   {
     slug: "predictive-analytics",
@@ -138,5 +138,31 @@ export const SERVICES: Service[] = [
       "Every output analyst-reviewed before it reaches you, at every tier",
     ],
     accent: "blue",
+  },
+  {
+    slug: "marketing-growth-analytics",
+    title: "Marketing & Growth Analytics",
+    short: "Attribution and funnel models that show which spend is actually driving growth.",
+    description:
+      "Most attribution models overstate the channel that happened to touch a customer last. We build multi-touch models tied to real conversion data, so budget moves toward what's actually driving growth instead of what's easiest to claim credit for.",
+    bullets: [
+      "Multi-touch attribution grounded in real conversion and revenue data",
+      "Funnel and cohort analysis that isolates where growth is actually lost",
+      "Campaign-level ROI modelling built for reallocating budget, not just reporting it",
+    ],
+    accent: "pink",
+  },
+  {
+    slug: "data-engineering-ai-infrastructure",
+    title: "Data Engineering & AI Infrastructure",
+    short: "The pipelines, warehousing, and MLOps layer that makes everything above possible.",
+    description:
+      "Every analytics or AI deliverable is only as reliable as the pipeline feeding it. We design and build the ingestion, warehousing, and model-deployment infrastructure underneath — so dashboards stay current and models stay production-ready, not stuck in a notebook.",
+    bullets: [
+      "Ingestion and warehousing pipelines built for your actual data volume and cadence",
+      "MLOps and model-deployment infrastructure that moves models from notebook to production",
+      "Built to support every other service on this list, not a standalone project",
+    ],
+    accent: "green",
   },
 ];
