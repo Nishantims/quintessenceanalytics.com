@@ -1,0 +1,32 @@
+name: Health check
+
+# Runs automated checks against the live production site so a regression
+# gets caught within minutes instead of waiting for a visitor to hit a
+# broken page. A failing scheduled run triggers GitHub's default
+# failure-notification email to the repo's watchers - no extra alerting
+# setup needed. See scripts/health-check.mjs for what's actually checked.
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+env:
+  BASE_URL: https://quintessenceanalytics.com
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # Post-deploy push trigger: give Vercel a moment to finish rolling
+      # out before hitting it, otherwise this races the deployment.
+      - if: github.event_name == 'push'
+        run: sleep 45
+      - run: npm run health-check
