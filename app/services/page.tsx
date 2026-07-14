@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SERVICES } from "@/lib/services-data";
-import { IntelligenceScene } from "@/components/IntelligenceScene";
+import { DashboardPhoto } from "@/components/DashboardPhoto";
 
 export const metadata: Metadata = {
   title: "Services — Quintessence Analytics",
@@ -19,19 +19,19 @@ export default function ServicesPage() {
   return (
     <>
       <section className="mx-auto max-w-4xl px-6 pt-20 pb-14 text-center">
-        <span className="text-[13px] font-semibold uppercase tracking-wide" style={{ color: "var(--pink)" }}>Services</span>
+        <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--pink)" }}>Services</span>
         <h1 className="mx-auto mt-4 max-w-2xl font-display text-[40px] font-bold leading-[1.1] text-text-primary">
           Ten <span style={{ color: "var(--green)" }}>disciplines</span>. One standard of{" "}
           <span style={{ color: "var(--blue)" }}>evidence</span>.
         </h1>
-        <p className="mx-auto mt-5 max-w-xl text-[16px] leading-relaxed text-text-secondary">
+        <p className="mx-auto mt-5 max-w-xl text-[18px] leading-relaxed text-text-secondary">
           Every engagement — bespoke or off-the-shelf — runs through the same triangulated methodology.
           Pick the discipline you need, or bring us a question that spans all ten.
         </p>
       </section>
 
       <section className="mx-auto max-w-3xl px-6 pb-16">
-        <IntelligenceScene variant="compact" />
+        <DashboardPhoto src="/images/services-dashboard.png" alt="System performance analytics dashboard on a laptop" />
       </section>
 
       <section className="mx-auto max-w-5xl divide-y divide-border px-6 pb-24">
@@ -53,7 +53,7 @@ export default function ServicesPage() {
                     {service.title.split(" ").slice(-1)}
                   </span>
                 </h2>
-                <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-text-secondary">
+                <p className="mt-4 max-w-2xl text-[19px] leading-relaxed text-text-secondary">
                   {service.description}
                 </p>
                 <ul className="mt-6 grid gap-3 sm:grid-cols-2">

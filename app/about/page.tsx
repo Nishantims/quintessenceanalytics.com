@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { IntelligenceScene } from "@/components/IntelligenceScene";
+import { DashboardPhoto } from "@/components/DashboardPhoto";
 
 export const metadata: Metadata = {
   title: "About — Quintessence Analytics",
@@ -36,12 +36,12 @@ export default function AboutPage() {
   return (
     <>
       <section className="mx-auto max-w-4xl px-6 pt-20 pb-16 text-center">
-        <span className="text-[13px] font-semibold uppercase tracking-wide text-blue-ink">About</span>
+        <span className="text-[15px] font-semibold uppercase tracking-wide text-blue-ink">About</span>
         <h1 className="mx-auto mt-4 max-w-2xl font-display text-[40px] font-bold leading-[1.1] text-text-primary">
           We built the <span style={{ color: "var(--pink)" }}>AI engine</span> first, then the reports
           on top of it.
         </h1>
-        <p className="mx-auto mt-5 max-w-xl text-[16px] leading-relaxed text-text-secondary">
+        <p className="mx-auto mt-5 max-w-xl text-[18px] leading-relaxed text-text-secondary">
           Quintessence Analytics is an AI analytics and decision intelligence company. Market Reports —
           our subscription platform of syndicated industry reports — is the first product built on top
           of our methodology. This page exists because the methodology is the product, whichever form
@@ -50,7 +50,7 @@ export default function AboutPage() {
       </section>
 
       <section className="mx-auto max-w-3xl px-6 pb-16">
-        <IntelligenceScene variant="compact" />
+        <DashboardPhoto src="/images/about-dashboard.png" alt="Analytics dashboard overview on a laptop" />
       </section>
 
       <section className="mx-auto max-w-5xl px-6 pb-24">
@@ -59,7 +59,7 @@ export default function AboutPage() {
             <h2 className="font-display text-[24px] font-bold text-text-primary">
               Why <span style={{ color: "var(--green)" }}>&quot;Quintessence&quot;</span>
             </h2>
-            <p className="mt-4 text-[15px] leading-relaxed text-text-secondary">
+            <p className="mt-4 text-[19px] leading-relaxed text-text-secondary">
               The word originally meant the fifth element — the pure substance left once everything
               inessential has been stripped away. That&apos;s the job: a market throws off an enormous
               amount of noise — press releases, analyst notes, social sentiment, half-finished patent
@@ -71,7 +71,7 @@ export default function AboutPage() {
             <h2 className="font-display text-[24px] font-bold text-text-primary">
               Why we also <span style={{ color: "var(--blue)" }}>sell reports</span>
             </h2>
-            <p className="mt-4 text-[15px] leading-relaxed text-text-secondary">
+            <p className="mt-4 text-[19px] leading-relaxed text-text-secondary">
               A custom engagement is expensive to run for every market that exists. Market Reports is how
               we make the same triangulated methodology available off the shelf, for the markets common
               enough that a syndicated report already answers the question — without waiting on a bespoke
@@ -82,7 +82,7 @@ export default function AboutPage() {
       </section>
 
       <section className="mx-auto max-w-6xl px-6 pb-24">
-        <span className="text-[13px] font-semibold uppercase tracking-wide" style={{ color: "var(--pink)" }}>
+        <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--pink)" }}>
           How we hold ourselves accountable
         </span>
         <h2 className="mt-3 max-w-lg font-display text-[30px] font-bold leading-tight text-text-primary">
@@ -112,7 +112,7 @@ export default function AboutPage() {
               Want to see the <span style={{ color: "var(--green)" }}>methodology</span> in production
               first?
             </h2>
-            <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-text-secondary">
+            <p className="mt-3 max-w-xl text-[19px] leading-relaxed text-text-secondary">
               Market Reports runs on the same engine described throughout this site — browse a live
               report before you commission a custom one.
             </p>

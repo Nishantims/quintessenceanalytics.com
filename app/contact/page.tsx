@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/ContactForm";
-import { IntelligenceScene } from "@/components/IntelligenceScene";
+import { DashboardPhoto } from "@/components/DashboardPhoto";
 
 export const metadata: Metadata = {
   title: "Contact — Quintessence Analytics",
@@ -12,12 +12,12 @@ export default function ContactPage() {
     <section className="mx-auto max-w-5xl px-6 py-20">
       <div className="grid gap-16 lg:grid-cols-[0.9fr_1.1fr]">
         <div>
-          <span className="text-[13px] font-semibold uppercase tracking-wide text-blue-ink">Contact</span>
+          <span className="text-[15px] font-semibold uppercase tracking-wide text-blue-ink">Contact</span>
           <h1 className="mt-4 font-display text-[36px] font-bold leading-[1.12] text-text-primary">
             Bring us the <span style={{ color: "var(--pink)" }}>question</span>. We&apos;ll bring the{" "}
             <span style={{ color: "var(--green)" }}>evidence</span>.
           </h1>
-          <p className="mt-5 text-[15px] leading-relaxed text-text-secondary">
+          <p className="mt-5 text-[19px] leading-relaxed text-text-secondary">
             Tell us the market, the timeframe, and what&apos;s riding on the answer. An analyst will
             reply within one business day with next steps — no automated sales sequence.
           </p>
@@ -38,7 +38,7 @@ export default function ContactPage() {
           </div>
 
           <div className="mt-10">
-            <IntelligenceScene variant="compact" />
+            <DashboardPhoto src="/images/hero-dashboard.png" alt="Analytics dashboard overview on a laptop" />
           </div>
         </div>
 

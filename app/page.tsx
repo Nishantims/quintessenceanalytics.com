@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { IntelligenceScene } from "@/components/IntelligenceScene";
+import { DashboardPhoto } from "@/components/DashboardPhoto";
 import { ServiceCard } from "@/components/ServiceCard";
 import { AiProductCard } from "@/components/AiProductCard";
 import { CapabilityMarquee } from "@/components/CapabilityMarquee";
@@ -50,7 +50,7 @@ export default function HomePage() {
       <section className="mx-auto max-w-6xl px-6 pt-16 pb-16 sm:pt-24 sm:pb-20">
         <div className="grid items-center gap-14 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-border px-3.5 py-1.5 text-[12px] font-semibold uppercase tracking-wide text-text-secondary">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border px-3.5 py-1.5 text-[14px] font-semibold uppercase tracking-wide text-text-secondary">
               <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--pink)" }} />
               AI analytics &amp; decision intelligence
             </span>
@@ -59,7 +59,7 @@ export default function HomePage() {
               <span style={{ color: "var(--blue)" }}>decisions</span>, not just{" "}
               <span style={{ color: "var(--pink)" }}>dashboards.</span>
             </h1>
-            <p className="mt-6 max-w-lg text-[17px] leading-relaxed text-text-secondary">
+            <p className="mt-6 max-w-lg text-[19px] leading-relaxed text-text-secondary">
               Quintessence Analytics is an AI analytics and decision intelligence company — predictive
               analytics, automation, and executive dashboards built on your real data, every AI output
               reviewed by a senior analyst before it reaches you. We&apos;re also the research engine
@@ -86,7 +86,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <IntelligenceScene variant="large" />
+          <DashboardPhoto src="/images/hero-dashboard.png" alt="Analytics dashboard overview on a laptop" priority />
         </div>
       </section>
 
@@ -95,14 +95,14 @@ export default function HomePage() {
       {/* ── Who We Are ── */}
       <section className="mx-auto max-w-4xl px-6 py-24 text-center">
         <ScrollReveal>
-          <span className="text-[13px] font-semibold uppercase tracking-wide" style={{ color: "var(--green)" }}>
+          <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--green)" }}>
             Who we are
           </span>
           <h2 className="mx-auto mt-3 max-w-2xl font-display text-[32px] font-bold leading-tight text-text-primary">
             An AI analytics company built to solve{" "}
             <span style={{ color: "var(--blue)" }}>enterprise decision problems</span>
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-[16px] leading-relaxed text-text-secondary">
+          <p className="mx-auto mt-5 max-w-xl text-[18px] leading-relaxed text-text-secondary">
             We&apos;re not a technology vendor selling a platform — we&apos;re an analytics partner who
             happens to build the AI ourselves. Every engagement starts with the business decision, works
             backward to the data and models that answer it, and ends with a senior analyst reviewing the
@@ -115,7 +115,7 @@ export default function HomePage() {
       <section className="border-y border-border bg-surface">
         <div className="mx-auto max-w-6xl px-6 py-24">
           <ScrollReveal>
-            <span className="text-[13px] font-semibold uppercase tracking-wide" style={{ color: "var(--blue)" }}>
+            <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--blue)" }}>
               What we do
             </span>
             <h2 className="mt-3 max-w-lg font-display text-[32px] font-bold leading-tight text-text-primary">
@@ -140,7 +140,7 @@ export default function HomePage() {
       {/* ── Industries We Serve ── */}
       <section className="mx-auto max-w-6xl px-6 py-24">
         <ScrollReveal>
-          <span className="text-[13px] font-semibold uppercase tracking-wide" style={{ color: "var(--pink)" }}>
+          <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--pink)" }}>
             Industries we serve
           </span>
           <h2 className="mt-3 max-w-lg font-display text-[32px] font-bold leading-tight text-text-primary">
@@ -166,7 +166,7 @@ export default function HomePage() {
           <ScrollReveal>
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <span className="text-[13px] font-semibold uppercase tracking-wide" style={{ color: "var(--green)" }}>
+                <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--green)" }}>
                   Our services
                 </span>
                 <h2 className="mt-3 max-w-lg font-display text-[32px] font-bold leading-tight text-text-primary">
@@ -190,14 +190,14 @@ export default function HomePage() {
       <section className="mx-auto max-w-6xl px-6 py-24">
         <ScrollReveal>
           <div className="text-center">
-            <span className="text-[13px] font-semibold uppercase tracking-wide" style={{ color: "var(--pink)" }}>
+            <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--pink)" }}>
               AI products
             </span>
             <h2 className="mx-auto mt-3 max-w-xl font-display text-[32px] font-bold leading-tight text-text-primary">
               AI-driven decision systems, priced for how{" "}
               <span style={{ color: "var(--blue)" }}>serious</span> you are
             </h2>
-            <p className="mx-auto mt-4 max-w-lg text-[15px] leading-relaxed text-text-secondary">
+            <p className="mx-auto mt-4 max-w-lg text-[19px] leading-relaxed text-text-secondary">
               From an affordable self-serve dashboard to a fully bespoke enterprise partnership — the same
               AI engine, analyst-reviewed at every tier.
             </p>
@@ -216,7 +216,7 @@ export default function HomePage() {
       <section className="border-y border-border bg-surface">
         <div className="mx-auto max-w-6xl px-6 py-24">
           <ScrollReveal>
-            <span className="text-[13px] font-semibold uppercase tracking-wide" style={{ color: "var(--blue)" }}>
+            <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--blue)" }}>
               Business outcomes
             </span>
             <h2 className="mt-3 max-w-lg font-display text-[32px] font-bold leading-tight text-text-primary">
@@ -241,7 +241,7 @@ export default function HomePage() {
       {/* ── Case Studies & Success Stories ── */}
       <section className="mx-auto max-w-6xl px-6 py-24">
         <ScrollReveal>
-          <span className="text-[13px] font-semibold uppercase tracking-wide" style={{ color: "var(--pink)" }}>
+          <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--pink)" }}>
             Case studies
           </span>
           <h2 className="mt-3 max-w-lg font-display text-[32px] font-bold leading-tight text-text-primary">
@@ -279,7 +279,7 @@ export default function HomePage() {
       <section className="border-y border-border bg-surface">
         <div className="mx-auto max-w-6xl px-6 py-24">
           <ScrollReveal>
-            <span className="text-[13px] font-semibold uppercase tracking-wide" style={{ color: "var(--green)" }}>
+            <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--green)" }}>
               Technology
             </span>
             <h2 className="mt-3 max-w-lg font-display text-[32px] font-bold leading-tight text-text-primary">
@@ -305,7 +305,7 @@ export default function HomePage() {
       <section className="bg-dark-surface text-dark-text">
         <div className="mx-auto max-w-6xl px-6 py-24">
           <ScrollReveal>
-            <span className="text-[13px] font-semibold uppercase tracking-wide" style={{ color: "var(--pink)" }}>
+            <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--pink)" }}>
               Our delivery methodology
             </span>
             <h2 className="mt-3 max-w-lg font-display text-[32px] font-bold leading-tight text-dark-text">
@@ -330,7 +330,7 @@ export default function HomePage() {
       {/* ── Why Choose Quintessence Analytics ── */}
       <section className="mx-auto max-w-6xl px-6 py-24">
         <ScrollReveal>
-          <span className="text-[13px] font-semibold uppercase tracking-wide" style={{ color: "var(--blue)" }}>
+          <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--blue)" }}>
             Why choose us
           </span>
           <h2 className="mt-3 max-w-lg font-display text-[32px] font-bold leading-tight text-text-primary">
@@ -356,14 +356,14 @@ export default function HomePage() {
           <ScrollReveal>
             <div className="grid items-center gap-12 rounded-3xl border border-border bg-surface-raised p-10 lg:grid-cols-[1fr_auto] lg:p-14">
               <div>
-                <span className="text-[13px] font-semibold uppercase tracking-wide" style={{ color: "var(--green)" }}>
+                <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--green)" }}>
                   Our flagship product
                 </span>
                 <h2 className="mt-3 font-display text-[28px] font-bold leading-snug text-text-primary">
                   Market Reports is Quintessence Analytics&apos;{" "}
                   <span style={{ color: "var(--blue)" }}>syndicated research platform</span>
                 </h2>
-                <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-text-secondary">
+                <p className="mt-4 max-w-2xl text-[19px] leading-relaxed text-text-secondary">
                   Every methodology on this page — driver-level forecasting, triangulated market sizing,
                   interactive scenario dashboards — ships today inside Market Reports, our subscription
                   platform of ready-made industry reports. If your market already has one, buy it off the
@@ -387,7 +387,7 @@ export default function HomePage() {
       {/* ── Client Testimonials ── */}
       <section className="mx-auto max-w-6xl px-6 py-24">
         <ScrollReveal>
-          <span className="text-[13px] font-semibold uppercase tracking-wide" style={{ color: "var(--pink)" }}>
+          <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--pink)" }}>
             Client testimonials
           </span>
           <h2 className="mt-3 max-w-lg font-display text-[32px] font-bold leading-tight text-text-primary">
@@ -415,7 +415,7 @@ export default function HomePage() {
       <section className="border-y border-border bg-surface">
         <div className="mx-auto max-w-3xl px-6 py-24">
           <ScrollReveal>
-            <span className="text-[13px] font-semibold uppercase tracking-wide" style={{ color: "var(--green)" }}>
+            <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--green)" }}>
               FAQs
             </span>
             <h2 className="mt-3 font-display text-[32px] font-bold leading-tight text-text-primary">
