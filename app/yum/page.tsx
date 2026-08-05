@@ -18,6 +18,29 @@ const ACCENT_VAR: Record<string, string> = {
   green: "var(--green)",
 };
 
+// Real, already-published reports on Market Reports (market-reports.com) -
+// live today, not illustrative. Every figure/slug here is what's actually
+// on the live report page as of publish; this section exists to show real
+// coverage of QSR-adjacent markets rather than assert an unbuilt capability.
+const MARKET_COVERAGE = [
+  { title: "Quick Service Restaurant (QSR) Market", slug: "quick-service-restaurant-qsr", size: "$485.9B → $720.8B by 2035" },
+  { title: "Fast Casual Restaurant Market", slug: "fast-casual-restaurant", size: "$143.5B → $291.1B by 2035" },
+  { title: "Pizza Restaurant Market", slug: "pizza-restaurant", size: "$218.7B → $362.6B by 2035" },
+  { title: "Fried Chicken Restaurant Market", slug: "fried-chicken-restaurant", size: "$100.1B → $198.3B by 2035" },
+  { title: "Coffee Chain Market", slug: "coffee-chain", size: "$179.6B → $254.9B by 2035" },
+  { title: "Cloud Kitchen Market", slug: "cloud-kitchen", size: "$78.0B → $234.0B by 2035" },
+  { title: "Ghost Kitchen Market", slug: "ghost-kitchen", size: "$47.3B → $112.1B by 2035" },
+  { title: "Healthy Fast Food Market", slug: "healthy-fast-food", size: "$92.4B → $214.1B by 2035" },
+  { title: "Plant-Based QSR Market", slug: "plant-based-qsr", size: "$3.8B → $8.4B by 2035" },
+  { title: "QSR Digital Ordering Market", slug: "qsr-digital-ordering", size: "$1.1B → $3.3B by 2035" },
+  { title: "Restaurant Artificial Intelligence (AI) Market", slug: "restaurant-artificial-intelligence-ai", size: "$3.7B → $17.0B by 2035" },
+  { title: "Smart Kitchen Market", slug: "smart-kitchen", size: "$10.0B → $35.5B by 2035" },
+  { title: "Airport Foodservice Market", slug: "airport-foodservice", size: "$39.8B → $73.2B by 2035" },
+  { title: "Bakery Cafe Market", slug: "bakery-cafe", size: "$17.8B → $36.1B by 2035" },
+  { title: "Convenience Foodservice Market", slug: "convenience-foodservice", size: "$40.7B → $192.2B by 2035" },
+  { title: "Food Court Market", slug: "food-court", size: "$156.8B → $257.8B by 2035" },
+];
+
 const INTELLIGENCE_SOLUTIONS = [
   { title: "Executive Intelligence Hub", accent: "pink" },
   { title: "Enterprise AI Copilot", detail: "“Ask Your Market”, “Ask Your Competitor”, “Ask Your Data”", accent: "blue" },
@@ -215,6 +238,36 @@ export default function YumProposalPage() {
           These examples represent prior leadership experience and demonstrate the expertise now
           brought into Quintessence Analytics.
         </p>
+      </section>
+
+      {/* ── Relevant Market Coverage - real, live reports, not illustrative ── */}
+      <section className="mx-auto max-w-5xl px-6 pb-24">
+        <SectionEyebrow accent="green">Relevant Market Coverage — Already Live</SectionEyebrow>
+        <h2 className="mt-3 max-w-2xl font-display text-[28px] font-bold leading-tight text-text-primary">
+          {MARKET_COVERAGE.length} QSR-adjacent markets, <span style={{ color: "var(--green)" }}>sized and published</span> today
+        </h2>
+        <p className="mt-5 max-w-3xl text-[17px] leading-relaxed text-text-secondary">
+          Not a pitch deck promise — these are live reports on Market Reports, our syndicated research
+          platform, built on the same triangulated methodology this proposal describes. Each one is
+          openly available today.
+        </p>
+        <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {MARKET_COVERAGE.map((r) => (
+            <a
+              key={r.slug}
+              href={`https://market-reports.com/reports/${r.slug}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-between gap-4 rounded-xl border border-border bg-surface px-5 py-4 transition-colors hover:border-green/50"
+            >
+              <div>
+                <p className="text-[14px] font-semibold text-text-primary">{r.title}</p>
+                <p className="mt-1 text-[12px] text-text-muted">{r.size}</p>
+              </div>
+              <span className="shrink-0 text-[12px] font-semibold" style={{ color: "var(--green)" }}>View ↗</span>
+            </a>
+          ))}
+        </div>
       </section>
 
       {/* ── Illustrative QSR Scenarios ── */}
