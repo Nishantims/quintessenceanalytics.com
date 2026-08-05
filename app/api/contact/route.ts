@@ -1,6 +1,12 @@
 import { Resend } from "resend";
 
 const CONTACT_EMAIL = "contact@market-reports.com";
+// Both QA.com and market-reports.com deliver contact-form submissions to
+// this same inbox - with no site identifier, there was no way to tell
+// which property a given enquiry actually came in on. Hardcoded per-repo
+// (not derived from the request) since this route only ever serves
+// quintessenceanalytics.com.
+const SOURCE_SITE = "QA.com (quintessenceanalytics.com)";
 
 function escapeHtml(value: string): string {
   return value
@@ -46,9 +52,10 @@ export async function POST(request: Request) {
       from: process.env.CONTACT_FROM_EMAIL ?? "Quintessence Analytics <onboarding@resend.dev>",
       to: CONTACT_EMAIL,
       replyTo: email,
-      subject: `New enquiry from ${name}${company ? ` (${company})` : ""}`,
+      subject: `[QA.com] New enquiry from ${name}${company ? ` (${company})` : ""}`,
       html: `
         <h2>New website enquiry</h2>
+        <p><strong>Source:</strong> ${SOURCE_SITE}</p>
         <p><strong>Name:</strong> ${escapeHtml(name)}</p>
         <p><strong>Email:</strong> ${escapeHtml(email)}</p>
         ${company ? `<p><strong>Company:</strong> ${escapeHtml(company)}</p>` : ""}
@@ -74,7 +81,7 @@ export async function POST(request: Request) {
       subject: "We've received your enquiry — Quintessence Analytics",
       html: `
         <h2>Thanks for reaching out, ${escapeHtml(name)}</h2>
-        <p>Your enquiry has been sent to our team${company ? ` on behalf of ${escapeHtml(company)}` : ""}. An analyst will reply within one business day with next steps.</p>
+        <p>Your enquiry via ${SOURCE_SITE}${company ? ` on behalf of ${escapeHtml(company)}` : ""} has been sent to our team. An analyst will reply within one business day with next steps.</p>
         <p><strong>What you sent us:</strong></p>
         ${interest ? `<p><strong>Interested in:</strong> ${escapeHtml(interest)}</p>` : ""}
         <p>${escapeHtml(message).replace(/\n/g, "<br />")}</p>
