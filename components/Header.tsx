@@ -7,13 +7,32 @@ interface NavItem {
   label: string;
   href: string;
   external?: boolean;
+  /** Home only - renders a house glyph instead of the label text, since the
+   * logo already carries "Quintessence Analytics" as a wordmark and a second
+   * text label reading "Home" next to it would be redundant. */
+  icon?: "home";
 }
 
 const NAV: NavItem[] = [
+  { label: "Home", href: "/", icon: "home" },
   { label: "Services", href: "/services" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
+
+function HomeIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden>
+      <path
+        d="M4 11.5 12 4l8 7.5M6 9.5V20h12V9.5"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 export function Header() {
   return (
@@ -31,9 +50,10 @@ export function Header() {
                 href={item.href}
                 target={item.external ? "_blank" : undefined}
                 rel={item.external ? "noopener noreferrer" : undefined}
-                className="text-[13px] font-semibold uppercase tracking-wide text-text-secondary transition-colors hover:text-pink"
+                aria-label={item.icon ? item.label : undefined}
+                className="flex items-center text-[13px] font-semibold uppercase tracking-wide text-text-secondary transition-colors hover:text-pink"
               >
-                {item.label}
+                {item.icon === "home" ? <HomeIcon /> : item.label}
                 {item.external && <span aria-hidden> ↗</span>}
               </Link>
             ))}

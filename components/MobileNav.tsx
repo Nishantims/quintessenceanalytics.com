@@ -7,6 +7,21 @@ interface NavItem {
   label: string;
   href: string;
   external?: boolean;
+  icon?: "home";
+}
+
+function HomeIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden>
+      <path
+        d="M4 11.5 12 4l8 7.5M6 9.5V20h12V9.5"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
 }
 
 export function MobileNav({ items }: { items: NavItem[] }) {
@@ -39,8 +54,9 @@ export function MobileNav({ items }: { items: NavItem[] }) {
                 target={item.external ? "_blank" : undefined}
                 rel={item.external ? "noopener noreferrer" : undefined}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-3 py-3 text-[15px] font-semibold text-text-primary hover:bg-surface-raised hover:text-pink"
+                className="flex items-center gap-2.5 rounded-lg px-3 py-3 text-[15px] font-semibold text-text-primary hover:bg-surface-raised hover:text-pink"
               >
+                {item.icon === "home" && <HomeIcon />}
                 {item.label}
                 {item.external && <span aria-hidden> ↗</span>}
               </Link>

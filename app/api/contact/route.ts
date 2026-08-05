@@ -63,6 +63,29 @@ export async function POST(request: Request) {
       return Response.json({ error: "Couldn't send your message. Please try again or email us directly." }, { status: 502 });
     }
 
+    // Confirmation receipt back to the submitter, on their own email address -
+    // separate send from the internal notification above so a failure here
+    // (bad inbox, spam rejection) never blocks the enquiry itself, which has
+    // already succeeded by this point.
+    const { error: confirmError } = await resend.emails.send({
+      from: process.env.CONTACT_FROM_EMAIL ?? "Quintessence Analytics <onboarding@resend.dev>",
+      to: email,
+      replyTo: CONTACT_EMAIL,
+      subject: "We've received your enquiry — Quintessence Analytics",
+      html: `
+        <h2>Thanks for reaching out, ${escapeHtml(name)}</h2>
+        <p>Your enquiry has been sent to our team${company ? ` on behalf of ${escapeHtml(company)}` : ""}. An analyst will reply within one business day with next steps.</p>
+        <p><strong>What you sent us:</strong></p>
+        ${interest ? `<p><strong>Interested in:</strong> ${escapeHtml(interest)}</p>` : ""}
+        <p>${escapeHtml(message).replace(/\n/g, "<br />")}</p>
+        <p style="margin-top:24px;color:#666;font-size:13px;">If this wasn't you, or you have anything to add, just reply to this email.</p>
+      `,
+    });
+    if (confirmError) {
+      // Non-fatal - the enquiry itself already reached us successfully.
+      console.error("[contact] Confirmation email to submitter failed:", confirmError);
+    }
+
     return Response.json({ success: true });
   } catch (err) {
     console.error("[contact] Unexpected error:", err);
