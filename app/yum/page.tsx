@@ -91,7 +91,7 @@ const WHY_NOW = [
 // on the live report page as of publish; this section exists to show real
 // coverage of QSR-adjacent markets rather than assert an unbuilt capability.
 const MARKET_COVERAGE = [
-  { title: "Quick Service Restaurant (QSR) Market", slug: "quick-service-restaurant-qsr", size: "$485.9B → $720.8B by 2035" },
+  { title: "Quick Service Restaurant (QSR) Market", slug: "quick-service-restaurant-qsr", size: "$485.9B → $720.8B by 2035", sampleId: "53d6a2ec-45b5-429f-b635-dd21e4d3aadf" },
   { title: "Fast Casual Restaurant Market", slug: "fast-casual-restaurant", size: "$143.5B → $291.1B by 2035" },
   { title: "Pizza Restaurant Market", slug: "pizza-restaurant", size: "$218.7B → $362.6B by 2035" },
   { title: "Fried Chicken Restaurant Market", slug: "fried-chicken-restaurant", size: "$100.1B → $198.3B by 2035" },
@@ -396,19 +396,37 @@ export default function YumProposalPage() {
         </p>
         <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
           {MARKET_COVERAGE.map((r) => (
-            <a
+            <div
               key={r.slug}
-              href={`https://market-reports.com/reports/${r.slug}`}
-              target="_blank"
-              rel="noopener noreferrer"
               className="flex items-center justify-between gap-4 rounded-xl border border-border bg-surface px-5 py-4 transition-colors hover:border-text-muted"
             >
               <div>
                 <p className="text-[14px] font-semibold text-text-primary">{r.title}</p>
                 <p className="mt-1 text-[12px] text-text-muted">{r.size}</p>
               </div>
-              <span className="shrink-0 text-[12px] font-semibold" style={{ color: "var(--blue)" }}>View ↗</span>
-            </a>
+              <div className="flex shrink-0 items-center gap-4">
+                {"sampleId" in r && r.sampleId && (
+                  <a
+                    href={`https://market-reports.com/samples/${r.sampleId}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[12px] font-semibold"
+                    style={{ color: "var(--pink)" }}
+                  >
+                    Sample ↗
+                  </a>
+                )}
+                <a
+                  href={`https://market-reports.com/reports/${r.slug}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[12px] font-semibold"
+                  style={{ color: "var(--blue)" }}
+                >
+                  View ↗
+                </a>
+              </div>
+            </div>
           ))}
         </div>
       </section>
