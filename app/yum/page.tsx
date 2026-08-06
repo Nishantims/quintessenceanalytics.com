@@ -65,6 +65,34 @@ const FOUR_PILLARS = [
   },
 ];
 
+// Real, dated developments from Yum!'s own Q1 2026 earnings release and
+// public reporting on the Pizza Hut sale and Byte by Yum! rollout - not
+// illustrative. Grounds the pitch in what's actually happening in the
+// business right now rather than a generic "AI is changing restaurants"
+// framing that could apply to any QSR operator.
+const WHY_NOW = [
+  {
+    title: "Taco Bell & KFC Are Accelerating",
+    body: "Taco Bell delivered 8% same-store sales growth and 10% system sales growth in Q1 2026; KFC grew system sales 6% (ex-currency) with 7% unit growth and 16% operating profit growth — the two brands now anchoring Yum!'s next chapter.",
+    accent: "pink",
+  },
+  {
+    title: "Pizza Hut Is Being Divested",
+    body: "Yum! Brands agreed to sell Pizza Hut — excluding Mainland China — to LongRange Capital for $1.5B, with Yum China acquiring Pizza Hut China separately for $1.2B, following ten consecutive quarters of Pizza Hut same-store sales declines.",
+    accent: "blue",
+  },
+  {
+    title: "AI Is Already Live at Scale",
+    body: "Taco Bell's voice-AI drive-thru ordering, built on Yum!'s in-house \"Byte by Yum!\" platform, has expanded to nearly 900 U.S. locations, alongside AI-powered dynamic menu boards now heading toward a nationwide rollout.",
+    accent: "green",
+  },
+  {
+    title: "The Category Is Racing on AI",
+    body: "McDonald's is mid-way through a reported multi-billion-dollar technology overhaul with Google Cloud, deploying AI-powered order-accuracy tools across its drive-thrus — the AI race is already underway across every major QSR competitor.",
+    accent: "pink",
+  },
+];
+
 // Real, already-published reports on Market Reports (market-reports.com) -
 // live today, not illustrative. Every figure/slug here is what's actually
 // on the live report page as of publish; this section exists to show real
@@ -295,6 +323,30 @@ export default function YumProposalPage() {
             </div>
           ))}
         </div>
+      </section>
+
+      {/* ── Why Now ── */}
+      <section className="mx-auto max-w-6xl px-6 pb-24">
+        <SectionEyebrow accent="blue">Why Now</SectionEyebrow>
+        <h2 className="mt-3 max-w-2xl font-display text-[28px] font-bold leading-tight text-text-primary">
+          A portfolio in motion, <span style={{ color: "var(--pink)" }}>and an AI race</span> already underway
+        </h2>
+        <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2">
+          {WHY_NOW.map((item) => (
+            <div key={item.title} className="h-full rounded-2xl border border-border bg-surface p-6">
+              <div className="flex items-center gap-2.5">
+                <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: ACCENT_VAR[item.accent] }} aria-hidden />
+                <h3 className="font-display text-[17px] font-bold text-text-primary">{item.title}</h3>
+              </div>
+              <p className="mt-2.5 text-[13.5px] leading-relaxed text-text-secondary">{item.body}</p>
+            </div>
+          ))}
+        </div>
+        <p className="mt-8 max-w-3xl text-[15px] leading-relaxed text-text-secondary">
+          This is exactly the moment an independent intelligence partner earns its keep — benchmarking AI
+          investment against real category outcomes, sizing the addressable opportunity as the KFC and Taco
+          Bell portfolio sharpens, and separating genuine same-store-sales impact from AI hype.
+        </p>
       </section>
 
       {/* ── About / Leadership ── */}
