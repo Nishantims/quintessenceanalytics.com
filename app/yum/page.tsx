@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ExclusiveContactBox } from "@/components/ExclusiveContactBox";
+import { ACCENT_VAR, accentAt, SectionEyebrow, Band } from "@/components/yum/shared";
 
 // Bespoke proposal page for a specific prospect (Yum! Brands) - not linked
 // from primary nav, not meant to be indexed. Every claim on this page is
@@ -15,14 +16,6 @@ export const metadata: Metadata = {
     "A proposed Enterprise Decision Intelligence platform for Yum! Brands from Quintessence Analytics — a technology, AI, intelligence, and strategy consultancy combining Enterprise Intelligence, Data Analytics, Predictive Analytics, Generative AI, and Custom Technology Development.",
   robots: { index: false, follow: false },
 };
-
-const ACCENT_VAR: Record<string, string> = {
-  pink: "var(--pink)",
-  blue: "var(--blue)",
-  green: "var(--green)",
-};
-const ROTATE = ["pink", "blue", "green"] as const;
-const accentAt = (i: number) => ROTATE[i % ROTATE.length];
 
 // Yum! Brands' four current restaurant chains - named for personalization
 // only (this is the prospect's own public business structure, not a claim
@@ -245,26 +238,6 @@ const ILLUSTRATIVE_SCENARIOS = [
   },
 ];
 
-function SectionEyebrow({ children, accent = "pink" }: { children: React.ReactNode; accent?: string }) {
-  return (
-    <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: ACCENT_VAR[accent] }}>
-      {children}
-    </span>
-  );
-}
-
-/** Alternating full-bleed background band - same convention as the
- * homepage (border-y + bg-surface every other section) so adjacent
- * sections read as visually distinct rather than one undifferentiated
- * scroll of cards. */
-function Band({ children }: { children: React.ReactNode }) {
-  return (
-    <section className="border-y border-border bg-surface">
-      <div className="mx-auto max-w-5xl px-6 py-20">{children}</div>
-    </section>
-  );
-}
-
 export default function YumProposalPage() {
   return (
     <>
@@ -349,6 +322,41 @@ export default function YumProposalPage() {
         </p>
       </section>
 
+      {/* ── Strategic Analysis Deep-Dive ── */}
+      <section className="mx-auto max-w-5xl px-6 pb-24">
+        <div className="rounded-3xl border border-border bg-surface p-8 sm:p-10">
+          <SectionEyebrow accent="green">Deep-Dive Analysis</SectionEyebrow>
+          <h2 className="mt-3 font-display text-[24px] font-bold leading-tight text-text-primary">
+            Yum! Brands Strategic Analysis &amp; Disruptive Growth Roadmap
+          </h2>
+          <p className="mt-4 max-w-2xl text-[14.5px] leading-relaxed text-text-secondary">
+            A full category-level brief covering brand-by-brand performance, competitive share shifts,
+            franchise economics, the Byte by Yum! AI platform, and a concrete 30-90 day plan to reach 5%
+            growth — prepared specifically for this proposal, not a generic industry summary.
+          </p>
+          <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {[
+              { value: "+1.0% vs -3.0%", label: "Visits vs. QSR category" },
+              { value: "9.4%", label: "KFC U.S. share, down from 16%" },
+              { value: "50.8%", label: "Franchise ROIC" },
+              { value: "35,000+", label: "Restaurants on Byte by Yum!" },
+            ].map((s, i) => (
+              <div key={s.label} className="rounded-xl border border-border bg-surface-raised p-3.5">
+                <p className="font-display text-[16px] font-bold" style={{ color: ACCENT_VAR[accentAt(i)] }}>{s.value}</p>
+                <p className="mt-1 text-[11px] leading-snug text-text-muted">{s.label}</p>
+              </div>
+            ))}
+          </div>
+          <Link
+            href="/yum/strategic-analysis"
+            className="mt-7 inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-[14px] font-semibold text-white transition-transform hover:scale-[1.03]"
+            style={{ background: "var(--pink)" }}
+          >
+            Read the Full Strategic Analysis →
+          </Link>
+        </div>
+      </section>
+
       {/* ── About / Leadership ── */}
       <Band>
         <SectionEyebrow accent="green">About Quintessence Analytics &amp; Leadership Experience</SectionEyebrow>
@@ -418,8 +426,10 @@ export default function YumProposalPage() {
         <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
           {ILLUSTRATIVE_SCENARIOS.map((s) => (
             <div key={s.title} className="rounded-2xl border border-border bg-surface-raised p-7">
-              <span className="inline-block h-2 w-2 rounded-full" style={{ background: ACCENT_VAR[s.accent] }} aria-hidden />
-              <h3 className="mt-4 font-display text-[17px] font-bold leading-snug text-text-primary">{s.title}</h3>
+              <div className="flex items-center gap-2.5">
+                <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: ACCENT_VAR[s.accent] }} aria-hidden />
+                <h3 className="font-display text-[17px] font-bold leading-snug text-text-primary">{s.title}</h3>
+              </div>
               <p className="mt-3 text-[13px] font-semibold uppercase tracking-wide text-text-muted">Scenario</p>
               <p className="mt-1.5 text-[14px] leading-relaxed text-text-secondary">{s.scenario}</p>
               <p className="mt-4 text-[13px] font-semibold uppercase tracking-wide text-text-muted">Approach</p>
@@ -502,7 +512,7 @@ export default function YumProposalPage() {
           {DELIVERABLES.map((item) => (
             <span
               key={item}
-              className="rounded-full border border-border bg-surface-raised px-4 py-2 text-[13px] font-semibold text-text-primary"
+              className="rounded-full border border-border bg-surface-raised px-4 py-2 text-[13px] font-normal text-text-primary"
             >
               {item}
             </span>
