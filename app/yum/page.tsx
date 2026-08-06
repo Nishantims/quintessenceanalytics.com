@@ -431,6 +431,43 @@ export default function YumProposalPage() {
         </div>
       </section>
 
+      {/* ── QSR Market Sample Deep-Dive ── */}
+      <section className="mx-auto max-w-5xl px-6 pb-24">
+        <div className="rounded-3xl border border-border bg-surface p-8 sm:p-10">
+          <SectionEyebrow accent="pink">Live Sample Report</SectionEyebrow>
+          <h2 className="mt-3 font-display text-[24px] font-bold leading-tight text-text-primary">
+            Quick Service Restaurant (QSR) Market — See the Full Sample
+          </h2>
+          <p className="mt-4 max-w-2xl text-[14.5px] leading-relaxed text-text-secondary">
+            The category KFC and Taco Bell compete in directly, already sized and published — Yum!
+            Brands, Inc. is profiled as the report&apos;s top-ranked company. Open access, no request
+            form, so you can review the real depth of a Market Reports sample before we talk further.
+          </p>
+          <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {[
+              { value: "$485.9B → $720.8B", label: "Market size, 2025–2035" },
+              { value: "4.0%", label: "CAGR through 2035" },
+              { value: "20", label: "Companies profiled, incl. Yum! Brands" },
+              { value: "26", label: "Countries sized individually" },
+            ].map((s, i) => (
+              <div key={s.label} className="rounded-xl border border-border bg-surface-raised p-3.5">
+                <p className="font-display text-[16px] font-bold" style={{ color: ACCENT_VAR[accentAt(i)] }}>{s.value}</p>
+                <p className="mt-1 text-[11px] leading-snug text-text-muted">{s.label}</p>
+              </div>
+            ))}
+          </div>
+          <a
+            href="https://market-reports.com/samples/53d6a2ec-45b5-429f-b635-dd21e4d3aadf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-7 inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-[14px] font-semibold text-white transition-transform hover:scale-[1.03]"
+            style={{ background: "var(--pink)" }}
+          >
+            View the Full Sample →
+          </a>
+        </div>
+      </section>
+
       {/* ── Illustrative QSR Scenarios ── */}
       <Band>
         <SectionEyebrow accent="blue">What This Looks Like in Practice</SectionEyebrow>
