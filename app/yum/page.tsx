@@ -245,7 +245,7 @@ export default function YumProposalPage() {
       <section className="mx-auto max-w-6xl px-6 pt-20 pb-16">
         <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
           <div>
-            <SectionEyebrow accent="blue">Technology · AI · Intelligence · Strategy Consultancy</SectionEyebrow>
+            <SectionEyebrow accent="blue">Technology · AI · Market Intelligence · Strategy Consultancy</SectionEyebrow>
             <h1 className="mt-4 font-display text-[40px] font-bold leading-[1.1] text-text-primary">
               An Enterprise <span style={{ color: "var(--pink)" }}>Decision Intelligence</span> Platform for{" "}
               <span style={{ color: "var(--green)" }}>Yum! Brands</span>
@@ -426,10 +426,8 @@ export default function YumProposalPage() {
         <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
           {ILLUSTRATIVE_SCENARIOS.map((s) => (
             <div key={s.title} className="rounded-2xl border border-border bg-surface-raised p-7">
-              <div className="flex items-center gap-2.5">
-                <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: ACCENT_VAR[s.accent] }} aria-hidden />
-                <h3 className="font-display text-[17px] font-bold leading-snug text-text-primary">{s.title}</h3>
-              </div>
+              <h3 className="font-display text-[17px] font-bold leading-snug text-text-primary">{s.title}</h3>
+              <span className="mt-2.5 block h-[3px] w-10 rounded-full" style={{ background: ACCENT_VAR[s.accent] }} aria-hidden />
               <p className="mt-3 text-[13px] font-semibold uppercase tracking-wide text-text-muted">Scenario</p>
               <p className="mt-1.5 text-[14px] leading-relaxed text-text-secondary">{s.scenario}</p>
               <p className="mt-4 text-[13px] font-semibold uppercase tracking-wide text-text-muted">Approach</p>
@@ -452,7 +450,7 @@ export default function YumProposalPage() {
           {INTELLIGENCE_SOLUTIONS.map((s, i) => (
             <div key={s.title} className="flex items-center gap-2.5 rounded-2xl border border-border bg-surface p-6">
               <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: ACCENT_VAR[accentAt(i)] }} aria-hidden />
-              <h3 className="font-display text-[16px] font-bold leading-snug text-text-primary">{s.title}</h3>
+              <h3 className="font-display text-[16px] font-normal leading-snug text-text-primary">{s.title}</h3>
             </div>
           ))}
         </div>
@@ -530,7 +528,7 @@ export default function YumProposalPage() {
           {ENGAGEMENT_MODEL.map((item, i) => (
             <div key={item.title} className="flex items-center gap-2.5 rounded-xl border border-border bg-surface p-5">
               <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: ACCENT_VAR[accentAt(i)] }} aria-hidden />
-              <p className="text-[13px] font-semibold leading-snug text-text-primary">{item.title}</p>
+              <p className="text-[13px] font-normal leading-snug text-text-primary">{item.title}</p>
             </div>
           ))}
         </div>
