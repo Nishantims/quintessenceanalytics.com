@@ -1,6 +1,6 @@
 import 'server-only'
 import crypto from 'crypto'
-import { supabaseAdmin } from '@/lib/chess/supabase-admin'
+import { getSupabaseAdmin } from '@/lib/chess/supabase-admin'
 
 export const runtime = 'nodejs'
 
@@ -51,7 +51,7 @@ export async function POST(req: Request) {
   }
 
   const eventId = `chess2000_${payment.id}`
-  const { error: idempErr } = await supabaseAdmin
+  const { error: idempErr } = await getSupabaseAdmin()
     .from('webhook_events')
     .insert({ id: eventId, event_type: event.event })
   if (idempErr) {
@@ -70,7 +70,7 @@ export async function POST(req: Request) {
   // The client-triggered verifyChessPayment (lib/chess/checkout-actions.ts)
   // usually inserts this row first — the unique index on
   // razorpay_payment_id makes this a real no-op if it already did.
-  const { error } = await supabaseAdmin.from('chess_subscriptions').insert({
+  const { error } = await getSupabaseAdmin().from('chess_subscriptions').insert({
     user_id: userId,
     plan,
     status: 'active',

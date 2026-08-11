@@ -1,7 +1,7 @@
 'use server'
 
 import { createClient } from './supabase-server'
-import { supabaseAdmin } from './supabase-admin'
+import { getSupabaseAdmin } from './supabase-admin'
 import Razorpay from 'razorpay'
 import crypto from 'crypto'
 
@@ -88,7 +88,7 @@ export async function verifyChessPayment(
 
   const currentPeriodEnd = new Date(Date.now() + PLAN_PERIOD_DAYS[plan] * 24 * 60 * 60 * 1000).toISOString()
 
-  const { error } = await supabaseAdmin.from('chess_subscriptions').insert({
+  const { error } = await getSupabaseAdmin().from('chess_subscriptions').insert({
     user_id: user.id,
     plan,
     status: 'active',
