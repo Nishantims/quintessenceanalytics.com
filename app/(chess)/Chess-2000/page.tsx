@@ -163,7 +163,11 @@ const CCTAP_GUIDANCE: Record<string, string> = {
   hint: "This is the engine's real best move for the position — but first confirm it actually addresses whatever you found in Checks, Captures, and Threats above. If it does, that's your move.",
 }
 
-const BOARD_MAX_WIDTH = 'min(560px, 58vh, 40vw)'
+// Shrunk from 58vh/560px — a real reported bug: on shorter viewports (a
+// real, confirmed threshold at 720px tall and below, which includes some
+// real laptop screens and Fullscreen-mode sizes) the old cap left the page
+// needing an internal scroll. 50vh/520px leaves comfortably more headroom.
+const BOARD_MAX_WIDTH = 'min(520px, 50vh, 40vw)'
 // Board width plus the vertical eval bar's own width (20px) and the gap
 // between them (8px) — used for the rows below/beside the board (eval
 // bar+board, Hint/Back, Recent moves) so they all line up to the same
@@ -790,14 +794,14 @@ export default function Home() {
       ref={containerRef}
       data-theme={dark ? 'dark' : 'light'}
       data-board-theme={boardTheme}
-      className={`mx-auto flex h-dvh w-full flex-col overflow-hidden bg-[var(--background)] text-ink px-5 py-3 ${isFullscreen ? '' : 'max-w-[1680px]'}`}
+      className={`mx-auto flex h-dvh w-full flex-col overflow-hidden bg-[var(--background)] text-ink px-5 py-2 ${isFullscreen ? '' : 'max-w-[1680px]'}`}
     >
       {/* The old permanent two-line quote + "White vs. Stockfish" block ate
           real vertical space on every single view — moved to the How It
           Works page (its actual home, as a real explanatory tagline) and
           replaced here with a single-line header that only grows when
           there's something live to say (engine thinking / game over). */}
-      <div className="flex-none pb-2.5 border-b-2 border-panel-line mb-2.5">
+      <div className="flex-none pb-2 border-b-2 border-panel-line mb-2">
         <div className="flex justify-between items-center gap-4 flex-wrap">
           <div className="flex items-center gap-2.5">
             <div className="font-heading text-xl font-extrabold">Chess-IQ</div>
@@ -868,7 +872,7 @@ export default function Home() {
             grid actually goes 3-column — below that it stacks to a single
             column (grid-cols-1) and must stay auto-height or the Tactical
             Scoring / Summary panels would be clipped to the board's size. */}
-        <div className="grid grid-cols-1 xl:grid-cols-[1fr_auto_1.5fr] gap-3 items-stretch xl:h-[calc(min(560px,_58vh,_40vw)+76px)]">
+        <div className="grid grid-cols-1 xl:grid-cols-[1fr_auto_1.5fr] gap-3 items-stretch xl:h-[calc(min(520px,_50vh,_40vw)+68px)]">
           {/* Tactical Scoring and Summary pushed down ~1cm (38px) relative
               to the board, per an explicit request — items-stretch still
               governs their overall box within the fixed-height row, so the
