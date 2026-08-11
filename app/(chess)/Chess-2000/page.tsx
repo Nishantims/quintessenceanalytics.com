@@ -872,14 +872,20 @@ export default function Home() {
             grid actually goes 3-column — below that it stacks to a single
             column (grid-cols-1) and must stay auto-height or the Tactical
             Scoring / Summary panels would be clipped to the board's size. */}
-        <div className="grid grid-cols-1 xl:grid-cols-[1fr_auto_1.5fr] gap-3 items-stretch xl:h-[calc(min(520px,_50vh,_40vw)+68px)]">
+        <div className="grid grid-cols-1 xl:grid-cols-[1fr_auto_1.5fr] gap-y-5 gap-x-3 items-stretch xl:h-[calc(min(520px,_50vh,_40vw)+68px)]">
           {/* Tactical Scoring and Summary pushed down ~1cm (38px) relative
               to the board, per an explicit request — items-stretch still
               governs their overall box within the fixed-height row, so the
               margin shifts their content down and shrinks how much of that
               row they actually fill; their own overflow-y-auto absorbs the
               difference rather than clipping anything. */}
-          <div className="min-w-0 xl:mt-[38px]">
+          {/* Capped + centered below xl — a real reported bug otherwise:
+              once the layout falls back to a single stacked column (under
+              1280px, a real range of ordinary desktop window widths, not
+              just mobile), this panel used to stretch to the full page
+              width, spreading its 3-way phase-tab row out into huge,
+              broken-looking gaps instead of staying a sensible size. */}
+          <div className="min-w-0 max-w-[420px] mx-auto xl:max-w-none xl:mx-0 xl:mt-[38px]">
             <TacticalScoringPanel activePhase={activePhaseTab} onSelectPhase={setActivePhaseTab} snapshots={phaseSnapshots} />
           </div>
 
@@ -981,7 +987,7 @@ export default function Home() {
               items-stretch (as Tactical Scoring's wrapper already does)
               correctly subtracts the margin first, so both wrappers land
               on the exact same real height. */}
-          <div className="min-w-0 xl:mt-[38px]">
+          <div className="min-w-0 max-w-[640px] mx-auto xl:max-w-none xl:mx-0 xl:mt-[38px]">
             <SituationPanel toolTitle={explanationTitle} toolLines={explanationLines} narration={summary} deterministicNarrative={positionNarrative} />
           </div>
         </div>
