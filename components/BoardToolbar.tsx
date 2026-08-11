@@ -43,7 +43,14 @@ export function BoardToolbar({
   hasTactic: boolean
 }) {
   return (
-    <div className="w-full flex flex-nowrap gap-1.5 mb-2.5 overflow-x-auto">
+    // Below sm, a 7-way flex row has to squeeze each button down to ~44px
+    // — nowhere near enough real width for two-word labels like
+    // "Undefended Pieces," a confirmed reported bug (the text broke onto
+    // an unreadable, half-clipped line). A 4-column grid instead (2 rows
+    // of 4, last cell empty) gives every button real room to wrap its own
+    // two words onto two clean lines; sm+ reverts to the original single
+    // scrollable row once there's actual width to spare.
+    <div className="grid grid-cols-4 gap-1.5 mb-2.5 sm:flex sm:flex-nowrap sm:overflow-x-auto">
       {MODES.map(({ mode, label, idle }) => {
         const isActive = active === mode
         const isAlert = (mode === 'checkmate' && hasForcedMate) || (mode === 'tactics' && hasTactic)
@@ -57,7 +64,7 @@ export function BoardToolbar({
           <button
             key={mode}
             onClick={() => onSelect(isActive ? null : mode)}
-            className={`text-[9.5px] font-bold h-[42px] flex-1 min-w-0 px-1 leading-tight ${className}`}
+            className={`text-[9.5px] font-bold min-h-[42px] sm:h-[42px] sm:flex-1 min-w-0 px-1 py-1 leading-tight flex items-center justify-center text-center ${className}`}
           >
             {label}
           </button>

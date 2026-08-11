@@ -121,6 +121,14 @@
 html, body {
   height: 100%;
   overflow: hidden;
+  /* Real fix for a reported bug: mobile Chrome/Safari auto-inflate the
+     rendered size of small multi-line text blocks ("font boosting"),
+     which pushed the toolbar's tiny two-word button labels well past
+     their own fixed-height boxes — the first line rendered clipped off
+     above the button entirely. Disabling the browser's own inflation
+     keeps every font-size on this page exactly what it's declared as. */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {

@@ -165,11 +165,20 @@ const CCTAP_GUIDANCE: Record<string, string> = {
   hint: "This is the engine's real best move for the position — but first confirm it actually addresses whatever you found in Checks, Captures, and Threats above. If it does, that's your move.",
 }
 
-// Shrunk from 58vh/560px — a real reported bug: on shorter viewports (a
-// real, confirmed threshold at 720px tall and below, which includes some
-// real laptop screens and Fullscreen-mode sizes) the old cap left the page
-// needing an internal scroll. 50vh/520px leaves comfortably more headroom.
-const BOARD_MAX_WIDTH = 'min(520px, 50vh, 40vw)'
+// Raised from 520px/50vh — a real reported bug: at the xl 3-column layout
+// (400px_auto_400px side columns inside a max-w-[1680px] container), the
+// center "auto" column has up to ~830px of real available width, but a
+// 520px cap left most of that empty around a comparatively small board —
+// the opposite of "the board looks in control." 680px/66vh lets it
+// actually fill that space on typical laptop/desktop screens; the inner
+// panel already scrolls internally (overflow-y-auto) so a board that
+// needs more height than a shorter viewport offers just scrolls into
+// view rather than forcing an outer scrollbar the way the pre-fix version
+// could. The vw term only ever binds below ~1300px width (the single-
+// column stacked range) — 80vw (not 100) leaves room for the outer
+// container's own px-5 padding plus the eval bar beside the board so
+// nothing clips at the container edge on phones.
+const BOARD_MAX_WIDTH = 'min(680px, 66vh, 80vw)'
 // Board width plus the vertical eval bar's own width (20px) and the gap
 // between them (8px) — used for the rows below/beside the board (eval
 // bar+board, Hint/Back, Recent moves) so they all line up to the same
@@ -918,7 +927,11 @@ export default function ChessGameClient({
             track. Equal fixed widths make all three columns read as the
             same real size, and the gap is wider for real visible
             separation between them. */}
-        <div className="grid grid-cols-1 xl:grid-cols-[400px_auto_400px] gap-y-5 gap-x-6 items-stretch xl:h-[calc(min(520px,_50vh,_40vw)+68px)]">
+        {/* This literal string duplicates BOARD_MAX_WIDTH above — Tailwind's
+            arbitrary-value classes have to be static source text to be
+            picked up by its JIT scanner, so the two must be kept in sync
+            by hand whenever BOARD_MAX_WIDTH changes. */}
+        <div className="grid grid-cols-1 xl:grid-cols-[400px_auto_400px] gap-y-5 gap-x-6 items-stretch xl:h-[calc(min(680px,_66vh,_80vw)+68px)]">
           {/* Tactical Scoring and Summary pushed down ~1cm (38px) relative
               to the board, per an explicit request — items-stretch still
               governs their overall box within the fixed-height row, so the
@@ -931,11 +944,18 @@ export default function ChessGameClient({
               just mobile), this panel used to stretch to the full page
               width, spreading its 3-way phase-tab row out into huge,
               broken-looking gaps instead of staying a sensible size. */}
-          <div className="min-w-0 max-w-[420px] mx-auto xl:max-w-none xl:mx-0 xl:mt-[38px]">
+          {/* order-2/order-1/order-3 below xl — a real reported mobile bug
+              otherwise: source order (this panel, then the board, then
+              Summary) is what a single stacked column falls back to, so
+              the board — the actual primary content — landed BELOW a wall
+              of stats and had to be scrolled to. xl:order-none restores
+              the real left/center/right source order once there's room
+              for the 3-column layout these were designed for. */}
+          <div className="order-2 xl:order-none min-w-0 max-w-[420px] mx-auto xl:max-w-none xl:mx-0 xl:mt-[38px]">
             <TacticalScoringPanel activePhase={activePhaseTab} onSelectPhase={setActivePhaseTab} snapshots={phaseSnapshots} />
           </div>
 
-          <div className="min-w-0 flex flex-col items-center">
+          <div className="order-1 xl:order-none min-w-0 flex flex-col items-center">
             {/* Eval bar sits directly beside the board, stretched to the
                 board's own real rendered height via the flex row below
                 (no fixed height needed — flexbox's default stretch
@@ -1033,7 +1053,7 @@ export default function ChessGameClient({
               items-stretch (as Tactical Scoring's wrapper already does)
               correctly subtracts the margin first, so both wrappers land
               on the exact same real height. */}
-          <div className="min-w-0 max-w-[640px] mx-auto xl:max-w-none xl:mx-0 xl:mt-[38px]">
+          <div className="order-3 xl:order-none min-w-0 max-w-[640px] mx-auto xl:max-w-none xl:mx-0 xl:mt-[38px]">
             <SituationPanel toolTitle={explanationTitle} toolLines={explanationLines} narration={summary} deterministicNarrative={positionNarrative} />
           </div>
         </div>
