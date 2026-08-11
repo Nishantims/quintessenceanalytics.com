@@ -158,14 +158,6 @@ const GRADE_DOT_CLASS: Record<string, string> = {
 // keyed by the tool that step drives (see cctap.ts's own tool mapping) —
 // the missing piece the reported gap named directly: real data alone
 // ("no forced mate," "3 undefended pieces") doesn't say what to DO with it.
-const CCTAP_GUIDANCE: Record<string, string> = {
-  checkmate: 'If a real mate is shown above, calculate it fully before playing anything else — it ends the game. If not, move on to Captures.',
-  undefended: "Any real piece listed above (yours or theirs) is worth a look — capturing theirs wins material outright; defending yours prevents losing it. Then check Threats.",
-  imbalance: "If a real imbalance favors the opponent, fix it now (defend, trade off the attacker, or move the piece) before it's actually lost. Then move to Analysis.",
-  weakSquares: 'Compare the two real lists above — weak squares in their camp are real outposts for your pieces; weak squares in yours are real targets for theirs. Let that shape your plan, then check the Hint.',
-  hint: "This is the engine's real best move for the position — but first confirm it actually addresses whatever you found in Checks, Captures, and Threats above. If it does, that's your move.",
-}
-
 // The vw term only ever binds below ~1300px width (the single-column
 // stacked range) — 80vw (not 100) leaves room for the outer container's
 // own px-5 padding plus the eval bar beside the board so nothing clips at
@@ -572,14 +564,6 @@ export default function ChessGameClient({
       })
       if (lines.length === 0) lines = ['No real material imbalance on any square right now.']
     }
-    // CCTAP mode is a guided walkthrough, not just a tool switcher — each
-    // step gets one real, concrete "how do I use this" instruction on top
-    // of the same real data, directly answering the reported gap ("CCTAP
-    // doesn't tell how to find the best move").
-    if (cctapMode) {
-      const guidance = CCTAP_GUIDANCE[highlightMode as string]
-      if (guidance) lines = [...lines, guidance]
-    }
     return { squareStyles: styles, arrows: arrowList, explanationTitle: title, explanationLines: lines }
     // toSan is a plain function redefined every render off the same `fen`
     // already listed below — it always sees the current position when
@@ -588,7 +572,7 @@ export default function ChessGameClient({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     highlightMode, weaknesses, enemyWeaknesses, overloadedEnemy, overloadedOwn, ownWeakSquares, enemyWeakSquares,
-    fen, enemyColor, playerColor, lastMove, sideToMove, topLine, engine, game, pieceStrength, enemyPieceStrength, cctapMode,
+    fen, enemyColor, playerColor, lastMove, sideToMove, topLine, engine, game, pieceStrength, enemyPieceStrength,
     imbalances, playerTactics, opportunityCaptures, playerExchange,
   ])
 
@@ -718,13 +702,6 @@ export default function ChessGameClient({
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gamePhase, gameStarted])
-
-  // CCTAP walkthrough drives the real board tool for whichever step is
-  // active — same real tools the toolbar exposes directly.
-  useEffect(() => {
-    if (!cctapMode) return
-    Promise.resolve().then(() => setHighlightMode(CCTAP_STEPS[cctapStep].tool))
-  }, [cctapMode, cctapStep])
 
   useEffect(() => {
     function onFullscreenChange() { setIsFullscreen(document.fullscreenElement === containerRef.current) }
