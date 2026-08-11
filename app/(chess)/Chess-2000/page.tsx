@@ -804,7 +804,7 @@ export default function Home() {
       <div className="flex-none pb-2 border-b-2 border-panel-line mb-2">
         <div className="flex justify-between items-center gap-4 flex-wrap">
           <div className="flex items-center gap-2.5">
-            <div className="font-heading text-xl font-extrabold">Chess-IQ</div>
+            <div className="font-heading text-xl font-extrabold">Chess-2000</div>
             {engineThinking && <span className="text-[10px] font-bold text-status-blue">engine thinking…</span>}
             {gameStatus && <span className="text-[10px] font-bold text-status-red">{gameStatus}</span>}
           </div>
@@ -974,13 +974,27 @@ export default function Home() {
 
           </div>
 
-          <div className="min-w-0 h-full xl:mt-[38px]">
+          {/* No h-full here (unlike an earlier version) — a real, found
+              cause of Tactical Scoring and Summary rendering at different
+              heights: an explicit height:100% plus a margin-top ADDS the
+              margin on top of that 100%, while relying on the grid's own
+              items-stretch (as Tactical Scoring's wrapper already does)
+              correctly subtracts the margin first, so both wrappers land
+              on the exact same real height. */}
+          <div className="min-w-0 xl:mt-[38px]">
             <SituationPanel toolTitle={explanationTitle} toolLines={explanationLines} narration={summary} deterministicNarrative={positionNarrative} />
           </div>
         </div>
+
+        {/* The same real framing quote used on the How It Works page,
+            added here too per an explicit request — sits directly below
+            Tactical Scoring rather than pinned to the page bottom. */}
+        <p className="text-[10.5px] italic text-white text-center mt-2 leading-snug">
+          &ldquo;A 2000 ELO player is not a tactical wizard. A 2000 player is simply a 1000 player who stops hanging pieces and stops missing their opponent&apos;s threats. You just need to win a piece to end the game — the most simplified way to win a game.&rdquo;
+        </p>
       </div>
 
-      {loading && !engine && <p className="text-center text-[11px] text-ink-faint mt-2 flex-none">Analyzing…</p>}
+      {loading && !engine && <p className="text-center text-[11px] text-ink-faint mt-1 flex-none">Analyzing…</p>}
     </div>
   )
 }

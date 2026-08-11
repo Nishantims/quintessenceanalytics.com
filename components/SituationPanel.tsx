@@ -32,7 +32,7 @@ export function SituationPanel({
   const paragraphs = narration ? [narration] : deterministicNarrative
   return (
     <div className="bg-panel p-3 h-full overflow-y-auto">
-      <div className="text-[9.5px] font-bold uppercase tracking-wide text-ink-faint">Situation summary</div>
+      <div className="text-[9.5px] font-bold uppercase tracking-wide text-ink-faint">Positional Summary</div>
       <div className="mt-1.5 space-y-2">
         {paragraphs.map((p, i) => (
           <p key={i} className="text-[11.5px] text-ink leading-relaxed">{p}</p>

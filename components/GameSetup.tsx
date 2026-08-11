@@ -10,7 +10,7 @@ export function GameSetup({ onStart }: { onStart: (color: Color, elo: number) =>
 
   return (
     <div className="mx-auto max-w-md w-full px-6 py-16">
-      <h1 className="text-2xl font-semibold mb-1">Chess-IQ</h1>
+      <h1 className="text-2xl font-semibold mb-1">Chess-2000</h1>
       <p className="text-sm text-ink-faint mb-8">Real Stockfish coaching, move by move. Set up a game to begin.</p>
 
       <div className="border border-panel-line bg-panel p-6 space-y-6">

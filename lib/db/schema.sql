@@ -1,4 +1,4 @@
--- Chess-IQ local data store — records real games and real per-move grades
+-- Chess-2000 local data store — records real games and real per-move grades
 -- so Tool 10 (Pattern & Learning Tracker) can surface genuinely recurring
 -- mistakes across games, not a single-session guess.
 

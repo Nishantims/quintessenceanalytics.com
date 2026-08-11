@@ -2,7 +2,7 @@ import { getGeminiModel } from './gemini'
 import type { PositionStatus } from '../analysis/position-status'
 import type { Factor } from '../analysis/factors'
 
-const SYSTEM_INSTRUCTION = `You are a chess coach summarizing the CURRENT position for Chess-IQ, using only the real, already-computed data given to you.
+const SYSTEM_INSTRUCTION = `You are a chess coach summarizing the CURRENT position for Chess-2000, using only the real, already-computed data given to you.
 
 Hard rules:
 - About 100 words (90-110), plain prose, no markdown, no headers, no bullet points.

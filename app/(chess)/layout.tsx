@@ -4,7 +4,7 @@ import "./chess-globals.css";
 
 // Independent root layout for the /Chess-2000 section — a real, deliberate
 // Next.js "multiple root layouts" split (via the (chess) route group),
-// since Chess-IQ's own dark-by-default, full-viewport game UI is a
+// since Chess-2000's own dark-by-default, full-viewport game UI is a
 // genuinely different experience from the rest of quintessenceanalytics.com
 // and must not be wrapped in the site's own Header/Footer or fonts.
 const archivo = Archivo({
@@ -14,7 +14,7 @@ const archivo = Archivo({
 });
 
 export const metadata: Metadata = {
-  title: "Chess-IQ — AI Chess Trainer",
+  title: "Chess-2000 — AI Chess Trainer",
   description: "Real Stockfish analysis explained in plain English — what's happening, what to play, and why.",
 };
 
