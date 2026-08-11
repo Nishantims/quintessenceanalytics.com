@@ -140,6 +140,38 @@ function lastMoveParagraph(lastMove: NonNullable<NarrativeInput['lastMove']>): s
   return `Before you move on: ${lastMove.san} was graded ${lastMove.grade}${lastMove.note ? ` — ${lastMove.note}` : ''}. Take a real second to understand why before playing your next move; that habit of reviewing the move you just made is exactly what closes the gap to 2000.`
 }
 
+// One real, short (~20-word) takeaway, dynamically picked from the same
+// real signals as everything above — never the same lesson every move.
+// Checked in the same real urgency order as buildPoints, but phrased as
+// a general, transferable habit rather than a restatement of the
+// position itself (that's what the paragraphs above already cover).
+function learningParagraph(input: NarrativeInput): string {
+  if (input.forcedMate) {
+    return input.forcedMate.forPlayer
+      ? 'Lesson: when a forced mate exists, calculate it completely before playing anything else — a guaranteed win is never worth risking.'
+      : 'Lesson: once the opponent has a forced mate, search only for the one move that survives — everything else loses immediately.'
+  }
+  if (input.isPlayerInCheck) {
+    return 'Lesson: always resolve check first — block, capture, or move the king — before considering any other idea on the board.'
+  }
+  if (input.lastMove && !GOOD_GRADES.includes(input.lastMove.grade)) {
+    return 'Lesson: review every move you play for what it hangs or allows — that habit, done consistently, is what builds real strength.'
+  }
+  if (input.playerMaterialDiff <= -3) {
+    return "Lesson: when you're down material, check every move for whether it wins material back or creates real, concrete compensation instead."
+  }
+  if (input.realThreats.length > 0) {
+    return "Lesson: always ask what your opponent's last move threatens before making your own plan — a missed threat is how games are lost."
+  }
+  if (input.realOpportunities.length > 0) {
+    return 'Lesson: calculate forcing moves — checks, captures, and threats — before quiet ones; a real tactic missed now may not return.'
+  }
+  if (input.lastMove) {
+    return 'Lesson: notice why your last move actually worked, and look to repeat that same real habit on purpose — that is how ratings climb.'
+  }
+  return 'Lesson: in quiet positions, keep developing with real purpose and contest the center — small, principled gains compound into a genuine advantage.'
+}
+
 export function computePositionNarrative(input: NarrativeInput): string[] {
   const points = buildPoints(input)
   const paragraphs: string[] = []
@@ -154,6 +186,7 @@ export function computePositionNarrative(input: NarrativeInput): string[] {
 
   paragraphs.push(opponentPlanParagraph(input))
   if (input.lastMove) paragraphs.push(lastMoveParagraph(input.lastMove))
+  paragraphs.push(learningParagraph(input))
 
   return paragraphs
 }

@@ -20,7 +20,7 @@ import { computeImbalances } from '@/lib/analysis/imbalance'
 import { computePositionNarrative, computeGameOverNarrative } from '@/lib/analysis/position-narrative'
 import { computeTacticalScoring, type ScoreEntry } from '@/lib/analysis/tactical-scoring'
 import { CCTAP_STEPS } from '@/lib/analysis/cctap'
-import { detectForks, detectPins, detectSkewers, detectDiscoveredAttacks, detectOverloadedPieces } from '@/lib/analysis/tactics'
+import { detectForks, detectPins, detectSkewers, detectDiscoveredAttacks, detectOverloadedPieces, detectTrappedPieces, detectRemovingDefender, detectPromotionThreats, detectExchangeOpportunities } from '@/lib/analysis/tactics'
 import type { MoveQuality } from '@/lib/analysis/move-quality'
 import type { PositionSummaryInput } from '@/lib/ai/narrate-position'
 import { GameSetup } from '@/components/GameSetup'
@@ -130,11 +130,12 @@ const HIGHLIGHT_COLORS = {
 // earlier version that used a deep shade of the same hue for dark squares,
 // which read as too saturated/heavy across the whole board. Default stays
 // the classic wood-style two-tone, untouched.
-const BOARD_THEMES: Record<'default' | 'pink' | 'green' | 'blue', { light: string; dark: string; swatch: string }> = {
+const BOARD_THEMES: Record<'default' | 'pink' | 'green' | 'blue' | 'violet', { light: string; dark: string; swatch: string }> = {
   default: { light: '#F0D9B5', dark: '#B58863', swatch: '#D9B98A' },
   pink: { light: '#FFFFFF', dark: '#FF6699', swatch: '#FF6699' },
   green: { light: '#FFFFFF', dark: '#00CC66', swatch: '#00CC66' },
   blue: { light: '#FFFFFF', dark: '#4BD0FF', swatch: '#4BD0FF' },
+  violet: { light: '#FFFFFF', dark: '#CC99FF', swatch: '#CC99FF' },
 }
 type BoardTheme = keyof typeof BOARD_THEMES
 
@@ -364,13 +365,28 @@ export default function ChessGameClient({
   const playerTactics = useMemo(() => ({
     forks: detectForks(fen, playerColor), pins: detectPins(fen, enemyColor), skewers: detectSkewers(fen, playerColor),
     discoveredAttacks: detectDiscoveredAttacks(fen, playerColor),
+    // Real, already-implemented detectors that weren't wired into Tactics
+    // Alert yet — trapped ENEMY pieces (the player's own real target),
+    // "remove the defender" opportunities FOR the player, and the
+    // player's own real promotion threats.
+    trappedEnemyPieces: detectTrappedPieces(fen, enemyColor),
+    removingDefender: detectRemovingDefender(fen, playerColor),
+    promotionThreats: detectPromotionThreats(fen, playerColor),
   }), [fen, playerColor, enemyColor])
+  // Exchange Alert is its own tool, separate from Tactics Alert — a real,
+  // decisively-favorable MULTI-piece capture sequence (4+ pieces
+  // genuinely involved on one square), not the simple one-off captures
+  // Tactics Alert/Undefended Pieces already cover.
+  const playerExchange = useMemo(() => detectExchangeOpportunities(fen, playerColor), [fen, playerColor])
+  const hasExchange = playerExchange.length > 0
   // Tactics Alert is deliberately player-only: real geometric patterns
-  // (forks/pins/skewers/discovered attacks) plus real profitable exchanges
+  // (forks/pins/skewers/discovered attacks/trapped pieces/removing the
+  // defender/promotion threats) plus real profitable exchanges
   // (opportunityCaptures, the same real SEE-filtered captures used
   // throughout) — everything the PLAYER can actually execute right now.
   const hasTactic = playerTactics.forks.length + playerTactics.pins.length + playerTactics.skewers.length
-    + playerTactics.discoveredAttacks.length + opportunityCaptures.length > 0
+    + playerTactics.discoveredAttacks.length + playerTactics.trappedEnemyPieces.length
+    + playerTactics.removingDefender.length + playerTactics.promotionThreats.length + opportunityCaptures.length > 0
 
   const pieceStrength = useMemo(() => summarizePieceStrength(fen, playerColor), [fen, playerColor])
   const enemyPieceStrength = useMemo(() => summarizePieceStrength(fen, enemyColor), [fen, enemyColor])
@@ -527,15 +543,26 @@ export default function ChessGameClient({
       playerTactics.pins.forEach(p => { styles[p.pinnedSquare] = { backgroundColor: HIGHLIGHT_COLORS.blue } })
       playerTactics.skewers.forEach(s => { styles[s.frontSquare] = { backgroundColor: HIGHLIGHT_COLORS.blue }; styles[s.backSquare] = { backgroundColor: HIGHLIGHT_COLORS.blue } })
       playerTactics.discoveredAttacks.forEach(d => { styles[d.movingPieceSquare] = { backgroundColor: HIGHLIGHT_COLORS.blue }; styles[d.targetSquare] = { backgroundColor: HIGHLIGHT_COLORS.blue } })
+      playerTactics.trappedEnemyPieces.forEach(t => { styles[t.square] = { backgroundColor: HIGHLIGHT_COLORS.blue } })
+      playerTactics.removingDefender.forEach(r => { styles[r.defenderSquare] = { backgroundColor: HIGHLIGHT_COLORS.blue }; styles[r.undefendedTargetSquare] = { backgroundColor: HIGHLIGHT_COLORS.blue } })
+      playerTactics.promotionThreats.filter(p => p.clearPath).forEach(p => { styles[p.square] = { backgroundColor: HIGHLIGHT_COLORS.blue } })
       opportunityCaptures.forEach(c => { styles[c.square] = { backgroundColor: HIGHLIGHT_COLORS.blue } })
       lines = [
         ...playerTactics.forks.map(f => `${PIECE_NAMES[f.pieceType]} on ${f.square} forks ${f.targets.map(t => `${PIECE_NAMES[t.pieceType]} (${t.square})`).join(' and ')}.`),
         ...playerTactics.pins.map(p => `Their ${PIECE_NAMES[p.pinnedPieceType]} on ${p.pinnedSquare} is pinned to their king by your piece on ${p.pinnedBy}.`),
         ...playerTactics.skewers.map(s => `Your piece on ${s.attackerSquare} skewers their ${PIECE_NAMES[s.frontPieceType]} into their ${PIECE_NAMES[s.backPieceType]}.`),
         ...playerTactics.discoveredAttacks.map(d => `Moving your ${PIECE_NAMES[d.movingPieceType]} (${d.movingPieceSquare}) reveals an attack on their ${PIECE_NAMES[d.targetType]} (${d.targetSquare}).`),
+        ...playerTactics.trappedEnemyPieces.map(t => `Their ${PIECE_NAMES[t.pieceType]} on ${t.square} is trapped — no real safe square to escape to.`),
+        ...playerTactics.removingDefender.map(r => `Capturing their ${PIECE_NAMES[r.defenderType]} on ${r.defenderSquare} removes the sole real defender of their ${PIECE_NAMES[r.undefendedTargetType]} on ${r.undefendedTargetSquare}.`),
+        ...playerTactics.promotionThreats.filter(p => p.clearPath).map(p => `Your pawn on ${p.square} is ${p.rankFromPromotion} square${p.rankFromPromotion === 1 ? '' : 's'} from promoting with a real clear path ahead.`),
         ...opportunityCaptures.map(c => c.description),
       ]
       if (lines.length === 0) lines = ['No real tactic available for you right now.']
+    } else if (highlightMode === 'exchange') {
+      title = 'Exchange Alert'
+      playerExchange.forEach(e => { styles[e.square] = { backgroundColor: HIGHLIGHT_COLORS.blue } })
+      lines = playerExchange.map(e => `Their ${PIECE_NAMES[e.targetType]} on ${e.square} is the center of a real ${e.piecesInvolved}-piece exchange you come out of up ${e.netGain} point${e.netGain === 1 ? '' : 's'}.`)
+      if (lines.length === 0) lines = ['No real multi-piece exchange available for you right now.']
     } else if (highlightMode === 'imbalance') {
       title = 'Imbalance'
       imbalances.forEach(im => { styles[im.square] = { backgroundColor: im.pieceColor === playerColor ? HIGHLIGHT_COLORS.red : HIGHLIGHT_COLORS.orange } })
@@ -562,7 +589,7 @@ export default function ChessGameClient({
   }, [
     highlightMode, weaknesses, enemyWeaknesses, overloadedEnemy, overloadedOwn, ownWeakSquares, enemyWeakSquares,
     fen, enemyColor, playerColor, lastMove, sideToMove, topLine, engine, game, pieceStrength, enemyPieceStrength, cctapMode,
-    imbalances, playerTactics, opportunityCaptures,
+    imbalances, playerTactics, opportunityCaptures, playerExchange,
   ])
 
   useEffect(() => {
@@ -926,7 +953,7 @@ export default function ChessGameClient({
             onNext={() => setCctapStep(s => Math.min(CCTAP_STEPS.length - 1, s + 1))}
           />
         ) : (
-          <BoardToolbar active={highlightMode} onSelect={setHighlightMode} hasForcedMate={hasForcedMate} hasTactic={hasTactic} />
+          <BoardToolbar active={highlightMode} onSelect={setHighlightMode} hasForcedMate={hasForcedMate} hasTactic={hasTactic} hasExchange={hasExchange} />
         )}
 
         {/* A fixed real height (not "let content decide") — a real reported

@@ -388,3 +388,40 @@ export function detectPromotionThreats(fen: string, color: Color): PromotionThre
   }
   return threats
 }
+
+export interface ExchangeOpportunity {
+  square: Square
+  targetType: string
+  netGain: number    // real material result for `color` if the full exchange sequence is played out (computeSEE)
+  piecesInvolved: number // real count of pieces that could take part in the exchange on this square (both sides' real attackers + the target itself)
+}
+
+// A real "Exchange Alert": a square where a genuinely large, multi-piece
+// capture sequence is available (real attackers + real defenders + the
+// target itself totaling 4 or more pieces — a real, contested square,
+// not just a simple one-off hanging piece already covered by Undefended
+// Pieces/Tactics Alert) that resolves, via the same real SEE used
+// throughout this codebase, in `color`'s favor by at least the classic
+// "exchange" value (rook for minor piece, ~2 points). Reuses computeSEE
+// directly rather than re-deriving the optimal capture order by hand.
+export function detectExchangeOpportunities(fen: string, color: Color): ExchangeOpportunity[] {
+  const chess = new Chess(fen)
+  const enemyColor: Color = color === 'w' ? 'b' : 'w'
+  const opportunities: ExchangeOpportunity[] = []
+
+  for (const row of chess.board()) {
+    for (const cell of row) {
+      if (cell?.color !== enemyColor) continue
+      const attackers = chess.attackers(cell.square, color)
+      if (attackers.length === 0) continue
+      const defenders = chess.attackers(cell.square, enemyColor)
+      const piecesInvolved = attackers.length + defenders.length + 1
+      if (piecesInvolved < 4) continue
+      const netGain = computeSEE(chess, cell.square, color)
+      if (netGain >= 2) {
+        opportunities.push({ square: cell.square, targetType: cell.type, netGain, piecesInvolved })
+      }
+    }
+  }
+  return opportunities
+}
