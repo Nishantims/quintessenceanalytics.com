@@ -2,21 +2,16 @@ import { Chess, type Color } from 'chess.js'
 import {
   computeDevelopment, computeKingShelter, computeKingExposure, computeCenterControl,
   computePieceActivity, computePawnStructure, computePieceCoordination, computeRookActivity,
-  computeAdvancedPieces, computeMaterial, computeSpace, computeTempo, computeInitiative,
-  computeKingActivity, computePassedPawns,
+  computeAdvancedPieces, computeMaterial,
 } from './heuristics'
 import { computeWeakSquares } from './weak-squares'
 
-// "Tactical Scoring" — fifteen real, pure-logic metrics (real counts and
-// board-state measurements, never an invented "feel"), the SAME fifteen
-// shown regardless of game phase so the numbers stay comparable across a
-// whole game, computed for BOTH the player and the computer side by side
-// so a real comparison is possible at a glance. Definitions/explanations
-// live on the /how-it-works Glossary page, not here — this panel is
-// numbers only. The last 5 (Space through Passed Pawns) reuse heuristics
-// already computed elsewhere in this codebase (factors.ts's own
-// King Activity/Passed Pawns factors, the narrative's Space references)
-// rather than inventing new scoring logic for this table specifically.
+// "Tactical Scoring" — ten real, pure-logic metrics (real counts and
+// board-state measurements, never an invented "feel"), the SAME ten shown
+// regardless of game phase so the numbers stay comparable across a whole
+// game, computed for BOTH the player and the computer side by side so a
+// real comparison is possible at a glance. Definitions/explanations live
+// on the /how-it-works Glossary page, not here — this panel is numbers only.
 
 export interface ScoreEntry {
   name: string
@@ -49,13 +44,6 @@ function weakSquaresScore(fen: string, color: Color): number {
   return Math.max(0, 100 - count * 15)
 }
 
-// computeSpace returns a raw square count (0-16, the real max: 4 files x
-// 4 ranks of the opponent's half) — scaled to the same 0-100 range as
-// every other metric here, proportionally rather than an arbitrary cap.
-function spaceScore(chess: Chess, color: Color): number {
-  return Math.round((computeSpace(chess, color) / 16) * 100)
-}
-
 function round(n: number): number {
   return Math.round(Math.max(0, Math.min(100, n)))
 }
@@ -75,11 +63,6 @@ export function computeTacticalScoring(fen: string, playerColor: Color): ScoreEn
     ['Material', c => materialScore(chess, c)],
     ['Weak Squares', c => weakSquaresScore(fen, c)],
     ['Advanced Pieces', c => computeAdvancedPieces(chess, c)],
-    ['Space', c => spaceScore(chess, c)],
-    ['Tempo', c => computeTempo(chess, c)],
-    ['Initiative', c => computeInitiative(chess, c)],
-    ['King Activity', c => computeKingActivity(chess, c)],
-    ['Passed Pawns', c => computePassedPawns(chess, c)],
   ]
 
   return metrics.map(([name, compute]) => ({

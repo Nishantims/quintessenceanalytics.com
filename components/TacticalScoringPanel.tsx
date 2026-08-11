@@ -44,26 +44,23 @@ export function TacticalScoringPanel({
         ))}
       </div>
       {scores ? (
-        // max-w caps the row's own content width — a real reported bug
-        // otherwise: the metric-name column is 1fr (flexible), so once the
-        // panel itself got wider (400px, for the equal-size-columns fix),
-        // that column stretched to fill ALL the leftover width, pushing a
-        // huge empty gap between a short name like "Development" and its
-        // scores. Capped here, the whole table just sits snug at the left
-        // instead of stretching to the panel's own full width.
-        // Row py bumped 1→2 and the number columns each carry their own
-        // pr-1.5 now — a real reported bug otherwise: rows sat tight
-        // against each other, and Plyr/Eng values (text-right, zero
-        // padding) landed flush against their own cell's right edge,
-        // reading as if they were touching the panel's outer border.
-        <div className="mt-2 max-w-[260px]">
-          <div className="grid grid-cols-[1fr_38px_38px] gap-1 text-[8px] font-bold text-ink-faint uppercase pb-1.5 border-b border-panel-line">
+        // Fixed 92px name column (not 1fr) — a real reported bug
+        // otherwise: 1fr always takes up ALL the row's remaining flexible
+        // width, so even capped at max-w-[260px] a short name like
+        // "Development" left a big empty gap before its own scores. 92px
+        // is the real measured width of the longest name ("Advanced
+        // Pieces") plus a few px of buffer — every row's name column now
+        // sizes to fit content, not to fill space. The table's own width
+        // (92+38+38+gaps) replaces the old max-w cap, which is no longer
+        // needed once nothing here is flexible.
+        <div className="mt-2 w-[184px]">
+          <div className="grid grid-cols-[92px_38px_38px] gap-1 text-[8px] font-bold text-ink-faint uppercase pb-1.5 border-b border-panel-line">
             <span>Metric</span>
             <span className="text-right pr-1.5">Plyr</span>
             <span className="text-right pr-1.5">Eng</span>
           </div>
           {scores.map(s => (
-            <div key={s.name} className="grid grid-cols-[1fr_38px_38px] gap-1 items-baseline text-[10px] py-2 border-b border-panel-line last:border-0">
+            <div key={s.name} className="grid grid-cols-[92px_38px_38px] gap-1 items-baseline text-[10px] py-2 border-b border-panel-line last:border-0">
               <span className="font-bold">{s.name}</span>
               <span className={`text-right pr-1.5 tabular-nums font-bold ${scoreColor(s.player)}`}>{s.player}</span>
               <span className={`text-right pr-1.5 tabular-nums font-bold ${scoreColor(s.computer)}`}>{s.computer}</span>

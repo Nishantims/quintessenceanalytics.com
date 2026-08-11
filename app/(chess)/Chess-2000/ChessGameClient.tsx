@@ -944,7 +944,17 @@ export default function ChessGameClient({
             arbitrary-value classes have to be static source text to be
             picked up by its JIT scanner, so the two must be kept in sync
             by hand whenever BOARD_MAX_WIDTH changes. */}
-        <div className="grid grid-cols-1 xl:grid-cols-[400px_auto_400px] gap-y-5 gap-x-6 items-stretch xl:h-[calc(min(850px,_75vh,_80vw)+68px)]">
+        {/* Side columns sized to their own real content instead of equal
+            400px each — a real reported bug otherwise: 400px was much
+            wider than Tactical Scoring's own content actually needed
+            (mostly empty space), and narrowing both columns gives the
+            board's own "auto" center column real room to reach its own
+            max size at ordinary desktop widths instead of being squeezed
+            down by two oversized side columns. 220px matches Tactical
+            Scoring's own real measured content width (184px + padding);
+            340px keeps Positional Summary's prose at a still-comfortable
+            reading width while freeing real space for the board. */}
+        <div className="grid grid-cols-1 xl:grid-cols-[220px_auto_340px] gap-y-5 gap-x-6 items-stretch xl:h-[calc(min(850px,_75vh,_80vw)+68px)]">
           {/* Tactical Scoring and Summary pushed down ~1cm (38px) relative
               to the board, per an explicit request — items-stretch still
               governs their overall box within the fixed-height row, so the
