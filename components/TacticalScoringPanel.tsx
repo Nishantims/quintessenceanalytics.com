@@ -39,11 +39,14 @@ export function TacticalScoringPanel({
         ))}
       </div>
       {scores ? (
-        // Fixed narrower number columns (down from 54px) so the metric-name
-        // column gets more real room and the whole table sits tighter to
-        // the left — freeing real width for the summary panel elsewhere in
-        // the row, per an explicit request to shrink this table down.
-        <div className="mt-2">
+        // max-w caps the row's own content width — a real reported bug
+        // otherwise: the metric-name column is 1fr (flexible), so once the
+        // panel itself got wider (400px, for the equal-size-columns fix),
+        // that column stretched to fill ALL the leftover width, pushing a
+        // huge empty gap between a short name like "Development" and its
+        // scores. Capped here, the whole table just sits snug at the left
+        // instead of stretching to the panel's own full width.
+        <div className="mt-2 max-w-[260px]">
           <div className="grid grid-cols-[1fr_38px_38px] gap-1 text-[8px] font-bold text-ink-faint uppercase pb-1 border-b border-panel-line">
             <span>Metric</span>
             <span className="text-right">Plyr</span>

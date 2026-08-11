@@ -900,8 +900,17 @@ export default function ChessGameClient({
         {/* The fixed height only applies at the xl breakpoint, where the
             grid actually goes 3-column — below that it stacks to a single
             column (grid-cols-1) and must stay auto-height or the Tactical
-            Scoring / Summary panels would be clipped to the board's size. */}
-        <div className="grid grid-cols-1 xl:grid-cols-[1fr_auto_1.5fr] gap-y-5 gap-x-3 items-stretch xl:h-[calc(min(520px,_50vh,_40vw)+68px)]">
+            Scoring / Summary panels would be clipped to the board's size.
+            Side columns are EQUAL fixed widths (not 1fr/1.5fr) — a real
+            reported bug otherwise: giving Summary 1.5x the flexible share
+            of Tactical Scoring made it visibly much wider than everything
+            else once the row had real room to spread (wide viewports),
+            with mostly empty space inside it, while a hungrier flexible
+            column left less predictable room for the board's own "auto"
+            track. Equal fixed widths make all three columns read as the
+            same real size, and the gap is wider for real visible
+            separation between them. */}
+        <div className="grid grid-cols-1 xl:grid-cols-[400px_auto_400px] gap-y-5 gap-x-6 items-stretch xl:h-[calc(min(520px,_50vh,_40vw)+68px)]">
           {/* Tactical Scoring and Summary pushed down ~1cm (38px) relative
               to the board, per an explicit request — items-stretch still
               governs their overall box within the fixed-height row, so the
