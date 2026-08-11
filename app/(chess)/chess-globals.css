@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+/* QA.com-inspired — a rounded-card, blue/green/pink SaaS palette (matching
+   quintessenceanalytics.com's own dark theme), reworked into both a light
+   and a dark variant. Dark mode is an explicit in-app toggle (data-theme on
+   the app's own container), not prefers-color-scheme. */
+:root {
+  --background: #ffffff;
+  --foreground: #0b0e14;
+  --panel: #f5f6f8;
+  --panel-line: #e4e6eb;
+  --ink: #0b0e14;
+  --ink-soft: #0b0e14;
+  --ink-faint: #6b7280;
+  --accent: #2563eb;
+  --accent-soft: #dbeafe;
+  --status-green: #16a34a;
+  --status-green-soft: #dcfce7;
+  --status-orange: #ea580c;
+  --status-orange-soft: #ffedd5;
+  --status-red: #dc2626;
+  --status-red-soft: #fee2e2;
+  --status-blue: #2563eb;
+  --status-alt2: #db2777;
+  --status-grey: #9ca3af;
+  --status-purple: #9333ea;
+  --status-purple-soft: #f3e8ff;
+  --status-teal: #0d9488;
+  --status-teal-soft: #ccfbf1;
+  --status-gold: #b45309;
+  --status-gold-soft: #fef3c7;
+  --radius-card: 16px;
+  --radius-control: 10px;
+}
+
+/* Deliberately NOT `:root[data-theme="dark"]` — `:root` only ever matches
+   the document's <html> element, but `data-theme` is set on the app's own
+   container div (a scoped, in-app toggle, not the whole document). Custom
+   properties still cascade normally to descendants from any element, so a
+   plain attribute selector here is both correct and simpler. */
+[data-theme="dark"] {
+  --background: #0a0a0f;
+  --foreground: #f3f4f6;
+  --panel: #15151c;
+  --panel-line: #262631;
+  --ink: #f3f4f6;
+  --ink-soft: #f3f4f6;
+  --ink-faint: #9199a8;
+  --accent: #3b82f6;
+  --accent-soft: rgba(59, 130, 246, 0.16);
+  --status-green: #22c55e;
+  --status-green-soft: rgba(34, 197, 94, 0.14);
+  --status-orange: #f59e0b;
+  --status-orange-soft: rgba(245, 158, 11, 0.14);
+  --status-red: #f43f5e;
+  --status-red-soft: rgba(244, 63, 94, 0.16);
+  --status-blue: #60a5fa;
+  --status-alt2: #ec4899;
+  --status-grey: #6b7280;
+  --status-purple: #c084fc;
+  --status-purple-soft: rgba(192, 132, 252, 0.16);
+  --status-teal: #2dd4bf;
+  --status-teal-soft: rgba(45, 212, 191, 0.16);
+  --status-gold: #fbbf24;
+  --status-gold-soft: rgba(251, 191, 36, 0.16);
+}
+
+/* Board-theme accents — the accent color (and its soft badge tint) follows
+   whichever chess board color the player picked, so the header buttons,
+   CCTAP bar, and "How It Works" pill feel like one cohesive skin rather
+   than an unrelated blue chrome around a pink/green/blue board. Deliberately
+   scoped to --accent/--accent-soft only, never the status-* tokens — those
+   stay semantic (green=good/red=bad) regardless of which board skin is
+   active. Light and dark variants each get their own tuned shade for
+   contrast, same reasoning as the base [data-theme="dark"] block above. */
+[data-board-theme="pink"] { --accent: #e0448a; --accent-soft: #ffe4ef; }
+[data-board-theme="pink"][data-theme="dark"] { --accent: #ff6699; --accent-soft: rgba(255, 102, 153, 0.18); }
+[data-board-theme="green"] { --accent: #00a855; --accent-soft: #dffaea; }
+[data-board-theme="green"][data-theme="dark"] { --accent: #00cc66; --accent-soft: rgba(0, 204, 102, 0.16); }
+[data-board-theme="blue"] { --accent: #1aa6e0; --accent-soft: #e0f6ff; }
+[data-board-theme="blue"][data-theme="dark"] { --accent: #4bd0ff; --accent-soft: rgba(75, 208, 255, 0.18); }
+
+@theme inline {
+  --color-panel: var(--panel);
+  --color-panel-line: var(--panel-line);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-status-green: var(--status-green);
+  --color-status-green-soft: var(--status-green-soft);
+  --color-status-orange: var(--status-orange);
+  --color-status-orange-soft: var(--status-orange-soft);
+  --color-status-red: var(--status-red);
+  --color-status-red-soft: var(--status-red-soft);
+  --color-status-blue: var(--status-blue);
+  --color-status-alt2: var(--status-alt2);
+  --color-status-grey: var(--status-grey);
+  --color-status-purple: var(--status-purple);
+  --color-status-purple-soft: var(--status-purple-soft);
+  --color-status-teal: var(--status-teal);
+  --color-status-teal-soft: var(--status-teal-soft);
+  --color-status-gold: var(--status-gold);
+  --color-status-gold-soft: var(--status-gold-soft);
+  --font-sans: var(--font-archivo);
+  --font-heading: var(--font-archivo);
+}
+
+/* The app is a fixed-viewport single page by design — its own container
+   already sizes itself to h-dvh and scrolls internally via its own
+   overflow-y-auto region. html/body must never ALSO scroll on top of
+   that; a real reported bug otherwise: real browser Fullscreen API
+   quirks (100dvh inside a fullscreened non-<html> element can resolve
+   against a stale/slightly different viewport in some engines) could
+   leave body a few pixels taller than the true viewport, showing an
+   unwanted native scrollbar flush against the window edge — outside and
+   unrelated to the app's own intended scroll container. Locking html/body
+   here removes that outer scrollbar unconditionally, regardless of the
+   exact pixel mismatch that caused it. */
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Global rounded-card treatment — applied once here rather than repeated
+   as a rounded-* class on every one of the ~20 "bg-panel" cards/buttons
+   across the app, so every surface stays visually consistent by
+   construction. Tailwind's own .bg-panel utility only sets background-
+   color, so this adds border-radius alongside it without any conflict. */
+.bg-panel, .bg-accent-soft {
+  border-radius: var(--radius-card);
+}
+button.bg-panel, button.bg-ink, button.bg-accent, button.bg-accent-soft {
+  border-radius: var(--radius-control);
+}
