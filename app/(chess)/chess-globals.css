@@ -112,28 +112,38 @@
   --font-heading: var(--font-archivo);
 }
 
-/* The app is a fixed-viewport single page by design — its own container
-   already sizes itself to h-dvh and scrolls internally via its own
-   overflow-y-auto region. html/body must never ALSO scroll on top of
-   that; a real reported bug otherwise: real browser Fullscreen API
-   quirks (100dvh inside a fullscreened non-<html> element can resolve
-   against a stale/slightly different viewport in some engines) could
-   leave body a few pixels taller than the true viewport, showing an
-   unwanted native scrollbar flush against the window edge — outside and
-   unrelated to the app's own intended scroll container. Locking html/body
-   here removes that outer scrollbar unconditionally, regardless of the
-   exact pixel mismatch that caused it. */
 html, body {
-  height: 100%;
-  overflow: hidden;
   /* Real fix for a reported bug: mobile Chrome/Safari auto-inflate the
      rendered size of small multi-line text blocks ("font boosting"),
      which pushed the toolbar's tiny two-word button labels well past
      their own fixed-height boxes — the first line rendered clipped off
      above the button entirely. Disabling the browser's own inflation
-     keeps every font-size on this page exactly what it's declared as. */
+     keeps every font-size on this page exactly what it's declared as.
+     Safe globally — it's a real, harmless-everywhere fix, unlike the
+     height/overflow lock below. */
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+}
+
+/* The GAME page is a fixed-viewport single page by design — its own
+   container already sizes itself to h-dvh and scrolls internally via
+   its own overflow-y-auto region, so html/body must never ALSO scroll
+   on top of that; a real reported bug otherwise: real browser
+   Fullscreen API quirks (100dvh inside a fullscreened non-<html>
+   element can resolve against a stale/slightly different viewport in
+   some engines) could leave body a few pixels taller than the true
+   viewport, showing an unwanted native scrollbar flush against the
+   window edge — outside and unrelated to the app's own intended scroll
+   container.
+   Scoped to a class the game page toggles on mount/unmount (not a bare
+   html/body selector) — a real, confirmed reported bug otherwise: this
+   used to apply unconditionally to EVERY route sharing this stylesheet,
+   which silently broke normal document scrolling on the How It Works
+   page (a real, taller-than-the-viewport content page that needs to
+   scroll normally, not a fixed single-viewport app like the game). */
+html.chess-game-lock, body.chess-game-lock {
+  height: 100%;
+  overflow: hidden;
 }
 
 body {

@@ -709,6 +709,20 @@ export default function ChessGameClient({
     return () => document.removeEventListener('fullscreenchange', onFullscreenChange)
   }, [])
 
+  // Locks html/body scroll for exactly as long as this game page is
+  // mounted (see chess-globals.css's .chess-game-lock rule) — scoped
+  // here rather than applied globally so other routes sharing this same
+  // layout (How It Works, Subscribe — real normal-scrolling content
+  // pages) are never affected.
+  useEffect(() => {
+    document.documentElement.classList.add('chess-game-lock')
+    document.body.classList.add('chess-game-lock')
+    return () => {
+      document.documentElement.classList.remove('chess-game-lock')
+      document.body.classList.remove('chess-game-lock')
+    }
+  }, [])
+
   function toggleFullscreen() {
     if (document.fullscreenElement) {
       document.exitFullscreen().catch(err => console.error('[fullscreen] exit failed', err))
