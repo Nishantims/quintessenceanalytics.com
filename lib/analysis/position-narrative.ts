@@ -1,6 +1,7 @@
 import type { Factor } from './factors'
 import type { PositionStatus } from './position-status'
 import type { MoveGrade } from './move-quality'
+import type { GamePhase } from './game-phase'
 
 // A real, always-available Positional Analysis — written the way a coach
 // actually talks through a position with a student: the single most
@@ -23,6 +24,7 @@ import type { MoveGrade } from './move-quality'
 // for instance) is left out entirely rather than mentioned out of habit.
 export interface NarrativeInput {
   status: PositionStatus
+  gamePhase: GamePhase
   topFactor: Factor | null
   bottomFactor: Factor | null
   kingSafetyScore: number | null // the real King Safety factor score (0-100) — lets this decide for itself whether the king is worth a mention right now, independent of whether it happens to be the single best/worst factor
@@ -172,6 +174,51 @@ function learningParagraph(input: NarrativeInput): string {
   return 'Lesson: in quiet positions, keep developing with real purpose and contest the center — small, principled gains compound into a genuine advantage.'
 }
 
+// Real, phase-specific priorities — the same real checklist a coach
+// would run through depending on whether the board is still mostly at
+// home, in the real middle of the fight, or down to a real endgame.
+// Picked from `gamePhase`, itself computed from real, live board state
+// (piece count/development), not a move-number guess.
+function phaseChecklistParagraph(gamePhase: GamePhase): string {
+  if (gamePhase === 'Opening') {
+    return 'Opening priorities right now: finish developing every piece, reinforce what is already out, keep your king genuinely safe, and improve your worst piece.'
+  }
+  if (gamePhase === 'Middlegame') {
+    return 'Middlegame priorities right now: analyze real threats, look to create your own, keep developing and reinforcing, and start building toward a genuine attack.'
+  }
+  return 'Endgame priorities right now: centralize your king — a real fighting piece now that material has thinned out — and look for a genuine king attack.'
+}
+
+type DecisionMode = 'SAFE' | 'ATTACK' | 'IMPROVE'
+
+// Same real urgency signals buildPoints already uses, collapsed into one
+// of three real modes — which one you're actually in changes what's
+// worth calculating right now, same real logic a strong player runs
+// without naming it explicitly.
+function decisionMode(input: NarrativeInput): DecisionMode {
+  const realDanger = (input.forcedMate !== null && !input.forcedMate.forPlayer) || input.isPlayerInCheck
+    || (input.kingSafetyScore !== null && input.kingSafetyScore < KING_DANGER_THRESHOLD)
+    || input.playerMaterialDiff <= -3 || input.realThreats.length > 0
+  if (realDanger) return 'SAFE'
+  if (input.realOpportunities.length > 0 || input.playerMaterialDiff >= 3) return 'ATTACK'
+  return 'IMPROVE'
+}
+
+function decisionFrameworkParagraph(input: NarrativeInput): string {
+  const mode = decisionMode(input)
+  if (mode === 'SAFE') {
+    return 'Play it SAFE this move: check for checks, real captures, and threats — yours and theirs — before committing to anything else.'
+  }
+  if (mode === 'ATTACK') {
+    return 'You can ATTACK from here: check for checks, real captures, and real threats that build genuine pressure — look to create the next one.'
+  }
+  return 'Nothing forcing right now, so IMPROVE: find your worst-placed piece, recheck king safety, fight for the center, then target their real weakness.'
+}
+
+function planAndCompareParagraph(): string {
+  return 'Before you commit, PLAN: what do you actually want this move to achieve? Then COMPARE — does it still hold up after their real best reply?'
+}
+
 export function computePositionNarrative(input: NarrativeInput): string[] {
   const points = buildPoints(input)
   const paragraphs: string[] = []
@@ -184,7 +231,10 @@ export function computePositionNarrative(input: NarrativeInput): string[] {
     if (rest.length > 0) paragraphs.push(rest.join(' '))
   }
 
+  paragraphs.push(phaseChecklistParagraph(input.gamePhase))
+  paragraphs.push(decisionFrameworkParagraph(input))
   paragraphs.push(opponentPlanParagraph(input))
+  paragraphs.push(planAndCompareParagraph())
   if (input.lastMove) paragraphs.push(lastMoveParagraph(input.lastMove))
   paragraphs.push(learningParagraph(input))
 

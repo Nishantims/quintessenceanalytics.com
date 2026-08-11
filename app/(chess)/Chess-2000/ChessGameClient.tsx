@@ -436,6 +436,7 @@ export default function ChessGameClient({
     ]
     return computePositionNarrative({
       status: positionStatus,
+      gamePhase,
       topFactor: sorted[0] ?? null,
       bottomFactor: sorted[sorted.length - 1] ?? null,
       kingSafetyScore: scoredFactors.find(f => f.name === 'King Safety')?.score ?? null,
@@ -452,7 +453,7 @@ export default function ChessGameClient({
     })
   }, [
     gameOver, gameStatus, sideToMove, playerColor, moveLog, scoredFactors, positionStatus, threats, playerTactics,
-    opportunityCaptures, playerMaterialDiff, ownWeakSquares, enemyWeakSquares, game, topLine, lastMoveInfo,
+    opportunityCaptures, playerMaterialDiff, ownWeakSquares, enemyWeakSquares, game, topLine, lastMoveInfo, gamePhase,
   ])
 
   // Real board highlights + the persistent Tool Panel's real explanation
