@@ -1,4 +1,5 @@
 import { Chess, type Color, type Square } from 'chess.js'
+import { computeSEE } from './heuristics'
 
 // Tool 03 (Tactics & Strategy Analyzer) — tactics half only. The spec lists
 // 17 tactical pattern types (checks and captures are already real-data-
@@ -31,7 +32,13 @@ export interface Fork {
 }
 
 // A real fork: one of `color`'s pieces simultaneously attacks 2+ enemy
-// pieces, at least two of which are worth defending (not just two pawns).
+// pieces, at least two of which are both (a) worth defending (not just two
+// pawns) and (b) actually capturable at a real profit right now — verified
+// by the same real SEE used throughout this codebase (threats.ts,
+// Undefended Pieces). Without the SEE check, a knight "attacking" two
+// pawns that are each defended by another pawn isn't a real fork: neither
+// capture wins anything, so there's nothing forcing the opponent to do
+// anything at all.
 export function detectForks(fen: string, color: Color): Fork[] {
   const chess = new Chess(fen)
   const enemyColor: Color = color === 'w' ? 'b' : 'w'
@@ -43,7 +50,7 @@ export function detectForks(fen: string, color: Color): Fork[] {
     for (const cell of row) {
       if (cell?.color !== color) continue
       const targets = enemySquares.filter(e => chess.attackers(e.square, color).includes(cell.square))
-      const valuableTargets = targets.filter(t => tacticalValue(t.pieceType) >= 3)
+      const valuableTargets = targets.filter(t => tacticalValue(t.pieceType) >= 3 && (t.pieceType === 'k' || computeSEE(chess, t.square, color) > 0))
       if (targets.length >= 2 && valuableTargets.length >= 2) {
         forks.push({ square: cell.square, pieceType: cell.type, targets })
       }
@@ -103,6 +110,16 @@ export interface Skewer {
 // less-or-equally valuable enemy piece is exposed behind it on the same
 // line. (A pin is the same geometry with the values reversed: the back
 // piece there is the king, always the most valuable "piece" on the board.)
+//
+// Geometry alone isn't enough — a confirmed real bug otherwise: a queen
+// "skewering" a pawn defended by another pawn into a second pawn behind it
+// gets flagged even though nobody would ever trade a queen for a pawn.
+// Two real SEE checks close that gap: the front piece must actually be
+// worth moving away from (either it's the king, which is forced to move
+// regardless of material, or capturing it right now is a real, profitable
+// exchange for `color` — the same real pressure that makes the opponent
+// choose to move it in the first place), AND once it's out of the way the
+// back piece must ALSO be a real, profitable capture, not just "attacked."
 export function detectSkewers(fen: string, color: Color): Skewer[] {
   const chess = new Chess(fen)
   const enemyColor: Color = color === 'w' ? 'b' : 'w'
@@ -115,6 +132,7 @@ export function detectSkewers(fen: string, color: Color): Skewer[] {
         for (const frontCell of frontRow) {
           if (frontCell?.color !== enemyColor) continue
           if (!chess.attackers(frontCell.square, color).includes(attackerCell.square)) continue
+          if (frontCell.type !== 'k' && computeSEE(chess, frontCell.square, color) <= 0) continue
 
           const scratch = new Chess(fen, { skipValidation: true })
           scratch.remove(frontCell.square)
@@ -124,13 +142,13 @@ export function detectSkewers(fen: string, color: Color): Skewer[] {
               if (backCell?.color !== enemyColor || backCell.square === frontCell.square) continue
               const wasAttackedBefore = chess.attackers(backCell.square, color).includes(attackerCell.square)
               const isAttackedAfter = scratch.attackers(backCell.square, color).includes(attackerCell.square)
-              if (!wasAttackedBefore && isAttackedAfter && tacticalValue(frontCell.type) >= tacticalValue(backCell.type)) {
-                skewers.push({
-                  attackerSquare: attackerCell.square,
-                  frontSquare: frontCell.square, frontPieceType: frontCell.type,
-                  backSquare: backCell.square, backPieceType: backCell.type,
-                })
-              }
+              if (wasAttackedBefore || !isAttackedAfter || tacticalValue(frontCell.type) < tacticalValue(backCell.type)) continue
+              if (computeSEE(scratch, backCell.square, color) <= 0) continue
+              skewers.push({
+                attackerSquare: attackerCell.square,
+                frontSquare: frontCell.square, frontPieceType: frontCell.type,
+                backSquare: backCell.square, backPieceType: backCell.type,
+              })
             }
           }
         }
@@ -155,6 +173,17 @@ export interface DiscoveredAttack {
 // just moved) attacks an enemy piece it didn't attack before. Verified by
 // literally playing every real legal move and diffing attacker sets
 // before/after, not inferred from static geometry.
+//
+// The revealed attack also has to be real, per a confirmed reported bug:
+// "moving your knight reveals an attack on their pawn" isn't a tactic when
+// that pawn is defended by another pawn — nobody profits from that
+// capture. Filtered the same way as everywhere else: a real SEE check on
+// the target square (using the post-move board, so it accounts for
+// whatever the moving piece itself changed) must come out positive for
+// `color`. The king is excluded as a target entirely — a discovered check
+// is a real idea, but it isn't "an attack you can profitably capture," and
+// showing it here as "reveals an attack on their king" was its own
+// confirmed confusing/incorrect case.
 export function detectDiscoveredAttacks(fen: string, color: Color): DiscoveredAttack[] {
   const chess = new Chess(fen)
   const enemyColor: Color = color === 'w' ? 'b' : 'w'
@@ -185,6 +214,8 @@ export function detectDiscoveredAttacks(fen: string, color: Color): DiscoveredAt
         const attackerPiece = afterMove.get(attackerSq)
         const targetPiece = afterMove.get(enemySq) ?? chess.get(enemySq)
         if (!attackerPiece || !targetPiece) continue
+        if (targetPiece.type === 'k') continue // a discovered check, not a capturable "attack" — not what this list is for
+        if (computeSEE(afterMove, enemySq, color) <= 0) continue // real fix: only report discoveries that actually win material
         const key = `${move.from}-${attackerSq}-${enemySq}`
         if (seen.has(key)) continue
         seen.add(key)

@@ -466,6 +466,14 @@ export default function ChessGameClient({
         lines = [mateForPlayer
           ? `Forced mate in ${Math.abs(topLine.mateIn)} for you — starting with ${toSan(engine.bestMove)}.`
           : `Forced mate in ${Math.abs(topLine.mateIn)} against you — the line starts with ${toSan(engine.bestMove)}.`]
+      } else if (!engine) {
+        // Real fix for a reported bug: the standing /api/chess-2000/analyze
+        // effect takes 1-3 real seconds per position (see TaggedAnalysis
+        // above), and `engine` is undefined the whole time it's running (or
+        // stale-filtered out) — showing a flat "No forced mate" during that
+        // window is actively wrong whenever a real mate exists and the
+        // analysis just hasn't come back yet. Say so honestly instead.
+        lines = ['Analyzing…']
       } else {
         lines = ['No forced mate on the board right now.']
       }
