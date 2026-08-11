@@ -136,6 +136,27 @@ body {
   color: var(--foreground);
 }
 
+/* A thin, unobtrusive scrollbar wherever the app scrolls internally
+   (the main panel, and any tool panel whose own content runs long) —
+   real fix for a reported bug: the browser's default scrollbar (a chunky
+   native track with arrow buttons on Windows) looked out of place next
+   to the rest of this app's own flat, minimal chrome. Still a real,
+   usable, always-visible-when-needed scrollbar — just styled to match. */
+.overflow-y-auto {
+  scrollbar-width: thin;
+  scrollbar-color: var(--panel-line) transparent;
+}
+.overflow-y-auto::-webkit-scrollbar {
+  width: 8px;
+}
+.overflow-y-auto::-webkit-scrollbar-track {
+  background: transparent;
+}
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background: var(--panel-line);
+  border-radius: 4px;
+}
+
 /* Global rounded-card treatment — applied once here rather than repeated
    as a rounded-* class on every one of the ~20 "bg-panel" cards/buttons
    across the app, so every surface stays visually consistent by

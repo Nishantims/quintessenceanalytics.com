@@ -19,9 +19,9 @@ const TONE_CLASS: Record<'good' | 'bad', string> = {
 // judge as good or bad, never a decorative default.
 export function MetricsRow({ metrics }: { metrics: Metric[] }) {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 mb-2.5">
+    <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 mb-2">
       {metrics.map(m => (
-        <div key={m.label} className="bg-panel px-2.5 py-1.5">
+        <div key={m.label} className="bg-panel px-2.5 py-1">
           <div className="text-[9px] font-bold uppercase tracking-wide text-ink-faint">{m.label}</div>
           <div className={`font-heading text-base font-extrabold mt-0.5 ${m.tone ? TONE_CLASS[m.tone] : ''}`}>{m.value}</div>
           <div className="text-[9.5px] text-ink-faint mt-0.5 truncate">{m.sub}</div>

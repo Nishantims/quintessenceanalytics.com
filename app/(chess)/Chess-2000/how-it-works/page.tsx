@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'How Chess-2000 Works',
-  description: 'How to use Chess-2000, how to train toward 2000 ELO with it, the CCTAP method explained with examples, 50 real chess principles, the ten Tactical Scoring metrics, and a full glossary.',
+  description: 'How to use Chess-2000, how to train toward 2000 ELO with it, the CCTAP method explained with examples, 50 real chess principles, the fifteen Tactical Scoring metrics, and a full glossary.',
 }
 
 const PRINCIPLES: { name: string; text: string }[] = [
@@ -38,7 +38,7 @@ const PRINCIPLES: { name: string; text: string }[] = [
   },
   {
     name: 'Material',
-    text: "Material is simply the real point total of the pieces you have on the board right now (pawn = 1, knight/bishop = 3, rook = 5, queen = 9), scored against a full army's real starting total. It is the most basic and most decisive of all ten principles — the other nine describe how well you're using what you have, but a large enough real material deficit outweighs almost everything else.",
+    text: "Material is simply the real point total of the pieces you have on the board right now (pawn = 1, knight/bishop = 3, rook = 5, queen = 9), scored against a full army's real starting total. It is the most basic and most decisive of all fifteen principles — the other fourteen describe how well you're using what you have, but a large enough real material deficit outweighs almost everything else.",
   },
   {
     name: 'Weak Squares',
@@ -48,11 +48,31 @@ const PRINCIPLES: { name: string; text: string }[] = [
     name: 'Advanced Pieces',
     text: "Advanced Pieces is a real count of how many of your pieces (pawns included) are physically standing in your opponent's half of the board right now. It is a direct, literal measure of space and initiative — an army advanced into enemy territory is applying real pressure and restricting the opponent's own options, while an army still on its own half is playing a purely defensive, reactive game.",
   },
+  {
+    name: 'Space',
+    text: "Space counts how many real squares in your opponent's half of the board you currently attack — every one of them a square their own pieces have to think twice about landing on. More real space means your pieces have more room to maneuver and your opponent's have less; a cramped position, even a materially equal one, is a genuinely harder position to find good moves in.",
+  },
+  {
+    name: 'Tempo',
+    text: "Tempo compares your real development lead against your opponent's — literally, who has more pieces actually off their starting squares right now. Centered at 50 for equal development, it rises when you're ahead in the development race and falls when you're behind. Every move spent on something other than developing while behind in Tempo is a move your opponent gets to spend developing further ahead.",
+  },
+  {
+    name: 'Initiative',
+    text: "Initiative compares the real number of profitable captures you currently threaten against the real number your opponent threatens back, centered at 50 when neither side has more than the other. Having the Initiative means your opponent has to spend their move answering your threats instead of making their own — a real, concrete form of controlling the game's pace, not just a feeling.",
+  },
+  {
+    name: 'King Activity',
+    text: "King Activity measures how close your king actually stands to the board's center, the real opposite of King Safety. It matters almost entirely in the endgame: once enough material is off the board that your king is in little danger, a centralized king is a genuine extra fighting piece, while a king still tucked in the corner is one piece short for the rest of the game.",
+  },
+  {
+    name: 'Passed Pawns',
+    text: 'Passed Pawns counts your real pawns with no enemy pawn left on their own file or either neighboring file anywhere ahead of them — nothing standing in the way of eventually reaching promotion by pawn moves alone. A real passed pawn, especially in an endgame, is a standing threat an opponent must spend real resources blockading or racing to stop, or it promotes and decides the game outright.',
+  },
 ]
 
 // 50 real, standard chess principles — the classic, well-established
 // pieces of chess wisdom every improving player is taught (not the app's
-// own ten computed Tactical Scoring metrics below, which measure a
+// own fifteen computed Tactical Scoring metrics below, which measure a
 // position; these are the general rules that explain WHY those metrics
 // matter). Grouped by the phase they mainly apply to, matching how a
 // player actually encounters them across a real game.
@@ -177,7 +197,7 @@ export default function HowItWorksPage() {
         <Section title="How to use this website">
           <p>Chess-2000 is a training board, not just a game against a computer. Start a game from the setup screen by choosing your color and the engine's real Stockfish strength (its UCI_Elo is actually set to that number — the engine really does play weaker at low settings, not a simulated handicap). From there, every move you or the engine makes is real: moves are validated by chess.js, evaluated by a real Stockfish engine at depth 18, and graded against that same real engine's own best line.</p>
           <p>The board itself supports both drag-and-drop and click-to-move: click a piece to see its real legal destinations marked with dots (a plain dot for a quiet move, a ring for a real capture), then click a destination, or just drag the piece there directly. The seven-button toolbar above the board — Undefended Pieces, Overloaded Pieces, Weak Squares, Piece Strength, Imbalance, Tactics Alert, and Checkmate Alert — each highlight one real, specific thing on the board and explain it in the Positional Summary box on the right. Click a tool to see it; click it again to go back to the general position summary. Two buttons flank the board itself: Hint on the left (the engine's real best move for your own turn only) and Back on the right (undoes your last move and the engine's reply to it).</p>
-          <p>The metrics row at the top shows your live, real Current ELO estimate and Accuracy for this game, the real move number and game phase, and the real strength of the engine you're facing. Below the toolbar, Tactical Scoring shows ten real, pure-logic measurements of the position — computed for both you and the computer, side by side, so you can see exactly where the real gap between your position and your opponent's actually is. The Moves History button opens a full real move log with color-coded grades for every move played so far.</p>
+          <p>The metrics row at the top shows your live, real Current ELO estimate and Accuracy for this game, the real move number and game phase, and the real strength of the engine you're facing. Below the toolbar, Tactical Scoring shows fifteen real, pure-logic measurements of the position — computed for both you and the computer, side by side, so you can see exactly where the real gap between your position and your opponent's actually is. The Moves History button opens a full real move log with color-coded grades for every move played so far.</p>
           <p>Nothing on this page is generated by an AI model unless explicitly noted — every number, highlight, and alert is the direct output of a real chess engine or a real, documented formula over the actual board state. That is a deliberate design choice: a training tool that quietly invents plausible-sounding feedback is worse than no feedback at all, because you can't tell which parts to trust.</p>
           <p>A few smaller controls round out the interface. The theme toggle in the header switches between a light and dark palette — purely visual, it changes nothing about how a position is analyzed. Full Screen uses your browser's real fullscreen mode so the board and every panel fill the whole physical screen, useful on a laptop where browser chrome eats real vertical space. Share Game copies the position's real FEN string to your clipboard, so you can paste it into any other real chess tool to continue analyzing it elsewhere. New Game resets everything and takes you back to the setup screen without recording the in-progress game as finished.</p>
           <p>The Positional Summary box in the bottom-right corner is worth understanding on its own: with no toolbar button selected, it shows a real, always-available written summary of the position — status, your strongest and weakest real Tactical Scoring metric, real tactical counts, the engine's real top move, and your real running accuracy — composed from the same real numbers shown elsewhere on the page, just written out in plain sentences. The moment you select any toolbar tool, that same box switches to explaining exactly what that tool found, then switches back to the summary the moment you deselect it. It is designed to always be showing you something real and specific, never a placeholder.</p>
@@ -190,7 +210,7 @@ export default function HowItWorksPage() {
           <p>Play against a real engine strength close to your own current level — Tactical Scoring's side-by-side player-vs-computer comparison is most useful when the game is genuinely competitive, since a huge mismatch in either direction stops teaching you anything new. As your real Accuracy and Current ELO estimate climb over many games, raise the engine's strength to match. There is no shortcut around playing real games and reviewing them honestly; what this app removes is the guesswork about WHAT to review — every real weakness is already named and quantified for you.</p>
           <p>Concretely: play a game. When Tactics Alert or Checkmate Alert lights up green, stop and work out why before moving on. When your Last Move grade says Mistake or Blunder, read the real "stronger was" line and understand the real reason the alternative was better — not just that it was. Do this consistently, for real games, over enough repetitions, and the habit of checking checks, captures, threats, and analysis before committing to a move becomes automatic. That habit, not raw calculation talent, is what a 2000-rated player actually has that a 1000-rated player doesn't.</p>
           <p>Watch for real patterns across games, not just within one. If your Moves History repeatedly shows Blunders on moves where a piece was left undefended after a trade, that is a real, specific, fixable habit — make a point of checking Undefended Pieces immediately after every capture, yours or the opponent's, until it stops happening. If your Tactical Scoring's Development or King Safety numbers are consistently low by move 10 across several games, that's a real sign you're moving too many pieces more than once in the opening, or delaying castling without a concrete reason to. The point of tracking real numbers instead of just a final result is that a single loss tells you very little, but a real pattern across ten losses tells you exactly what to fix next.</p>
-          <p>Resist the temptation to treat the engine's real evaluation as the only thing that matters. A position can be genuinely equal by evaluation while being far easier for one side to play in practice — more real space, a simpler real plan, fewer real weaknesses to defend. Tactical Scoring's ten real metrics exist precisely to surface that practical picture alongside the raw evaluation, since "the engine says 0.00" and "this position is easy for me to play" are two different, both real, questions.</p>
+          <p>Resist the temptation to treat the engine's real evaluation as the only thing that matters. A position can be genuinely equal by evaluation while being far easier for one side to play in practice — more real space, a simpler real plan, fewer real weaknesses to defend. Tactical Scoring's fifteen real metrics exist precisely to surface that practical picture alongside the raw evaluation, since "the engine says 0.00" and "this position is easy for me to play" are two different, both real, questions.</p>
         </Section>
 
         <Section title="The CCTAP method, explained with examples">
@@ -223,7 +243,7 @@ export default function HowItWorksPage() {
           </div>
         </Section>
 
-        <Section title="The ten Tactical Scoring principles">
+        <Section title="The fifteen Tactical Scoring principles">
           <div className="space-y-5">
             {PRINCIPLES.map(p => (
               <div key={p.name}>

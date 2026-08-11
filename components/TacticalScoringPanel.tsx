@@ -25,12 +25,17 @@ export function TacticalScoringPanel({
   return (
     <div className="bg-panel p-2.5 h-full overflow-y-auto">
       <div className="text-[9px] font-bold uppercase tracking-wide text-ink-faint">Tactical Scoring</div>
-      <div className="grid grid-cols-3 gap-1 mt-1.5">
+      {/* inline-flex (not a 3-col grid) — a real reported bug otherwise:
+          grid-cols-3 stretched each tab to a third of the panel's own
+          width, spreading "Opening"/"Middlegame"/"Endgame" out with huge
+          gaps between short labels instead of sitting together as one
+          compact tab group. */}
+      <div className="inline-flex gap-1 mt-1.5">
         {PHASES.map(p => (
           <button
             key={p}
             onClick={() => onSelectPhase(p)}
-            className={`text-[9px] font-bold py-1 px-1 text-center truncate ${
+            className={`text-[9px] font-bold py-1 px-2.5 text-center truncate ${
               p === activePhase ? 'bg-ink text-panel' : 'text-ink-faint hover:bg-panel-line'
             }`}
           >
@@ -46,17 +51,22 @@ export function TacticalScoringPanel({
         // huge empty gap between a short name like "Development" and its
         // scores. Capped here, the whole table just sits snug at the left
         // instead of stretching to the panel's own full width.
+        // Row py bumped 1→2 and the number columns each carry their own
+        // pr-1.5 now — a real reported bug otherwise: rows sat tight
+        // against each other, and Plyr/Eng values (text-right, zero
+        // padding) landed flush against their own cell's right edge,
+        // reading as if they were touching the panel's outer border.
         <div className="mt-2 max-w-[260px]">
-          <div className="grid grid-cols-[1fr_38px_38px] gap-1 text-[8px] font-bold text-ink-faint uppercase pb-1 border-b border-panel-line">
+          <div className="grid grid-cols-[1fr_38px_38px] gap-1 text-[8px] font-bold text-ink-faint uppercase pb-1.5 border-b border-panel-line">
             <span>Metric</span>
-            <span className="text-right">Plyr</span>
-            <span className="text-right">Eng</span>
+            <span className="text-right pr-1.5">Plyr</span>
+            <span className="text-right pr-1.5">Eng</span>
           </div>
           {scores.map(s => (
-            <div key={s.name} className="grid grid-cols-[1fr_38px_38px] gap-1 items-baseline text-[10px] py-1 border-b border-panel-line last:border-0">
+            <div key={s.name} className="grid grid-cols-[1fr_38px_38px] gap-1 items-baseline text-[10px] py-2 border-b border-panel-line last:border-0">
               <span className="font-bold">{s.name}</span>
-              <span className={`text-right tabular-nums font-bold ${scoreColor(s.player)}`}>{s.player}</span>
-              <span className={`text-right tabular-nums font-bold ${scoreColor(s.computer)}`}>{s.computer}</span>
+              <span className={`text-right pr-1.5 tabular-nums font-bold ${scoreColor(s.player)}`}>{s.player}</span>
+              <span className={`text-right pr-1.5 tabular-nums font-bold ${scoreColor(s.computer)}`}>{s.computer}</span>
             </div>
           ))}
         </div>

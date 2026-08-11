@@ -165,20 +165,17 @@ const CCTAP_GUIDANCE: Record<string, string> = {
   hint: "This is the engine's real best move for the position — but first confirm it actually addresses whatever you found in Checks, Captures, and Threats above. If it does, that's your move.",
 }
 
-// Raised from 520px/50vh — a real reported bug: at the xl 3-column layout
-// (400px_auto_400px side columns inside a max-w-[1680px] container), the
-// center "auto" column has up to ~830px of real available width, but a
-// 520px cap left most of that empty around a comparatively small board —
-// the opposite of "the board looks in control." 680px/66vh lets it
-// actually fill that space on typical laptop/desktop screens; the inner
-// panel already scrolls internally (overflow-y-auto) so a board that
-// needs more height than a shorter viewport offers just scrolls into
-// view rather than forcing an outer scrollbar the way the pre-fix version
-// could. The vw term only ever binds below ~1300px width (the single-
-// column stacked range) — 80vw (not 100) leaves room for the outer
-// container's own px-5 padding plus the eval bar beside the board so
-// nothing clips at the container edge on phones.
-const BOARD_MAX_WIDTH = 'min(680px, 66vh, 80vw)'
+// The vw term only ever binds below ~1300px width (the single-column
+// stacked range) — 80vw (not 100) leaves room for the outer container's
+// own px-5 padding plus the eval bar beside the board so nothing clips at
+// the container edge on phones.
+// Raised again to 850px/75vh per an explicit "make the board 125%
+// bigger" request. The grid's "auto" center column shrinks to fit
+// whatever real space is actually left after the two fixed 400px side
+// columns at ordinary (non-fullscreen) widths, so this cap only fully
+// binds in fullscreen (no max-w-[1680px] limit there) or on a wide-
+// enough monitor — it never forces the row wider than the container.
+const BOARD_MAX_WIDTH = 'min(850px, 75vh, 80vw)'
 // Board width plus the vertical eval bar's own width (20px) and the gap
 // between them (8px) — used for the rows below/beside the board (eval
 // bar+board, Hint/Back, Recent moves) so they all line up to the same
@@ -212,8 +209,11 @@ export default function ChessGameClient({
   const containerRef = useRef<HTMLDivElement>(null)
 
   const [isFullscreen, setIsFullscreen] = useState(false)
-  const [dark, setDark] = useState(false)
-  const [boardTheme, setBoardTheme] = useState<BoardTheme>('default')
+  // Dark + green are the real default now, per an explicit request — a
+  // returning player's own saved choice (THEME_KEY, below) still always
+  // wins once it exists; this only changes what a first-ever visit sees.
+  const [dark, setDark] = useState(true)
+  const [boardTheme, setBoardTheme] = useState<BoardTheme>('green')
   const [copied, setCopied] = useState(false)
   // True until the component actually unmounts — used only to guard the
   // engine's move-quality grading fetch below, which must NOT be cancelled
@@ -786,30 +786,37 @@ export default function ChessGameClient({
   }
 
   if (!gameStarted) {
+    // Real fix for a reported bug: data-theme is scoped to this app's own
+    // container (see the main return below), not the document — the setup
+    // screen previously rendered with no themed ancestor at all, so it
+    // always showed light/default-board regardless of the real dark+green
+    // defaults (or a returning player's own saved choice) below.
     return (
-      <GameSetup
-        onStart={(color, elo) => {
-          // Real gate: a second game in the same session, with no active
-          // subscription and the one real free game already spent, goes
-          // to checkout instead of starting — the server-side check in
-          // page.tsx catches every OTHER case (a fresh visit, a reload),
-          // this only covers "New Game" clicked again without leaving.
-          if (!hasActiveSubscription && freeGameUsed) {
-            router.push('/Chess-2000/subscribe')
-            return
-          }
-          if (!hasActiveSubscription && !freeGameUsed) {
-            setFreeGameUsed(true)
-            markFreeGameUsedAction().catch(err => console.error('[free-game] failed to mark used', err))
-          }
-          setPlayerColor(color)
-          setEngineElo(elo)
-          setGameStarted(true)
-          setFen(START_FEN)
-          setFenHistory([])
-          setMoveLog([])
-        }}
-      />
+      <div data-theme={dark ? 'dark' : 'light'} data-board-theme={boardTheme} className="min-h-dvh bg-[var(--background)] text-ink">
+        <GameSetup
+          onStart={(color, elo) => {
+            // Real gate: a second game in the same session, with no active
+            // subscription and the one real free game already spent, goes
+            // to checkout instead of starting — the server-side check in
+            // page.tsx catches every OTHER case (a fresh visit, a reload),
+            // this only covers "New Game" clicked again without leaving.
+            if (!hasActiveSubscription && freeGameUsed) {
+              router.push('/Chess-2000/subscribe')
+              return
+            }
+            if (!hasActiveSubscription && !freeGameUsed) {
+              setFreeGameUsed(true)
+              markFreeGameUsedAction().catch(err => console.error('[free-game] failed to mark used', err))
+            }
+            setPlayerColor(color)
+            setEngineElo(elo)
+            setGameStarted(true)
+            setFen(START_FEN)
+            setFenHistory([])
+            setMoveLog([])
+          }}
+        />
+      </div>
     )
   }
 
@@ -840,14 +847,20 @@ export default function ChessGameClient({
       ref={containerRef}
       data-theme={dark ? 'dark' : 'light'}
       data-board-theme={boardTheme}
-      className={`mx-auto flex h-dvh w-full flex-col overflow-hidden bg-[var(--background)] text-ink px-5 py-2 ${isFullscreen ? '' : 'max-w-[1680px]'}`}
+      className={`mx-auto flex h-dvh w-full flex-col overflow-hidden bg-[var(--background)] text-ink px-5 py-1.5 ${isFullscreen ? '' : 'max-w-[1680px]'}`}
     >
       {/* The old permanent two-line quote + "White vs. Stockfish" block ate
           real vertical space on every single view — moved to the How It
           Works page (its actual home, as a real explanatory tagline) and
           replaced here with a single-line header that only grows when
-          there's something live to say (engine thinking / game over). */}
-      <div className="flex-none pb-2 border-b-2 border-panel-line mb-2">
+          there's something live to say (engine thinking / game over).
+          Trimmed from pb-2/mb-2/h-8 — a real reported bug: the header,
+          MetricsRow, and toolbar's combined vertical footprint was enough
+          to force an unwanted internal scrollbar on ordinary ~768-800px
+          laptop screens once the board itself grew larger. Every trim
+          below is a few px, but they add up to comfortably clearing that
+          overflow without visibly cramping anything. */}
+      <div className="flex-none pb-1.5 border-b-2 border-panel-line mb-1.5">
         <div className="flex justify-between items-center gap-4 flex-wrap">
           <div className="flex items-center gap-2.5">
             <div className="font-heading text-xl font-extrabold">Chess-2000</div>
@@ -861,7 +874,7 @@ export default function ChessGameClient({
                 whole page follows the same choice (see globals.css's
                 data-board-theme blocks), so this one control re-skins both
                 the board and the surrounding chrome together. */}
-            <div className="flex items-center gap-1 bg-panel px-1.5 h-8">
+            <div className="flex items-center gap-1 bg-panel px-1.5 h-7">
               {(Object.keys(BOARD_THEMES) as BoardTheme[]).map(t => (
                 <button
                   key={t}
@@ -876,13 +889,13 @@ export default function ChessGameClient({
                 />
               ))}
             </div>
-            <Link href="/Chess-2000/how-it-works" className="text-[10px] font-bold w-[92px] h-8 bg-accent-soft text-accent flex items-center justify-center">How It Works</Link>
-            <button onClick={() => setMovesHistoryOpen(o => !o)} className="text-[10px] font-semibold w-[92px] h-8 bg-panel">Moves History</button>
-            <button onClick={shareGame} className="text-[10px] font-semibold w-[92px] h-8 bg-panel">{copied ? 'Copied!' : 'Share Game'}</button>
-            <button onClick={toggleFullscreen} className="text-[10px] font-semibold w-[92px] h-8 bg-panel">⛶ {isFullscreen ? 'Exit' : 'Full Screen'}</button>
-            <button onClick={() => setCctapMode(m => !m)} className={`text-[10px] font-bold w-[92px] h-8 ${cctapMode ? 'bg-accent text-white' : 'bg-panel'}`}>CCTAP Mode</button>
-            <button onClick={() => setDark(d => !d)} className="text-[10px] font-bold w-[66px] h-8 bg-ink text-[var(--background)]">{dark ? '☾ Dark' : '☀ Light'}</button>
-            <button onClick={resetGame} className="text-[10px] font-semibold w-[80px] h-8 bg-panel">New game</button>
+            <Link href="/Chess-2000/how-it-works" className="text-[10px] font-bold w-[92px] h-7 bg-accent-soft text-accent flex items-center justify-center">How It Works</Link>
+            <button onClick={() => setMovesHistoryOpen(o => !o)} className="text-[10px] font-semibold w-[92px] h-7 bg-panel">Moves History</button>
+            <button onClick={shareGame} className="text-[10px] font-semibold w-[92px] h-7 bg-panel">{copied ? 'Copied!' : 'Share Game'}</button>
+            <button onClick={toggleFullscreen} className="text-[10px] font-semibold w-[92px] h-7 bg-panel">⛶ {isFullscreen ? 'Exit' : 'Full Screen'}</button>
+            <button onClick={() => setCctapMode(m => !m)} className={`text-[10px] font-bold w-[92px] h-7 ${cctapMode ? 'bg-accent text-white' : 'bg-panel'}`}>CCTAP Mode</button>
+            <button onClick={() => setDark(d => !d)} className="text-[10px] font-bold w-[66px] h-7 bg-ink text-[var(--background)]">{dark ? '☾ Dark' : '☀ Light'}</button>
+            <button onClick={resetGame} className="text-[10px] font-semibold w-[80px] h-7 bg-panel">New game</button>
           </div>
         </div>
       </div>
@@ -931,7 +944,7 @@ export default function ChessGameClient({
             arbitrary-value classes have to be static source text to be
             picked up by its JIT scanner, so the two must be kept in sync
             by hand whenever BOARD_MAX_WIDTH changes. */}
-        <div className="grid grid-cols-1 xl:grid-cols-[400px_auto_400px] gap-y-5 gap-x-6 items-stretch xl:h-[calc(min(680px,_66vh,_80vw)+68px)]">
+        <div className="grid grid-cols-1 xl:grid-cols-[400px_auto_400px] gap-y-5 gap-x-6 items-stretch xl:h-[calc(min(850px,_75vh,_80vw)+68px)]">
           {/* Tactical Scoring and Summary pushed down ~1cm (38px) relative
               to the board, per an explicit request — items-stretch still
               governs their overall box within the fixed-height row, so the
@@ -951,7 +964,12 @@ export default function ChessGameClient({
               of stats and had to be scrolled to. xl:order-none restores
               the real left/center/right source order once there's room
               for the 3-column layout these were designed for. */}
-          <div className="order-2 xl:order-none min-w-0 max-w-[420px] mx-auto xl:max-w-none xl:mx-0 xl:mt-[38px]">
+          {/* The earlier 1cm (38px) push-down relative to the board is
+              removed — the reference layout has all three columns starting
+              flush at the same top edge, and reclaiming that 38px also
+              closes most of the real gap that was forcing an unwanted
+              scrollbar on ordinary ~768-800px-tall laptop screens. */}
+          <div className="order-2 xl:order-none min-w-0 max-w-[420px] mx-auto xl:max-w-none xl:mx-0">
             <TacticalScoringPanel activePhase={activePhaseTab} onSelectPhase={setActivePhaseTab} snapshots={phaseSnapshots} />
           </div>
 
@@ -1053,17 +1071,10 @@ export default function ChessGameClient({
               items-stretch (as Tactical Scoring's wrapper already does)
               correctly subtracts the margin first, so both wrappers land
               on the exact same real height. */}
-          <div className="order-3 xl:order-none min-w-0 max-w-[640px] mx-auto xl:max-w-none xl:mx-0 xl:mt-[38px]">
+          <div className="order-3 xl:order-none min-w-0 max-w-[640px] mx-auto xl:max-w-none xl:mx-0">
             <SituationPanel toolTitle={explanationTitle} toolLines={explanationLines} narration={summary} deterministicNarrative={positionNarrative} />
           </div>
         </div>
-
-        {/* The same real framing quote used on the How It Works page,
-            added here too per an explicit request — sits directly below
-            Tactical Scoring rather than pinned to the page bottom. */}
-        <p className="text-[10.5px] italic text-white text-center mt-2 leading-snug">
-          &ldquo;A 2000 ELO player is not a tactical wizard. A 2000 player is simply a 1000 player who stops hanging pieces and stops missing their opponent&apos;s threats. You just need to win a piece to end the game — the most simplified way to win a game.&rdquo;
-        </p>
       </div>
 
       {loading && !engine && <p className="text-center text-[11px] text-ink-faint mt-1 flex-none">Analyzing…</p>}

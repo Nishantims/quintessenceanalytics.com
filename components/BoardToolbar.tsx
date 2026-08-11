@@ -50,7 +50,7 @@ export function BoardToolbar({
     // of 4, last cell empty) gives every button real room to wrap its own
     // two words onto two clean lines; sm+ reverts to the original single
     // scrollable row once there's actual width to spare.
-    <div className="grid grid-cols-4 gap-1.5 mb-2.5 sm:flex sm:flex-nowrap sm:overflow-x-auto">
+    <div className="grid grid-cols-4 gap-1.5 mb-2 sm:flex sm:flex-nowrap sm:overflow-x-auto">
       {MODES.map(({ mode, label, idle }) => {
         const isActive = active === mode
         const isAlert = (mode === 'checkmate' && hasForcedMate) || (mode === 'tactics' && hasTactic)
@@ -64,7 +64,12 @@ export function BoardToolbar({
           <button
             key={mode}
             onClick={() => onSelect(isActive ? null : mode)}
-            className={`text-[9.5px] font-bold min-h-[42px] sm:h-[42px] sm:flex-1 min-w-0 px-1 py-1 leading-tight flex items-center justify-center text-center ${className}`}
+            // min-h (not h) below sm — the 4-column grid still needs real
+            // room for a two-line label; sm+ reverts to a fixed, trimmed
+            // 38px single-line row (down from 42px, part of the same real
+            // fix that closed the unwanted-scrollbar gap on ~768-800px
+            // laptop screens).
+            className={`text-[9.5px] font-bold min-h-[42px] sm:h-[38px] sm:flex-1 min-w-0 px-1 py-1 leading-tight flex items-center justify-center text-center ${className}`}
           >
             {label}
           </button>
