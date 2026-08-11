@@ -34,17 +34,25 @@ export function computeMaterial(chess: Chess): MaterialCount {
 // Fraction of the 5 normally-developable minor/queen pieces that have moved
 // off their starting square, 0-1. Rooks are excluded — "rook activation" is
 // tracked as its own principle elsewhere, not folded into development.
+//
+// Counts real pieces STILL ON THE BOARD for each type, not fixed home
+// squares — a real, confirmed reported bug otherwise: the old version
+// checked "is the home square occupied by the right piece," so a
+// CAPTURED bishop and a DEVELOPED bishop both left the home square
+// empty and scored identically as "developed." A captured piece isn't
+// developed, it's just gone — it's now excluded from the count entirely
+// (both numerator and denominator) instead of silently inflating the
+// score, so being down a piece can never itself raise this number.
 export function computeDevelopment(chess: Chess, color: Color): number {
   const home = HOME_SQUARES[color]
-  let onHome = 0, total = 0
+  let developed = 0, total = 0
   for (const [type, squares] of Object.entries(home) as [keyof typeof home, Square[]][]) {
-    for (const sq of squares!) {
-      total++
-      const piece = chess.get(sq)
-      if (piece && piece.color === color && piece.type === type) onHome++
-    }
+    const current = chess.findPiece({ type: type as 'n' | 'b' | 'q', color })
+    const onHomeCount = current.filter(sq => (squares as Square[]).includes(sq)).length
+    total += current.length
+    developed += current.length - onHomeCount
   }
-  return total === 0 ? 1 : (total - onHome) / total
+  return total === 0 ? 1 : developed / total
 }
 
 export interface KingSafety {

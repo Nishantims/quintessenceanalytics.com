@@ -419,19 +419,32 @@ export default function ChessGameClient({
       return computeGameOverNarrative(gameStatus, playerWon, lastMoveSan)
     }
     const sorted = [...scoredFactors].sort((a, b) => b.score - a.score)
+    const realOpportunities = [
+      ...playerTactics.forks.map(f => `${PIECE_NAMES[f.pieceType]} on ${f.square} forks ${f.targets.map(t => `${PIECE_NAMES[t.pieceType]} (${t.square})`).join(' and ')}.`),
+      ...playerTactics.pins.map(p => `Their ${PIECE_NAMES[p.pinnedPieceType]} on ${p.pinnedSquare} is pinned to their king by your piece on ${p.pinnedBy}.`),
+      ...playerTactics.skewers.map(s => `Your piece on ${s.attackerSquare} skewers their ${PIECE_NAMES[s.frontPieceType]} into their ${PIECE_NAMES[s.backPieceType]}.`),
+      ...playerTactics.discoveredAttacks.map(d => `Moving your ${PIECE_NAMES[d.movingPieceType]} (${d.movingPieceSquare}) reveals an attack on their ${PIECE_NAMES[d.targetType]} (${d.targetSquare}).`),
+      ...opportunityCaptures.map(c => c.description),
+    ]
     return computePositionNarrative({
       status: positionStatus,
       topFactor: sorted[0] ?? null,
       bottomFactor: sorted[sorted.length - 1] ?? null,
-      realThreatCount: threats.length,
-      realOpportunityCount: playerTactics.forks.length + playerTactics.pins.length + playerTactics.skewers.length + opportunityCaptures.length,
+      kingSafetyScore: scoredFactors.find(f => f.name === 'King Safety')?.score ?? null,
+      isPlayerInCheck: sideToMove === playerColor && game.isCheck(),
       playerMaterialDiff,
+      realThreats: threats.map(t => t.description),
+      realOpportunities,
       ownWeakSquaresCount: ownWeakSquares.length,
       enemyWeakSquaresCount: enemyWeakSquares.length,
+      forcedMate: topLine?.mateIn != null
+        ? { forPlayer: Math.sign(topLine.mateIn) === (playerColor === 'w' ? 1 : -1), in: Math.abs(topLine.mateIn) }
+        : null,
+      lastMove: lastMoveInfo ? { san: lastMoveInfo.san, grade: lastMoveInfo.grade, note: lastMoveInfo.note } : null,
     })
   }, [
     gameOver, gameStatus, sideToMove, playerColor, moveLog, scoredFactors, positionStatus, threats, playerTactics,
-    opportunityCaptures, playerMaterialDiff, ownWeakSquares, enemyWeakSquares,
+    opportunityCaptures, playerMaterialDiff, ownWeakSquares, enemyWeakSquares, game, topLine, lastMoveInfo,
   ])
 
   // Real board highlights + the persistent Tool Panel's real explanation

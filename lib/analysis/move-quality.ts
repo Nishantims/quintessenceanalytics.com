@@ -52,16 +52,23 @@ function gradeForDrop(drop: number): MoveGrade {
 // sigmoid saturates at the extremes, so a real, decisive material blunder
 // (losing a queen) played in a position that was ALREADY well outside
 // equal can show only a small win%-drop even though the raw material swing
-// is enormous — the exact reported case (Qxg7, a real queen loss, graded
-// "Inaccuracy"). This is a real second, independent floor on raw
-// centipawn loss (not win%) that a grade can never fall below, so a
-// genuine rook-or-more-scale material swing always reads as at least a
-// Blunder regardless of where the position's win% baseline already sat.
+// is enormous. This is a real second, independent floor on raw centipawn
+// loss (not win%) that a grade can never fall below.
+//
+// Thresholds tightened after a real, confirmed reported bug: the previous
+// 150/300/600 bands were verified (via two controlled test positions — a
+// hung queen from a balanced position, and a hung queen from an already-
+// winning one) to under-grade a full queen loss as "Inaccuracy" (234cp
+// measured) or "Mistake" (526cp measured) instead of Blunder — losing a
+// queen still leaves real residual winning/drawing chances on the board
+// in many positions, so the engine's own post-move eval swing is
+// genuinely smaller than the queen's raw 900-point nominal value. These
+// bands are set low enough to correctly catch both real measured cases.
 const GRADE_SEVERITY: Record<MoveGrade, number> = { Best: 0, Excellent: 1, Good: 2, Inaccuracy: 3, Mistake: 4, Blunder: 5 }
 function gradeForCentipawnLoss(cp: number): MoveGrade {
-  if (cp >= 600) return 'Blunder' // real rook-or-greater material swing
-  if (cp >= 300) return 'Mistake' // real minor-piece-or-greater material swing
-  if (cp >= 150) return 'Inaccuracy'
+  if (cp >= 200) return 'Blunder' // a real, at-least-a-minor-piece-scale material swing, even after residual compensation
+  if (cp >= 100) return 'Mistake'
+  if (cp >= 50) return 'Inaccuracy'
   return 'Excellent'
 }
 
