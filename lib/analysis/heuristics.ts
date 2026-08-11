@@ -134,24 +134,42 @@ export function computeKingExposure(chess: Chess, color: Color): number {
   return Math.max(0, Math.min(100, 100 - attackersNearKing * 20 - openFilePenalty))
 }
 
-// Real total legal-move count for `color`'s pieces, regardless of whose
-// turn it actually is — chess.js only computes legal moves for the side to
-// move, so this queries a scratch position with the turn field forced to
-// `color` (skipValidation avoids chess.js's "side not to move can't be in
-// check" rule tripping on an intentionally hypothetical side-to-move; the
-// point here is real mobility, not claiming this is a reachable game state).
-function movesForColor(chess: Chess, color: Color): number {
+// Real legal-move count for `color`'s PIECES specifically (knights,
+// bishops, rooks, queen) — regardless of whose turn it actually is;
+// chess.js only computes legal moves for the side to move, so this
+// queries a scratch position with the turn field forced to `color`
+// (skipValidation avoids chess.js's "side not to move can't be in
+// check" rule tripping on an intentionally hypothetical side-to-move;
+// the point here is real mobility, not claiming this is a reachable
+// game state).
+//
+// Pawn and king moves are excluded — a real, confirmed reported bug
+// otherwise: this used to count EVERY legal move (pawns and king
+// included), which "Piece Activity" doesn't name and doesn't mean.
+// Pawn mobility is governed by entirely different principles (already
+// tracked by Pawn Structure) and stays roughly similar for both sides
+// regardless of how active their actual PIECES are, which diluted real,
+// large mobility gaps between the two sides down to a small, misleading
+// score difference — confirmed directly: a position with a real 21-vs-12
+// piece-move disparity (the reported case) scored nearly identical
+// because ~30 combined pawn/king moves on top of that swamped the real
+// signal. Counting only piece moves (matching the metric's own name, and
+// how the reported case was itself counted by hand) restores that.
+function pieceMovesForColor(chess: Chess, color: Color): number {
   const parts = chess.fen().split(' ')
   parts[1] = color
   const scratch = new Chess(parts.join(' '), { skipValidation: true })
-  return scratch.moves({ verbose: true }).length
+  return scratch.moves({ verbose: true }).filter(m => m.piece !== 'p' && m.piece !== 'k').length
 }
 
-// Piece Activity — real legal-move count, normalized against a generous
-// typical-middlegame ceiling (40 legal moves) rather than claimed to be an
-// exact percentile.
+// Piece Activity — real legal-move count for pieces only, normalized
+// against a generous typical-middlegame ceiling (30 legal piece moves)
+// rather than claimed to be an exact percentile. Lower than the old
+// all-moves ceiling (40) since piece-only mobility tops out lower once
+// pawn/king moves (up to ~24 of that old ceiling on their own) are
+// excluded.
 export function computePieceActivity(chess: Chess, color: Color): number {
-  return Math.min(100, Math.round((movesForColor(chess, color) / 40) * 100))
+  return Math.min(100, Math.round((pieceMovesForColor(chess, color) / 30) * 100))
 }
 
 // Rook Activity — real count of this side's rooks on an open (no pawns of

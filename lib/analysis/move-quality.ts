@@ -93,7 +93,20 @@ export function classifyMove({
   const isExactBest = bestMoveBeforeUci !== null && playedMoveUci === bestMoveBeforeUci
   const dropGrade = gradeForDrop(winPercentDrop)
   const cpGrade = gradeForCentipawnLoss(centipawnLoss)
-  const grade: MoveGrade = isExactBest ? 'Best' : (GRADE_SEVERITY[cpGrade] > GRADE_SEVERITY[dropGrade] ? cpGrade : dropGrade)
+  let grade: MoveGrade = isExactBest ? 'Best' : (GRADE_SEVERITY[cpGrade] > GRADE_SEVERITY[dropGrade] ? cpGrade : dropGrade)
+
+  // A real, confirmed gap the cp/win%-based grades above can both miss: a
+  // move played from an ALREADY-losing position (both before and after
+  // sit near the same -1000cp/0%-win floor, so the raw delta looks small)
+  // that specifically hands the opponent a forced mate they didn't have
+  // the move before. Objectively, "opponent now has a guaranteed forced
+  // win" is the single worst thing a move can do regardless of how bad
+  // the position already was — this floors the grade to Blunder no
+  // matter what the cp/win% delta happened to measure.
+  const mateAgainstMoverBefore = bestLineBefore.mateIn !== null && Math.sign(bestLineBefore.mateIn) !== (mover === 'w' ? 1 : -1)
+  const mateAgainstMoverAfter = bestLineAfter.mateIn !== null && Math.sign(bestLineAfter.mateIn) !== (mover === 'w' ? 1 : -1)
+  const handedOverForcedMate = !isExactBest && !mateAgainstMoverBefore && mateAgainstMoverAfter
+  if (handedOverForcedMate) grade = 'Blunder'
 
   const forcedMateWasAvailable = bestLineBefore.mateIn !== null && Math.sign(bestLineBefore.mateIn) === (mover === 'w' ? 1 : -1)
   const missedForcedMate = forcedMateWasAvailable && !isExactBest
