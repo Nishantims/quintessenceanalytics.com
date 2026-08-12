@@ -16,8 +16,20 @@ const PLANS = [
 ]
 
 export default async function SubscribePage() {
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
+  // Wrapped for the same real reason as getActiveSubscription() itself:
+  // createClient()/auth.getUser() can throw synchronously (not just
+  // return an error) when the Supabase env vars aren't configured on
+  // Vercel yet, and this is a dynamic Server Component that runs the
+  // check on every real visit — an uncaught throw here took down the
+  // whole subscribe page, not just the login state. Falls back to
+  // "not logged in," the same real state this page already handles.
+  let user: { email?: string } | null = null
+  try {
+    const supabase = await createClient()
+    user = (await supabase.auth.getUser()).data.user
+  } catch (err) {
+    console.error('[subscribe page] auth check failed (are the Supabase env vars configured?):', err)
+  }
   const activeSubscription = user ? await getActiveSubscription() : null
 
   return (
