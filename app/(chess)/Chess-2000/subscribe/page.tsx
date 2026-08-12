@@ -49,7 +49,7 @@ export default async function SubscribePage() {
         </div>
 
         {activeSubscription ? (
-          <Link href="/Chess-2000" className="inline-block text-[13px] font-bold py-3 px-6 bg-ink text-[var(--background)]">
+          <Link href="/Chess-2000/play" className="inline-block text-[13px] font-bold py-3 px-6 bg-ink text-[var(--background)]">
             ← Back to the game
           </Link>
         ) : (

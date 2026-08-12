@@ -93,7 +93,7 @@ export function CheckoutButton({ plan, label, email }: { plan: 'monthly' | 'year
           setState('idle')
           return
         }
-        router.push('/Chess-2000')
+        router.push('/Chess-2000/play')
         router.refresh()
       },
       modal: { ondismiss: () => setState('idle') },

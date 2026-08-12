@@ -25,7 +25,7 @@ export default function PrivacyPage() {
             <div className="font-heading text-2xl font-extrabold">Privacy Policy</div>
             <p className="text-[12.5px] text-ink-faint mt-2">Last updated: August 2026. This describes exactly what Chess-2000 collects and why — nothing beyond it.</p>
           </div>
-          <Link href="/Chess-2000/about" className="text-[12px] font-bold bg-panel px-3 py-2 whitespace-nowrap">← Back to About</Link>
+          <Link href="/Chess-2000" className="text-[12px] font-bold bg-panel px-3 py-2 whitespace-nowrap">← Back to Home</Link>
         </div>
 
         <Section title="What we collect">
@@ -62,8 +62,8 @@ export default function PrivacyPage() {
         </Section>
 
         <div className="pt-6 border-t border-panel-line flex flex-wrap gap-x-6 gap-y-2 text-[12px] text-ink-faint">
-          <Link href="/Chess-2000" className="hover:text-ink">← Back to game</Link>
-          <Link href="/Chess-2000/about" className="hover:text-ink">About</Link>
+          <Link href="/Chess-2000/play" className="hover:text-ink">← Back to game</Link>
+          <Link href="/Chess-2000" className="hover:text-ink">Home</Link>
           <Link href="/Chess-2000/terms" className="hover:text-ink">Terms of Service</Link>
         </div>
       </div>

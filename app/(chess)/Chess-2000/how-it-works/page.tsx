@@ -172,8 +172,8 @@ export default function HowItWorksPage() {
             <p className="text-[13px] text-ink-faint mt-2">Every number on this page describes something the app actually computes — nothing here is aspirational.</p>
           </div>
           <div className="flex gap-2 flex-wrap">
-            <Link href="/Chess-2000/about" className="text-[12px] font-bold bg-panel px-3 py-2 whitespace-nowrap">About & Pricing</Link>
-            <Link href="/Chess-2000" className="text-[12px] font-bold bg-panel px-3 py-2 whitespace-nowrap">← Back to game</Link>
+            <Link href="/Chess-2000" className="text-[12px] font-bold bg-panel px-3 py-2 whitespace-nowrap">About & Pricing</Link>
+            <Link href="/Chess-2000/play" className="text-[12px] font-bold bg-panel px-3 py-2 whitespace-nowrap">← Back to game</Link>
           </div>
         </div>
 
@@ -274,7 +274,7 @@ export default function HowItWorksPage() {
         </Section>
 
         <div className="mt-10 pt-6 border-t border-panel-line">
-          <Link href="/Chess-2000" className="text-[12px] font-bold bg-ink text-[var(--background)] px-4 py-2 inline-block">← Back to game</Link>
+          <Link href="/Chess-2000/play" className="text-[12px] font-bold bg-ink text-[var(--background)] px-4 py-2 inline-block">← Back to game</Link>
         </div>
       </div>
     </div>
