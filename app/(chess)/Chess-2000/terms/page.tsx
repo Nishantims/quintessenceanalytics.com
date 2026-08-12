@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { FREE_GAMES_LIMIT } from '@/lib/chess/config'
 
 export const metadata: Metadata = {
   title: 'Terms of Service — Chess-2000',
@@ -18,7 +19,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 
 export default function TermsPage() {
   return (
-    <div className="min-h-screen bg-[var(--background)] text-ink">
+    <div data-theme="dark" className="min-h-screen bg-[var(--background)] text-ink">
       <div className="max-w-[900px] mx-auto px-6 py-10">
         <div className="flex items-start justify-between mb-8 gap-6 flex-wrap">
           <div>
@@ -29,7 +30,7 @@ export default function TermsPage() {
         </div>
 
         <Section title="The service">
-          <p>Chess-2000 is a real-time chess training tool: you play a real game against a Stockfish chess engine, and the app provides real, engine-grounded analysis, move grading, and coaching feedback. One game is free; continued play requires an active subscription.</p>
+          <p>Chess-2000 is a real-time chess training tool: you play a real game against a Stockfish chess engine, and the app provides real, engine-grounded analysis, move grading, and coaching feedback. Your first {FREE_GAMES_LIMIT} Training Mode games are free; continued play requires an active subscription. Puzzles and Casual Play are always free and don't count toward this.</p>
         </Section>
 
         <Section title="Subscription and billing">

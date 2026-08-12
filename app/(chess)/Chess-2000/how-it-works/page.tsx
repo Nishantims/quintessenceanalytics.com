@@ -161,7 +161,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 
 export default function HowItWorksPage() {
   return (
-    <div className="min-h-screen bg-[var(--background)] text-ink">
+    <div data-theme="dark" className="min-h-screen bg-[var(--background)] text-ink">
       <div className="max-w-[900px] mx-auto px-6 py-10">
         <div className="flex items-start justify-between mb-8 gap-6 flex-wrap">
           <div>

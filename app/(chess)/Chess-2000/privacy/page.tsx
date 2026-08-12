@@ -18,7 +18,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen bg-[var(--background)] text-ink">
+    <div data-theme="dark" className="min-h-screen bg-[var(--background)] text-ink">
       <div className="max-w-[900px] mx-auto px-6 py-10">
         <div className="flex items-start justify-between mb-8 gap-6 flex-wrap">
           <div>
@@ -29,7 +29,7 @@ export default function PrivacyPage() {
         </div>
 
         <Section title="What we collect">
-          <p><strong className="text-ink">To play your one free game:</strong> nothing that identifies you personally. A single, non-identifying browser cookie (<code className="text-[12px] bg-panel px-1">chess2000_free_game_used</code>) records only that a free game has been used on that browser — no account, no email, no name.</p>
+          <p><strong className="text-ink">To play your free Training Mode games:</strong> nothing that identifies you personally. A single, non-identifying browser cookie (<code className="text-[12px] bg-panel px-1">chess2000_free_games_used</code>) records only how many of your free games have been used on that browser — no account, no email, no name.</p>
           <p><strong className="text-ink">If you subscribe:</strong> an email address and password, used to create your account via Supabase Auth (the authentication provider this site runs on). Your password is never stored in plain text — Supabase handles that with standard, industry-normal hashing.</p>
           <p><strong className="text-ink">Payment information:</strong> when you subscribe, payment is handled directly by Razorpay's own checkout — Chess-2000's own servers never see or store your card number, UPI PIN, or full payment credentials. What we do store, tied to your account, is: the plan you chose, the amount actually paid, Razorpay's own order and payment reference IDs, and the real subscription period this grants.</p>
           <p><strong className="text-ink">While you play:</strong> the current board position (FEN) is sent to our server so a real Stockfish engine can analyze it and return an evaluation, a grade for your move, and the other real numbers the app shows you. This is processed to generate that one response and is not stored or linked to your account afterward.</p>
@@ -40,7 +40,7 @@ export default function PrivacyPage() {
         </Section>
 
         <Section title="Cookies">
-          <p>Besides the free-game marker above, Supabase Auth sets its own real session cookies once you're logged in, so you stay signed in between visits. Clearing your cookies signs you out and, if you haven't subscribed yet, resets your free-game marker — a known, accepted tradeoff of a no-signup free trial, not a bug.</p>
+          <p>Besides the free-games counter above, Supabase Auth sets its own real session cookies once you're logged in, so you stay signed in between visits. Clearing your cookies signs you out and, if you haven't subscribed yet, resets your free-games counter — a known, accepted tradeoff of a no-signup free trial, not a bug.</p>
         </Section>
 
         <Section title="Third parties this site actually uses">

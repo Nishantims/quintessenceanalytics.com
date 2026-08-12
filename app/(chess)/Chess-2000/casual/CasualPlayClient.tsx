@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Chess, type Color, type Square } from 'chess.js'
 import { Chessboard } from 'react-chessboard'
 import { GameSetup } from '@/components/GameSetup'
+import { FREE_GAMES_LIMIT } from '@/lib/chess/config'
 
 // Deliberately the lightest real thing this app offers: a real board, a
 // real Stockfish opponent (via the same /api/chess-2000/engine-move route
@@ -110,7 +111,7 @@ export default function CasualPlayClient() {
             <GameSetup onStart={(color, elo) => { setPlayerColor(color); setEngineElo(elo); setGameStarted(true) }} />
             <div className="mx-auto max-w-md w-full px-6 mt-4 text-center">
               <p className="text-[12px] text-ink-faint">
-                Want move grading and full coaching instead? Try <Link href="/Chess-2000/play" className="text-accent font-semibold">Training Mode</Link> (one free game), or sharpen tactics with <Link href="/Chess-2000/puzzles" className="text-accent font-semibold">Puzzles</Link>.
+                Want move grading and full coaching instead? Try <Link href="/Chess-2000/play" className="text-accent font-semibold">Training Mode</Link> ({FREE_GAMES_LIMIT} free games), or sharpen tactics with <Link href="/Chess-2000/puzzles" className="text-accent font-semibold">Puzzles</Link>.
               </p>
             </div>
           </div>

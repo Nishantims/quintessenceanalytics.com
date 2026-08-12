@@ -1,25 +1,28 @@
 import 'server-only'
 import { cookies } from 'next/headers'
 
-// One real free game per browser — a plain httpOnly cookie, not tied to an
-// account (checked before one even exists). A real, accepted limitation:
-// clearing cookies resets it. That's the standard, well-known trade-off
-// for a no-signup free trial and is intentionally not fought with device
-// fingerprinting or similar — simple and honest beats invasive here.
-const FREE_GAME_COOKIE = 'chess2000_free_game_used'
+// A real, counted number of free games per browser — a plain httpOnly
+// cookie, not tied to an account (checked before one even exists). A real,
+// accepted limitation: clearing cookies resets it. That's the standard,
+// well-known trade-off for a no-signup free trial and is intentionally not
+// fought with device fingerprinting or similar — simple and honest beats
+// invasive here.
+const FREE_GAMES_COOKIE = 'chess2000_free_games_used'
 
-export async function hasUsedFreeGame(): Promise<boolean> {
+export async function getFreeGamesUsed(): Promise<number> {
   const cookieStore = await cookies()
-  return cookieStore.get(FREE_GAME_COOKIE)?.value === '1'
+  const raw = cookieStore.get(FREE_GAMES_COOKIE)?.value
+  const n = raw ? parseInt(raw, 10) : 0
+  return Number.isFinite(n) && n > 0 ? n : 0
 }
 
-export async function markFreeGameUsed(): Promise<void> {
+export async function incrementFreeGamesUsed(current: number): Promise<void> {
   const cookieStore = await cookies()
-  cookieStore.set(FREE_GAME_COOKIE, '1', {
+  cookieStore.set(FREE_GAMES_COOKIE, String(current + 1), {
     httpOnly: true,
     secure: true,
     sameSite: 'lax',
-    // 10 real years — this is a one-time free trial marker, not a session.
+    // 10 real years — this is a free-trial counter, not a session.
     maxAge: 60 * 60 * 24 * 365 * 10,
     path: '/',
   })

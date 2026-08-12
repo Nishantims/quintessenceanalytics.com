@@ -1,10 +1,12 @@
 /* eslint-disable react/no-unescaped-entities -- long-form prose content below; escaping every apostrophe/quote would make it unreadable to edit */
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { FREE_GAMES_LIMIT } from '@/lib/chess/config'
+import { Chess2000Logo } from '@/components/chess/Chess2000Logo'
 
 export const metadata: Metadata = {
   title: 'Chess-2000 — Real Stockfish Coaching, Move by Move',
-  description: 'Real Stockfish analysis, real move grading, and a real, repeatable method for reaching 2000 ELO through regular practice. Free puzzles, free casual play, and one free training game — then ₹299/month or ₹999/year.',
+  description: `Real Stockfish analysis, real move grading, and a real, repeatable method for reaching 2000 ELO through regular practice. Free puzzles, free casual play, and ${FREE_GAMES_LIMIT} free training games — then ₹299/month or ₹999/year.`,
 }
 
 const FEATURES: { name: string; text: string }[] = [
@@ -18,19 +20,21 @@ const FEATURES: { name: string; text: string }[] = [
   { name: 'Adjustable opponent strength', text: 'Play the real engine anywhere from 1320 to 3190 UCI_Elo, so you can set a genuinely competitive opponent instead of one that\'s trivially easy or hopelessly strong.' },
 ]
 
-const FREE_ITEMS: { name: string; text: string; href: string; cta: string }[] = [
-  { name: 'Puzzles', text: 'Real tactical positions — pins, forks, skewers, mating nets — pulled from real games. Unlimited, no account, free forever.', href: '/Chess-2000/puzzles', cta: 'Solve puzzles' },
-  { name: 'Casual Play', text: 'Play the real engine with no coaching overlay — just a board and a real opponent, like any other online chess game. Unlimited, free forever.', href: '/Chess-2000/casual', cta: 'Play casually' },
-  { name: 'Full Training Mode', text: 'One complete game with every real feature switched on — full engine analysis, full move grading, every board tool, CCTAP Mode. No account needed.', href: '/Chess-2000/play', cta: 'Play your free game' },
+const FREE_ITEMS: { name: string; text: string; href: string; cta: string; badge: string; accent: string }[] = [
+  { name: 'Puzzles', text: 'Real tactical positions — pins, forks, skewers, mating nets — pulled live from a real puzzle database, five difficulty levels from easiest to hardest.', href: '/Chess-2000/puzzles', cta: 'Solve puzzles', badge: 'Free forever', accent: 'var(--status-purple)' },
+  { name: 'Casual Play', text: 'Play the real engine with no coaching overlay — just a board and a real opponent, like any other online chess game.', href: '/Chess-2000/casual', cta: 'Play casually', badge: 'Free forever', accent: 'var(--status-blue)' },
+  { name: 'Training Mode', text: 'Full engine analysis, full move grading, every board tool, CCTAP Mode — the complete coaching experience. No account needed to start.', href: '/Chess-2000/play', cta: 'Play a training game', badge: `${FREE_GAMES_LIMIT} free games`, accent: 'var(--status-alt2)' },
 ]
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-[var(--background)] text-ink">
+    <div data-theme="dark" className="min-h-screen bg-[var(--background)] text-ink">
       {/* Hero */}
       <div className="border-b border-panel-line">
         <div className="max-w-[900px] mx-auto px-6 pt-14 pb-12">
-          <div className="text-[11px] font-bold uppercase tracking-wide text-accent mb-3">Chess-2000</div>
+          <div className="mb-5">
+            <Chess2000Logo size={30} />
+          </div>
           <h1 className="font-heading text-[32px] sm:text-[40px] font-extrabold leading-[1.1] max-w-[680px]">
             Real Stockfish coaching, move by move — not a fortune teller.
           </h1>
@@ -38,9 +42,9 @@ export default function HomePage() {
             Chess-2000 explains what's actually happening on the board after every move, what the engine actually thinks is best, and why — using a real chess engine and real, documented formulas. Nothing here is generated to sound plausible; every number traces back to something the app actually computed.
           </p>
           <div className="flex flex-wrap gap-3 mt-8">
-            <Link href="/Chess-2000/play" className="text-[13px] font-bold bg-ink text-[var(--background)] px-6 py-3">Play your free training game</Link>
-            <Link href="/Chess-2000/puzzles" className="text-[13px] font-bold bg-panel px-6 py-3">Solve puzzles — free</Link>
-            <Link href="/Chess-2000/casual" className="text-[13px] font-bold bg-panel px-6 py-3">Play casually — free</Link>
+            <Link href="/Chess-2000/play" className="text-[13px] font-bold text-white px-6 py-3 rounded-lg" style={{ background: 'var(--status-alt2)' }}>Play a training game ({FREE_GAMES_LIMIT} free)</Link>
+            <Link href="/Chess-2000/puzzles" className="text-[13px] font-bold text-white px-6 py-3 rounded-lg" style={{ background: 'var(--status-purple)' }}>Solve puzzles — free</Link>
+            <Link href="/Chess-2000/casual" className="text-[13px] font-bold text-white px-6 py-3 rounded-lg" style={{ background: 'var(--status-blue)' }}>Play casually — free</Link>
           </div>
           <div className="flex flex-wrap gap-4 mt-4">
             <a href="#pricing" className="text-[12px] font-bold text-ink-faint hover:text-ink">See pricing</a>
@@ -62,14 +66,18 @@ export default function HomePage() {
 
         {/* Free things */}
         <section className="mb-16">
-          <h2 className="font-heading text-2xl font-extrabold mb-2">Free, right now — no account needed</h2>
-          <p className="text-[13px] text-ink-faint mb-6 max-w-[640px]">Three genuinely free ways to play, none of them a limited trial.</p>
+          <span className="text-[11px] font-bold uppercase tracking-wide" style={{ color: 'var(--status-purple)' }}>Free, right now</span>
+          <h2 className="font-heading text-2xl font-extrabold mt-1 mb-2">No account needed to start</h2>
+          <p className="text-[13px] text-ink-faint mb-6 max-w-[640px]">Two of these are free forever. Training Mode is free for your first {FREE_GAMES_LIMIT} games — clearly marked below so there's never a surprise.</p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {FREE_ITEMS.map(item => (
-              <div key={item.name} className="bg-panel p-5 flex flex-col">
-                <div className="font-heading text-[14px] font-extrabold mb-1.5">{item.name}</div>
+              <div key={item.name} className="bg-panel p-5 flex flex-col" style={{ borderTop: `3px solid ${item.accent}` }}>
+                <div className="flex items-start justify-between gap-2 mb-1.5">
+                  <div className="font-heading text-[14px] font-extrabold">{item.name}</div>
+                  <span className="text-[9px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full whitespace-nowrap" style={{ background: item.accent, color: '#fff' }}>{item.badge}</span>
+                </div>
                 <p className="text-[12.5px] text-ink-soft leading-relaxed flex-1">{item.text}</p>
-                <Link href={item.href} className="inline-block mt-4 text-[12px] font-bold text-accent">{item.cta} →</Link>
+                <Link href={item.href} className="inline-block mt-4 text-[12px] font-bold" style={{ color: item.accent }}>{item.cta} →</Link>
               </div>
             ))}
           </div>
@@ -77,7 +85,8 @@ export default function HomePage() {
 
         {/* How it helps reach 2000 ELO */}
         <section className="mb-16">
-          <h2 className="font-heading text-2xl font-extrabold mb-4">How this helps you reach 2000 ELO through regular practice</h2>
+          <span className="text-[11px] font-bold uppercase tracking-wide" style={{ color: 'var(--status-blue)' }}>The method</span>
+          <h2 className="font-heading text-2xl font-extrabold mt-1 mb-4">How this helps you reach 2000 ELO through regular practice</h2>
           <div className="space-y-4 text-[14px] leading-[1.75] text-ink-soft max-w-[720px]">
             <p>At club level, the single biggest real gap between a 1000-rated player and a 2000-rated player isn't calculation depth or opening theory — it's consistency. A 2000 player is, in a real sense, a 1000 player who has trained themselves out of hanging pieces and out of missing the opponent's real threats. That gap closes through repetition of one real habit, not through a single insight: checking checks, captures, and threats before every move, every single game.</p>
             <p>Chess-2000 is built around making that habit trainable. Play a real game; every move gets a real grade. When the grade says Mistake or Blunder, the app tells you why — the real "stronger was" line, not just that you were wrong. CCTAP Mode walks the five-step process explicitly until it's automatic. Tactical Scoring and Positional Analysis surface real weaknesses (a consistently low King Safety score by move 10, a repeated pattern of hanging pieces after trades) that are easy to miss in the moment but obvious across several real games. Puzzles reinforce the same pattern-recognition in isolation, and Casual Play gives you somewhere to just play without every move being graded.</p>
@@ -87,7 +96,8 @@ export default function HomePage() {
 
         {/* Features */}
         <section className="mb-16">
-          <h2 className="font-heading text-2xl font-extrabold mb-2">What's actually in Training Mode</h2>
+          <span className="text-[11px] font-bold uppercase tracking-wide" style={{ color: 'var(--status-alt2)' }}>Training Mode</span>
+          <h2 className="font-heading text-2xl font-extrabold mt-1 mb-2">What's actually in Training Mode</h2>
           <p className="text-[13px] text-ink-faint mb-6 max-w-[640px]">Every item below is a real, working feature — see <Link href="/Chess-2000/how-it-works" className="text-accent font-semibold">How It Works</Link> for the full, exact detail on how each one is calculated.</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {FEATURES.map(f => (
@@ -101,8 +111,9 @@ export default function HomePage() {
 
         {/* Pricing */}
         <section id="pricing" className="mb-16 scroll-mt-8">
-          <h2 className="font-heading text-2xl font-extrabold mb-2">Subscription</h2>
-          <p className="text-[13px] text-ink-faint mb-6 max-w-[640px]">Puzzles and Casual Play are always free. A subscription is only for unlimited real Training Mode games — full engine analysis, every feature, at either plan. Cancel any time — see <Link href="/Chess-2000/terms" className="text-accent font-semibold">Terms</Link> for the full real refund and renewal policy.</p>
+          <span className="text-[11px] font-bold uppercase tracking-wide" style={{ color: 'var(--status-gold)' }}>Pricing</span>
+          <h2 className="font-heading text-2xl font-extrabold mt-1 mb-2">Subscription</h2>
+          <p className="text-[13px] text-ink-faint mb-6 max-w-[640px]">Puzzles and Casual Play are always free. A subscription is only for unlimited real Training Mode games past your first {FREE_GAMES_LIMIT} — full engine analysis, every feature, at either plan. Cancel any time — see <Link href="/Chess-2000/terms" className="text-accent font-semibold">Terms</Link> for the full real refund and renewal policy.</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-[560px]">
             <div className="bg-panel p-5">
               <div className="text-[10px] font-bold uppercase tracking-wide text-ink-faint">Monthly</div>

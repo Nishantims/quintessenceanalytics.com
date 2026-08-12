@@ -3,7 +3,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { markFreeGameUsedAction } from '@/lib/chess/free-game-actions'
+import { incrementFreeGamesUsedAction } from '@/lib/chess/free-game-actions'
+import { PAYWALL_ENABLED, FREE_GAMES_LIMIT } from '@/lib/chess/config'
 import { Chess, type Color, type Square } from 'chess.js'
 import { Chessboard } from 'react-chessboard'
 import type { EngineAnalysis } from '@/lib/engine/stockfish'
@@ -184,21 +185,21 @@ const SELECTED_SQUARE_STYLE = { backgroundColor: 'rgba(220,38,38,0.5)', boxShado
 const QUIET_DOT_STYLE = { background: 'radial-gradient(circle, rgba(0,0,0,0.35) 18%, transparent 20%)' }
 const CAPTURE_RING_STYLE = { boxShadow: 'inset 0 0 0 4px rgba(0,0,0,0.35)' }
 
-// hasActiveSubscription/initialFreeGameUsed come from a real server-side
-// check (see page.tsx) — the server already redirects to /Chess-2000/
-// subscribe before this component ever mounts if neither is true, so
-// within one mount access always starts allowed. The only gate needed
-// HERE is for a second "Start game" click in the same session (no full
-// page reload in between), tracked via local state seeded from the same
-// server values.
+// hasActiveSubscription/initialFreeGamesUsed come from a real server-side
+// check (see play/page.tsx) — the server already redirects to /Chess-2000/
+// subscribe before this component ever mounts if PAYWALL_ENABLED and
+// neither is true, so within one mount access always starts allowed. The
+// only gate needed HERE is for another "Start game" click in the same
+// session (no full page reload in between), tracked via local state seeded
+// from the same server value.
 export default function ChessGameClient({
-  hasActiveSubscription, initialFreeGameUsed,
+  hasActiveSubscription, initialFreeGamesUsed,
 }: {
   hasActiveSubscription: boolean
-  initialFreeGameUsed: boolean
+  initialFreeGamesUsed: number
 }) {
   const router = useRouter()
-  const [freeGameUsed, setFreeGameUsed] = useState(initialFreeGameUsed)
+  const [freeGamesUsed, setFreeGamesUsed] = useState(initialFreeGamesUsed)
   const containerRef = useRef<HTMLDivElement>(null)
 
   const [isFullscreen, setIsFullscreen] = useState(false)
@@ -827,18 +828,20 @@ export default function ChessGameClient({
       <div data-theme={dark ? 'dark' : 'light'} data-board-theme={boardTheme} className="min-h-dvh bg-[var(--background)] text-ink">
         <GameSetup
           onStart={(color, elo) => {
-            // Real gate: a second game in the same session, with no active
-            // subscription and the one real free game already spent, goes
-            // to checkout instead of starting — the server-side check in
-            // page.tsx catches every OTHER case (a fresh visit, a reload),
-            // this only covers "New Game" clicked again without leaving.
-            if (!hasActiveSubscription && freeGameUsed) {
+            // Real gate: another game in the same session, with no active
+            // subscription and all free games already spent, goes to
+            // checkout instead of starting — the server-side check in
+            // play/page.tsx catches every OTHER case (a fresh visit, a
+            // reload), this only covers "New Game" clicked again without
+            // leaving. Gated behind PAYWALL_ENABLED — off during testing.
+            if (PAYWALL_ENABLED && !hasActiveSubscription && freeGamesUsed >= FREE_GAMES_LIMIT) {
               router.push('/Chess-2000/subscribe')
               return
             }
-            if (!hasActiveSubscription && !freeGameUsed) {
-              setFreeGameUsed(true)
-              markFreeGameUsedAction().catch(err => console.error('[free-game] failed to mark used', err))
+            if (!hasActiveSubscription && freeGamesUsed < FREE_GAMES_LIMIT) {
+              const next = freeGamesUsed + 1
+              setFreeGamesUsed(next)
+              incrementFreeGamesUsedAction(freeGamesUsed).catch(err => console.error('[free-game] failed to increment', err))
             }
             setPlayerColor(color)
             setEngineElo(elo)

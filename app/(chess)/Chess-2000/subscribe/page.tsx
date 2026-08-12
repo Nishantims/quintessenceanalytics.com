@@ -4,10 +4,11 @@ import { createClient } from '@/lib/chess/supabase-server'
 import { getActiveSubscription } from '@/lib/chess/subscription'
 import { AuthPanel } from '@/components/chess/AuthPanel'
 import { CheckoutButton } from '@/components/chess/CheckoutButton'
+import { FREE_GAMES_LIMIT } from '@/lib/chess/config'
 
 export const metadata: Metadata = {
   title: 'Subscribe — Chess-2000',
-  description: 'Your free game is used. Subscribe monthly or yearly to keep training with Chess-2000.',
+  description: 'Your free Training Mode games are used. Subscribe monthly or yearly to keep training with Chess-2000.',
 }
 
 const PLANS = [
@@ -33,18 +34,18 @@ export default async function SubscribePage() {
   const activeSubscription = user ? await getActiveSubscription() : null
 
   return (
-    <div className="min-h-screen bg-[var(--background)] text-ink">
+    <div data-theme="dark" className="min-h-screen bg-[var(--background)] text-ink">
       <div className="max-w-[720px] mx-auto px-6 py-14">
         <Link href="/Chess-2000" className="text-[12px] font-bold text-ink-faint hover:text-ink">← Back to Chess-2000</Link>
 
         <div className="mt-6 mb-10">
           <div className="font-heading text-2xl font-extrabold">
-            {activeSubscription ? 'Your subscription is active' : 'Your free game is used'}
+            {activeSubscription ? 'Your subscription is active' : 'Your free Training Mode games are used'}
           </div>
           <p className="text-[13px] text-ink-faint mt-2 leading-relaxed">
             {activeSubscription
               ? `Your ${activeSubscription.plan} plan is active until ${new Date(activeSubscription.currentPeriodEnd).toLocaleDateString()}. Head back and keep training.`
-              : 'One real game is free — no account needed. Every game after that needs a subscription, since real Stockfish analysis on every move has a real cost to run.'}
+              : `Your first ${FREE_GAMES_LIMIT} Training Mode games are free — no account needed. Beyond that needs a subscription, since real Stockfish analysis on every move has a real cost to run. Puzzles and Casual Play stay free either way.`}
           </p>
         </div>
 
