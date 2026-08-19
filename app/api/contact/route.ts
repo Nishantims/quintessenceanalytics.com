@@ -1,4 +1,5 @@
 import { Resend } from "resend";
+import { getSupabaseAdmin } from "@/lib/supabase-admin";
 
 const CONTACT_EMAIL = "contact@market-reports.com";
 // Both QA.com and market-reports.com deliver contact-form submissions to
@@ -39,6 +40,28 @@ export async function POST(request: Request) {
     return Response.json({ error: "Enter a valid email address." }, { status: 400 });
   }
 
+  // Persist the lead BEFORE attempting email - previously a submission only
+  // ever existed as a sent email, with zero durable record. If the Resend
+  // send below fails entirely, this row is still the real, recoverable
+  // record of the enquiry. Best-effort: a DB outage here degrades back to
+  // the email-only behavior that already existed, rather than blocking the
+  // submission on infrastructure that wasn't required before.
+  let leadId: string | null = null;
+  try {
+    const { data, error: insertError } = await getSupabaseAdmin()
+      .from("qa_leads")
+      .insert({ name, email, company: company || null, interest: interest || null, message })
+      .select("id")
+      .single();
+    if (insertError) {
+      console.error("[contact] Failed to persist lead:", insertError);
+    } else {
+      leadId = data?.id ?? null;
+    }
+  } catch (err) {
+    console.error("[contact] Unexpected error persisting lead:", err);
+  }
+
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
     console.error("[contact] RESEND_API_KEY is not set — cannot send message.");
@@ -68,6 +91,18 @@ export async function POST(request: Request) {
     if (error) {
       console.error("[contact] Resend error:", error);
       return Response.json({ error: "Couldn't send your message. Please try again or email us directly." }, { status: 502 });
+    }
+
+    // Best-effort - the lead row already exists regardless of this call's
+    // outcome, so a failure here never affects the response to the user.
+    if (leadId) {
+      const { error: notifyUpdateError } = await getSupabaseAdmin()
+        .from("qa_leads")
+        .update({ notified: true })
+        .eq("id", leadId);
+      if (notifyUpdateError) {
+        console.error("[contact] Failed to mark lead as notified:", notifyUpdateError);
+      }
     }
 
     // Confirmation receipt back to the submitter, on their own email address -

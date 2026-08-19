@@ -28,7 +28,11 @@ export function AiProductCard({ product }: { product: AiProduct }) {
       )}
       <h3 className="font-display text-[19px] font-semibold text-text-primary">{product.name}</h3>
       <p className="mt-2 text-[13.5px] leading-relaxed text-text-secondary">{product.tagline}</p>
-      <p className="mt-5 font-data text-[24px] font-semibold text-text-primary">{product.price}</p>
+      <div className="mt-5 flex items-baseline gap-2">
+        <p className="font-data text-[24px] font-semibold text-text-primary">{product.priceUsd}</p>
+        <p className="text-[13px] font-medium text-text-muted">/ {product.priceInr}</p>
+      </div>
+      <p className="mt-1 text-[12px] font-semibold uppercase tracking-wide text-text-muted">{product.duration}</p>
       <ul className="mt-5 flex-1 space-y-2.5">
         {product.features.map((f) => (
           <li key={f} className="flex gap-2.5 text-[13.5px] leading-relaxed text-text-primary">

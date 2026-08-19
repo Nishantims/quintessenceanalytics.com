@@ -7,28 +7,13 @@ interface NavItem {
   label: string;
   href: string;
   external?: boolean;
-  icon?: "home";
-}
-
-function HomeIcon() {
-  return (
-    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden>
-      <path
-        d="M4 11.5 12 4l8 7.5M6 9.5V20h12V9.5"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
 }
 
 export function MobileNav({ items }: { items: NavItem[] }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="md:hidden">
+    <div className="lg:hidden">
       <button
         onClick={() => setOpen((o) => !o)}
         aria-label={open ? "Close menu" : "Open menu"}
@@ -56,7 +41,6 @@ export function MobileNav({ items }: { items: NavItem[] }) {
                 onClick={() => setOpen(false)}
                 className="flex items-center gap-2.5 rounded-lg px-3 py-3 text-[15px] font-semibold text-text-primary hover:bg-surface-raised hover:text-pink"
               >
-                {item.icon === "home" && <HomeIcon />}
                 {item.label}
                 {item.external && <span aria-hidden> ↗</span>}
               </Link>
@@ -66,7 +50,7 @@ export function MobileNav({ items }: { items: NavItem[] }) {
               onClick={() => setOpen(false)}
               className="mt-2 rounded-full bg-ink px-5 py-3 text-center text-[14px] font-semibold text-paper"
             >
-              Talk to an Analyst
+              Book an AI Assessment
             </Link>
           </nav>
         </div>

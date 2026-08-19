@@ -56,7 +56,7 @@ function isRealErrorPage(body) {
   return /<html[^>]*\bid="__next_error__"/.test(body)
 }
 
-const PAGES = ['/', '/services', '/about', '/contact']
+const PAGES = ['/', '/services', '/pricing', '/industries', '/insights', '/about', '/contact']
 
 async function main() {
   console.log(`\nquintessenceanalytics.com health check — ${BASE_URL}\n`)
@@ -71,23 +71,29 @@ async function main() {
     }, { warnMs: 3000 })
   }
 
-  await check('GET / has the twelve-services heading', async () => {
+  await check('GET / has the six-services heading', async () => {
     const res = await get('/')
     const body = await res.text()
-    assert(body.includes('Twelve core AI'), 'homepage services heading missing or stale')
+    assert(body.includes('Six core AI'), 'homepage services heading missing or stale')
   })
 
-  await check('GET /services lists all twelve service slugs', async () => {
+  await check('GET /services lists all six service slugs', async () => {
     const res = await get('/services')
     const body = await res.text()
     const slugs = [
-      'predictive-analytics', 'decision-intelligence', 'market-intelligence',
-      'customer-analytics', 'operational-analytics', 'financial-risk-analytics',
-      'executive-dashboards', 'generative-ai-solutions', 'ai-process-automation',
-      'custom-ai-consulting', 'marketing-growth-analytics', 'data-engineering-ai-infrastructure',
+      'ai-agent-development', 'ai-agent-quality-evaluation', 'ai-governance-risk',
+      'ai-workflow-automation', 'ai-data-knowledge-systems', 'ai-decision-systems',
     ]
     const missing = slugs.filter((s) => !body.includes(s))
     assert(missing.length === 0, `missing service slugs: ${missing.join(', ')}`)
+  })
+
+  await check('GET /pricing lists the three starter offers', async () => {
+    const res = await get('/pricing')
+    const body = await res.text()
+    const offers = ['AI Readiness Assessment', 'AI Agent Quality Assessment', 'AI Automation Pilot']
+    const missing = offers.filter((o) => !body.includes(o))
+    assert(missing.length === 0, `missing pricing offers: ${missing.join(', ')}`)
   })
 
   await check('GET /sitemap.xml', async () => {

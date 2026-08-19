@@ -7,32 +7,21 @@ interface NavItem {
   label: string;
   href: string;
   external?: boolean;
-  /** Home only - renders a house glyph instead of the label text, since the
-   * logo already carries "Quintessence Analytics" as a wordmark and a second
-   * text label reading "Home" next to it would be redundant. */
-  icon?: "home";
 }
 
+// Logo already links home (below), so "Home" doesn't need its own nav
+// slot - that space goes to the six-service catalog's supporting pages
+// instead. Market Reports stays as an external link, per the blueprint's
+// explicit instruction to keep it secondary rather than a primary nav item.
 const NAV: NavItem[] = [
-  { label: "Home", href: "/", icon: "home" },
   { label: "Services", href: "/services" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "Industries", href: "/industries" },
+  { label: "Insights", href: "/insights" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
+  { label: "Market Reports", href: "https://market-reports.com", external: true },
 ];
-
-function HomeIcon() {
-  return (
-    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden>
-      <path
-        d="M4 11.5 12 4l8 7.5M6 9.5V20h12V9.5"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
 
 export function Header() {
   return (
@@ -42,18 +31,19 @@ export function Header() {
           <Logo size={24} />
         </Link>
 
-        <div className="flex items-center gap-10">
-          <nav className="hidden items-center gap-8 md:flex">
+        <div className="flex items-center gap-8">
+          {/* Seven items now (was four) - needs lg's extra width, not md's,
+           * to fit alongside the theme toggle and CTA without crowding. */}
+          <nav className="hidden items-center gap-6 lg:flex">
             {NAV.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 target={item.external ? "_blank" : undefined}
                 rel={item.external ? "noopener noreferrer" : undefined}
-                aria-label={item.icon ? item.label : undefined}
-                className="flex items-center text-[13px] font-semibold uppercase tracking-wide text-text-secondary transition-colors hover:text-pink"
+                className="flex items-center whitespace-nowrap text-[13px] font-semibold uppercase tracking-wide text-text-secondary transition-colors hover:text-pink"
               >
-                {item.icon === "home" ? <HomeIcon /> : item.label}
+                {item.label}
                 {item.external && <span aria-hidden> ↗</span>}
               </Link>
             ))}
@@ -65,7 +55,7 @@ export function Header() {
               href="/contact"
               className="hidden rounded-full bg-ink px-5 py-2.5 text-[13px] font-semibold text-paper transition-transform hover:scale-[1.03] sm:inline-block"
             >
-              Talk to an Analyst
+              Book an AI Assessment
             </Link>
             <MobileNav items={NAV} />
           </div>

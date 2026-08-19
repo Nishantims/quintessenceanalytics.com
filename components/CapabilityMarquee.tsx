@@ -1,12 +1,12 @@
 const CAPABILITIES = [
-  "AI-Driven Decision Systems",
-  "Predictive Forecasting",
-  "Real-Time BI Dashboards",
-  "Patent & IP Intelligence",
-  "Regulatory Tracking",
-  "Competitive Benchmarking",
-  "Affordable AI Products",
-  "Custom Market Sizing",
+  "AI Agent Development",
+  "AI Agent Quality & Evaluation",
+  "AI Governance & Risk",
+  "AI Workflow Automation",
+  "AI Data & Knowledge Systems",
+  "AI Decision Systems",
+  "Fixed-Scope Entry Offers",
+  "Senior-Analyst Reviewed",
 ];
 
 export function CapabilityMarquee() {

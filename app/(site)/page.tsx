@@ -13,35 +13,22 @@ import { OUTCOMES, CASE_STUDIES, TECH_CAPABILITIES, WHY_CHOOSE_US, TESTIMONIALS,
 const ACCENT_VAR = { pink: "var(--pink)", blue: "var(--blue)", green: "var(--green)" };
 
 const WHAT_WE_DO = [
-  { title: "Analytics", body: "Predictive, customer, operational, and financial analytics built on your real data.", accent: "blue" as const },
-  { title: "Forecasting", body: "Driver-level forecasts you can explain in the room, not a black-box number.", accent: "pink" as const },
-  { title: "Automation", body: "AI process automation for the repetitive work that eats analyst time.", accent: "green" as const },
-  { title: "Dashboards", body: "Interactive executive dashboards, filterable and board-ready.", accent: "blue" as const },
-  { title: "AI Consulting", body: "Custom engagements scoped around your actual decision, not a template.", accent: "pink" as const },
+  { title: "AI Agents", body: "Task-oriented agents that retrieve, reason, use approved tools, and finish the workflow.", accent: "blue" as const },
+  { title: "AI Assurance", body: "Evaluation and testing that finds an agent's failure modes before your customers do.", accent: "pink" as const },
+  { title: "AI Governance", body: "An independent inventory, permissions review, and audit trail for the AI you already run.", accent: "green" as const },
+  { title: "Automation", body: "One real workflow, automated end to end, with a human approval step built in.", accent: "blue" as const },
+  { title: "Decision Systems", body: "Predictive analytics and dashboards, analyst-reviewed at every tier.", accent: "pink" as const },
 ];
 
-const PROCESS = [
-  {
-    step: "01",
-    title: "Scope the question",
-    body: "We start with the decision you're actually trying to make, not a generic deliverable template — the boundary of the problem, the audience, and what a wrong answer would cost you.",
-  },
-  {
-    step: "02",
-    title: "Ingest the evidence",
-    body: "Your existing data sources are ingested and reconciled in parallel, cross-checked against each other before anything gets modelled.",
-  },
-  {
-    step: "03",
-    title: "Model with AI, verify with analysts",
-    body: "Our AI engine runs the ingestion and first-pass modelling — every output is then reviewed by a senior analyst before it ever reaches a client.",
-  },
-  {
-    step: "04",
-    title: "Deliver with the reasoning attached",
-    body: "Every figure ships with the assumption behind it. You get the number and the argument, so your team can defend it in the room we're not in.",
-  },
+const STAGES = [
+  { n: "1", stage: "Identify", capability: "AI Readiness Assessment", cta: "Assess your business", href: "/pricing" },
+  { n: "2", stage: "Build", capability: "AI Agent / Automation Pilot", cta: "Start a pilot", href: "/pricing" },
+  { n: "3", stage: "Assure", capability: "AI Agent Quality & Evaluation", cta: "Evaluate an agent", href: "/services#ai-agent-quality-evaluation" },
+  { n: "4", stage: "Govern", capability: "AI Governance & Risk", cta: "Assess AI risk", href: "/services#ai-governance-risk" },
+  { n: "5", stage: "Operate", capability: "Continuous AI Monitoring", cta: "Discuss monitoring", href: "/contact" },
 ];
+
+const ASSURANCE_STEPS = ["Scope", "Test", "Evaluate", "Remediate", "Retest", "Monitor"];
 
 export default function HomePage() {
   return (
@@ -52,18 +39,17 @@ export default function HomePage() {
           <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-border px-3.5 py-1.5 text-[14px] font-semibold uppercase tracking-wide text-text-secondary">
               <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--pink)" }} />
-              AI analytics &amp; decision intelligence
+              Enterprise AI solutions &amp; AI assurance
             </span>
             <h1 className="mt-6 font-display text-[42px] font-bold leading-[1.08] tracking-tight text-text-primary sm:text-[54px]">
-              Turn enterprise data into{" "}
-              <span style={{ color: "var(--blue)" }}>decisions</span>, not just{" "}
-              <span style={{ color: "var(--pink)" }}>dashboards.</span>
+              Build AI. <span style={{ color: "var(--blue)" }}>Automate work.</span> Trust the{" "}
+              <span style={{ color: "var(--pink)" }}>outcome.</span>
             </h1>
             <p className="mt-6 max-w-lg text-[19px] leading-relaxed text-text-secondary">
-              Quintessence Analytics is an AI analytics and decision intelligence company — predictive
-              analytics, automation, and executive dashboards built on your real data, every AI output
-              reviewed by a senior analyst before it reaches you. We&apos;re also the research engine
-              behind{" "}
+              Quintessence Analytics helps enterprises move AI from experimentation to production —
+              building AI agents, automating real workflows, and evaluating AI systems for reliability,
+              security, and governance, with every output reviewed by a senior analyst. We&apos;re also the
+              research engine behind{" "}
               <Link href="https://market-reports.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-ink underline decoration-blue/40 underline-offset-4 hover:decoration-blue">
                 Market Reports
               </Link>
@@ -75,13 +61,13 @@ export default function HomePage() {
                 className="rounded-full px-6 py-3.5 text-[14px] font-semibold text-white transition-transform hover:scale-[1.03]"
                 style={{ background: "var(--blue)" }}
               >
-                Book a Consultation
+                Book an AI Assessment
               </Link>
               <Link
-                href="/contact"
+                href="/services"
                 className="rounded-full border border-border px-6 py-3.5 text-[14px] font-semibold text-text-primary transition-colors hover:border-green hover:text-green-ink"
               >
-                Request a Demo
+                Explore AI Solutions
               </Link>
             </div>
           </div>
@@ -92,6 +78,36 @@ export default function HomePage() {
 
       <CapabilityMarquee />
 
+      {/* ── From AI Pilot to Production ── */}
+      <section className="border-y border-border bg-surface">
+        <div className="mx-auto max-w-6xl px-6 py-24">
+          <ScrollReveal>
+            <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--blue)" }}>
+              How we work
+            </span>
+            <h2 className="mt-3 max-w-lg font-display text-[32px] font-bold leading-tight text-text-primary">
+              From AI pilot to{" "}
+              <span style={{ color: "var(--pink)" }}>production</span>, in five stages
+            </h2>
+          </ScrollReveal>
+          <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {STAGES.map((s, i) => (
+              <ScrollReveal key={s.stage} delayMs={i * 60}>
+                <Link href={s.href} className="group flex h-full flex-col rounded-2xl border border-border bg-surface-raised p-6 transition-colors hover:border-blue">
+                  <span className="font-data text-[12px] text-text-muted">{s.n}</span>
+                  <h3 className="mt-2 font-display text-[17px] font-bold text-text-primary">{s.stage}</h3>
+                  <p className="mt-2 flex-1 text-[13px] leading-relaxed text-text-secondary">{s.capability}</p>
+                  <span className="mt-4 flex items-center gap-1.5 text-[12.5px] font-semibold" style={{ color: "var(--blue)" }}>
+                    {s.cta}
+                    <span className="transition-transform group-hover:translate-x-1" aria-hidden>→</span>
+                  </span>
+                </Link>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── Who We Are ── */}
       <section className="mx-auto max-w-4xl px-6 py-24 text-center">
         <ScrollReveal>
@@ -99,14 +115,15 @@ export default function HomePage() {
             Who we are
           </span>
           <h2 className="mx-auto mt-3 max-w-2xl font-display text-[32px] font-bold leading-tight text-text-primary">
-            An AI analytics company built to solve{" "}
-            <span style={{ color: "var(--blue)" }}>enterprise decision problems</span>
+            An enterprise AI partner built to ship{" "}
+            <span style={{ color: "var(--blue)" }}>working systems</span>, not proofs of concept
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-[18px] leading-relaxed text-text-secondary">
-            We&apos;re not a technology vendor selling a platform — we&apos;re an analytics partner who
-            happens to build the AI ourselves. Every engagement starts with the business decision, works
-            backward to the data and models that answer it, and ends with a senior analyst reviewing the
-            output before it ever reaches you.
+            We&apos;re not a technology vendor selling a platform, and we&apos;re not a slide-deck
+            consultancy — we build AI agents and automation using AI-native, Claude-assisted development,
+            which is exactly why we can move in weeks instead of quarters. Every engagement starts with
+            the workflow you actually need done, and every AI output is reviewed by a senior analyst
+            before it reaches you.
           </p>
         </ScrollReveal>
       </section>
@@ -119,8 +136,8 @@ export default function HomePage() {
               What we do
             </span>
             <h2 className="mt-3 max-w-lg font-display text-[32px] font-bold leading-tight text-text-primary">
-              Five ways we turn data into a{" "}
-              <span style={{ color: "var(--pink)" }}>working decision</span>
+              Five ways we turn AI into a{" "}
+              <span style={{ color: "var(--pink)" }}>working outcome</span>
             </h2>
           </ScrollReveal>
           <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-5">
@@ -145,22 +162,22 @@ export default function HomePage() {
           </span>
           <h2 className="mt-3 max-w-lg font-display text-[32px] font-bold leading-tight text-text-primary">
             Ten industries, one{" "}
-            <span style={{ color: "var(--green)" }}>triangulated methodology</span>
+            <span style={{ color: "var(--green)" }}>AI delivery methodology</span>
           </h2>
         </ScrollReveal>
         <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {INDUSTRIES.map((ind, i) => (
-            <ScrollReveal key={ind.name} delayMs={i * 40}>
-              <div className="h-full rounded-xl border border-border bg-surface p-5">
+            <ScrollReveal key={ind.slug} delayMs={i * 40}>
+              <Link href={`/industries#${ind.slug}`} className="block h-full rounded-xl border border-border bg-surface p-5 transition-colors hover:border-blue">
                 <h3 className="font-display text-[15px] font-bold text-text-primary">{ind.name}</h3>
                 <p className="mt-2 text-[12.5px] leading-relaxed text-text-secondary">{ind.value}</p>
-              </div>
+              </Link>
             </ScrollReveal>
           ))}
         </div>
       </section>
 
-      {/* ── Twelve Core AI Analytics Services ── */}
+      {/* ── Six Core AI Services ── */}
       <section className="border-y border-border bg-surface">
         <div className="mx-auto max-w-6xl px-6 py-24">
           <ScrollReveal>
@@ -170,8 +187,8 @@ export default function HomePage() {
                   Our services
                 </span>
                 <h2 className="mt-3 max-w-lg font-display text-[32px] font-bold leading-tight text-text-primary">
-                  Twelve core AI{" "}
-                  <span style={{ color: "var(--blue)" }}>analytics services</span>
+                  Six core AI{" "}
+                  <span style={{ color: "var(--blue)" }}>solutions services</span>
                 </h2>
               </div>
             </div>
@@ -186,201 +203,179 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── AI Products & Pricing ── */}
+      {/* ── AI Assurance ── */}
       <section className="mx-auto max-w-6xl px-6 py-24">
         <ScrollReveal>
           <div className="text-center">
             <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--pink)" }}>
-              AI products
+              AI assurance
             </span>
             <h2 className="mx-auto mt-3 max-w-xl font-display text-[32px] font-bold leading-tight text-text-primary">
-              AI-driven decision systems, priced for how{" "}
-              <span style={{ color: "var(--blue)" }}>serious</span> you are
+              Test AI <span style={{ color: "var(--blue)" }}>before your customers do</span>
             </h2>
-            <p className="mx-auto mt-4 max-w-lg text-[19px] leading-relaxed text-text-secondary">
-              From an affordable self-serve dashboard to a fully bespoke enterprise partnership — the same
-              AI engine, analyst-reviewed at every tier.
+            <p className="mx-auto mt-4 max-w-xl text-[16px] leading-relaxed text-text-secondary">
+              Accuracy, hallucination, task completion, tool use, prompt injection, data leakage, policy
+              compliance, security, reliability, cost, and latency — scored against a repeatable
+              methodology, not asserted.
             </p>
           </div>
         </ScrollReveal>
-        <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-3 items-stretch">
-          {AI_PRODUCTS.map((product, i) => (
-            <ScrollReveal key={product.name} delayMs={i * 80} className="h-full">
-              <AiProductCard product={product} />
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
+          {ASSURANCE_STEPS.map((step, i) => (
+            <ScrollReveal key={step} delayMs={i * 60} className="flex items-center gap-3">
+              <div className="rounded-full border border-border bg-surface px-5 py-2.5 text-[13px] font-semibold text-text-primary">
+                {step}
+              </div>
+              {i < ASSURANCE_STEPS.length - 1 && (
+                <span className="text-text-muted" aria-hidden>→</span>
+              )}
             </ScrollReveal>
           ))}
+        </div>
+      </section>
+
+      {/* ── AI Products & Pricing ── */}
+      <section className="border-y border-border bg-surface">
+        <div className="mx-auto max-w-6xl px-6 py-24">
+          <ScrollReveal>
+            <div className="text-center">
+              <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--pink)" }}>
+                Entry packages
+              </span>
+              <h2 className="mx-auto mt-3 max-w-xl font-display text-[32px] font-bold leading-tight text-text-primary">
+                Fixed-scope, low-friction offers to{" "}
+                <span style={{ color: "var(--blue)" }}>start this month</span>
+              </h2>
+              <p className="mx-auto mt-4 max-w-lg text-[19px] leading-relaxed text-text-secondary">
+                No undefined consulting engagement — a real starting price, a real delivery window, and a
+                specific list of what you get.
+              </p>
+            </div>
+          </ScrollReveal>
+          <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-3 items-stretch">
+            {AI_PRODUCTS.map((product, i) => (
+              <ScrollReveal key={product.name} delayMs={i * 80} className="h-full">
+                <AiProductCard product={product} />
+              </ScrollReveal>
+            ))}
+          </div>
+          <p className="mt-10 text-center">
+            <Link href="/pricing" className="text-[13.5px] font-semibold" style={{ color: "var(--blue)" }}>
+              See the full expansion path, from pilot to enterprise implementation →
+            </Link>
+          </p>
         </div>
       </section>
 
       {/* ── Business Outcomes & Client Benefits ── */}
-      <section className="border-y border-border bg-surface">
-        <div className="mx-auto max-w-6xl px-6 py-24">
-          <ScrollReveal>
-            <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--blue)" }}>
-              Business outcomes
-            </span>
-            <h2 className="mt-3 max-w-lg font-display text-[32px] font-bold leading-tight text-text-primary">
-              What a working{" "}
-              <span style={{ color: "var(--pink)" }}>engagement</span> actually changes
-            </h2>
-          </ScrollReveal>
-          <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {OUTCOMES.map((o, i) => (
-              <ScrollReveal key={o.title} delayMs={i * 60}>
-                <div className="h-full rounded-2xl border border-border bg-surface-raised p-6">
-                  <span className="inline-block h-2 w-2 rounded-full" style={{ background: ACCENT_VAR[o.accent] }} aria-hidden />
-                  <h3 className="mt-3 font-display text-[16px] font-bold text-text-primary">{o.title}</h3>
-                  <p className="mt-2 text-[13.5px] leading-relaxed text-text-secondary">{o.body}</p>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
+      <section className="mx-auto max-w-6xl px-6 py-24">
+        <ScrollReveal>
+          <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--blue)" }}>
+            Business outcomes
+          </span>
+          <h2 className="mt-3 max-w-lg font-display text-[32px] font-bold leading-tight text-text-primary">
+            What a working{" "}
+            <span style={{ color: "var(--pink)" }}>engagement</span> actually changes
+          </h2>
+        </ScrollReveal>
+        <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {OUTCOMES.map((o, i) => (
+            <ScrollReveal key={o.title} delayMs={i * 60}>
+              <div className="h-full rounded-2xl border border-border bg-surface-raised p-6">
+                <span className="inline-block h-2 w-2 rounded-full" style={{ background: ACCENT_VAR[o.accent] }} aria-hidden />
+                <h3 className="mt-3 font-display text-[16px] font-bold text-text-primary">{o.title}</h3>
+                <p className="mt-2 text-[13.5px] leading-relaxed text-text-secondary">{o.body}</p>
+              </div>
+            </ScrollReveal>
+          ))}
         </div>
       </section>
 
       {/* ── Case Studies & Success Stories ── */}
-      <section className="mx-auto max-w-6xl px-6 py-24">
-        <ScrollReveal>
-          <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--pink)" }}>
-            Case studies
-          </span>
-          <h2 className="mt-3 max-w-lg font-display text-[32px] font-bold leading-tight text-text-primary">
-            Representative{" "}
-            <span style={{ color: "var(--green)" }}>engagements</span>
-          </h2>
-          <p className="mt-3 max-w-2xl text-[13.5px] text-text-muted">
-            Illustrative of the kind of problem and approach we take on — not attributed to a specific
-            named client. Real case studies available on request as engagements are cleared for publication.
-          </p>
-        </ScrollReveal>
-        <div className="mt-10 grid grid-cols-1 gap-5 lg:grid-cols-3">
-          {CASE_STUDIES.map((cs, i) => (
-            <ScrollReveal key={cs.industry} delayMs={i * 80}>
-              <div className="h-full rounded-2xl border border-border bg-surface p-7">
-                <span
-                  className="inline-flex rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-white"
-                  style={{ background: ACCENT_VAR[cs.accent] }}
-                >
-                  {cs.industry}
-                </span>
-                <p className="mt-4 text-[13px] font-semibold text-text-primary">Challenge</p>
-                <p className="mt-1 text-[13.5px] leading-relaxed text-text-secondary">{cs.challenge}</p>
-                <p className="mt-4 text-[13px] font-semibold text-text-primary">Approach</p>
-                <p className="mt-1 text-[13.5px] leading-relaxed text-text-secondary">{cs.approach}</p>
-                <p className="mt-4 text-[13px] font-semibold text-text-primary">Outcome</p>
-                <p className="mt-1 text-[13.5px] leading-relaxed text-text-secondary">{cs.outcome}</p>
-              </div>
-            </ScrollReveal>
-          ))}
+      <section className="border-y border-border bg-surface">
+        <div className="mx-auto max-w-6xl px-6 py-24">
+          <ScrollReveal>
+            <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--pink)" }}>
+              Case studies
+            </span>
+            <h2 className="mt-3 max-w-lg font-display text-[32px] font-bold leading-tight text-text-primary">
+              Representative{" "}
+              <span style={{ color: "var(--green)" }}>engagements</span>
+            </h2>
+            <p className="mt-3 max-w-2xl text-[13.5px] text-text-muted">
+              Representative examples of the kind of problem and approach we take on — not attributed to a
+              specific named client. Real case studies replace these as engagements clear for publication.
+            </p>
+          </ScrollReveal>
+          <div className="mt-10 grid grid-cols-1 gap-5 lg:grid-cols-3">
+            {CASE_STUDIES.map((cs, i) => (
+              <ScrollReveal key={cs.industry} delayMs={i * 80}>
+                <div className="h-full rounded-2xl border border-border bg-surface p-7">
+                  <span
+                    className="inline-flex rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-white"
+                    style={{ background: ACCENT_VAR[cs.accent] }}
+                  >
+                    {cs.industry}
+                  </span>
+                  <p className="mt-4 text-[13px] font-semibold text-text-primary">Challenge</p>
+                  <p className="mt-1 text-[13.5px] leading-relaxed text-text-secondary">{cs.challenge}</p>
+                  <p className="mt-4 text-[13px] font-semibold text-text-primary">Approach</p>
+                  <p className="mt-1 text-[13.5px] leading-relaxed text-text-secondary">{cs.approach}</p>
+                  <p className="mt-4 text-[13px] font-semibold text-text-primary">Outcome</p>
+                  <p className="mt-1 text-[13.5px] leading-relaxed text-text-secondary">{cs.outcome}</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ── Technology & AI Capabilities ── */}
-      <section className="border-y border-border bg-surface">
-        <div className="mx-auto max-w-6xl px-6 py-24">
-          <ScrollReveal>
-            <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--green)" }}>
-              Technology
-            </span>
-            <h2 className="mt-3 max-w-lg font-display text-[32px] font-bold leading-tight text-text-primary">
-              AI capabilities,{" "}
-              <span style={{ color: "var(--blue)" }}>always human-reviewed</span>
-            </h2>
-          </ScrollReveal>
-          <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {TECH_CAPABILITIES.map((t, i) => (
-              <ScrollReveal key={t.title} delayMs={i * 60}>
-                <div className="h-full rounded-2xl border border-border bg-surface-raised p-6">
-                  <span className="inline-block h-2 w-2 rounded-full" style={{ background: ACCENT_VAR[t.accent] }} aria-hidden />
-                  <h3 className="mt-3 font-display text-[16px] font-bold text-text-primary">{t.title}</h3>
-                  <p className="mt-2 text-[13.5px] leading-relaxed text-text-secondary">{t.body}</p>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Our Delivery Methodology ── */}
-      <section className="bg-dark-surface text-dark-text">
-        <div className="mx-auto max-w-6xl px-6 py-24">
-          <ScrollReveal>
-            <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--pink)" }}>
-              Our delivery methodology
-            </span>
-            <h2 className="mt-3 max-w-lg font-display text-[32px] font-bold leading-tight text-dark-text">
-              A repeatable process, not a{" "}
-              <span style={{ color: "var(--green)" }}>bespoke guess</span> every time
-            </h2>
-          </ScrollReveal>
-          <div className="mt-14 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
-            {PROCESS.map((p, i) => (
-              <ScrollReveal key={p.step} delayMs={i * 80}>
-                <div className="relative border-t-2 pt-6" style={{ borderColor: "var(--pink)" }}>
-                  <span className="font-data text-[13px] text-dark-text/40">{p.step}</span>
-                  <h3 className="mt-3 font-display text-[19px] font-semibold text-dark-text">{p.title}</h3>
-                  <p className="mt-3 text-[14px] leading-relaxed text-dark-text/65">{p.body}</p>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Why Choose Quintessence Analytics ── */}
       <section className="mx-auto max-w-6xl px-6 py-24">
         <ScrollReveal>
-          <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--blue)" }}>
-            Why choose us
+          <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--green)" }}>
+            Technology
           </span>
           <h2 className="mt-3 max-w-lg font-display text-[32px] font-bold leading-tight text-text-primary">
-            Ten reasons clients{" "}
-            <span style={{ color: "var(--pink)" }}>stay</span>
+            AI capabilities,{" "}
+            <span style={{ color: "var(--blue)" }}>always human-reviewed</span>
           </h2>
         </ScrollReveal>
-        <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
-          {WHY_CHOOSE_US.map((w, i) => (
-            <ScrollReveal key={w.title} delayMs={i * 40}>
-              <div className="h-full rounded-xl border border-border bg-surface p-5">
-                <h3 className="font-display text-[14.5px] font-bold text-text-primary">{w.title}</h3>
-                <p className="mt-2 text-[12.5px] leading-relaxed text-text-secondary">{w.body}</p>
+        <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {TECH_CAPABILITIES.map((t, i) => (
+            <ScrollReveal key={t.title} delayMs={i * 60}>
+              <div className="h-full rounded-2xl border border-border bg-surface-raised p-6">
+                <span className="inline-block h-2 w-2 rounded-full" style={{ background: ACCENT_VAR[t.accent] }} aria-hidden />
+                <h3 className="mt-3 font-display text-[16px] font-bold text-text-primary">{t.title}</h3>
+                <p className="mt-2 text-[13.5px] leading-relaxed text-text-secondary">{t.body}</p>
               </div>
             </ScrollReveal>
           ))}
         </div>
       </section>
 
-      {/* ── Market Reports spotlight ── */}
+      {/* ── Why Choose Quintessence Analytics ── */}
       <section className="border-y border-border bg-surface">
         <div className="mx-auto max-w-6xl px-6 py-24">
           <ScrollReveal>
-            <div className="grid items-center gap-12 rounded-3xl border border-border bg-surface-raised p-10 lg:grid-cols-[1fr_auto] lg:p-14">
-              <div>
-                <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--green)" }}>
-                  Our flagship product
-                </span>
-                <h2 className="mt-3 font-display text-[28px] font-bold leading-snug text-text-primary">
-                  Market Reports is Quintessence Analytics&apos;{" "}
-                  <span style={{ color: "var(--blue)" }}>syndicated research platform</span>
-                </h2>
-                <p className="mt-4 max-w-2xl text-[19px] leading-relaxed text-text-secondary">
-                  Every methodology on this page — driver-level forecasting, triangulated market sizing,
-                  interactive scenario dashboards — ships today inside Market Reports, our subscription
-                  platform of ready-made industry reports. If your market already has one, buy it off the
-                  shelf. If it doesn&apos;t, that&apos;s exactly what a custom engagement here is for.
-                </p>
-              </div>
-              <Link
-                href="https://market-reports.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex shrink-0 items-center gap-2 rounded-full px-6 py-3.5 text-[14px] font-semibold text-white transition-transform hover:scale-[1.03]"
-                style={{ background: "var(--blue)" }}
-              >
-                Visit Market Reports ↗
-              </Link>
-            </div>
+            <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--blue)" }}>
+              Why choose us
+            </span>
+            <h2 className="mt-3 max-w-lg font-display text-[32px] font-bold leading-tight text-text-primary">
+              Ten reasons clients{" "}
+              <span style={{ color: "var(--pink)" }}>stay</span>
+            </h2>
           </ScrollReveal>
+          <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {WHY_CHOOSE_US.map((w, i) => (
+              <ScrollReveal key={w.title} delayMs={i * 40}>
+                <div className="h-full rounded-xl border border-border bg-surface p-5">
+                  <h3 className="font-display text-[14.5px] font-bold text-text-primary">{w.title}</h3>
+                  <p className="mt-2 text-[12.5px] leading-relaxed text-text-secondary">{w.body}</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -429,23 +424,46 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── Market Reports — secondary link, not the homepage centerpiece ── */}
+      <section className="mx-auto max-w-6xl px-6 py-16">
+        <ScrollReveal>
+          <div className="flex flex-col items-center justify-between gap-4 rounded-2xl border border-border bg-surface px-8 py-8 text-center sm:flex-row sm:text-left">
+            <div>
+              <span className="text-[12px] font-semibold uppercase tracking-wide text-text-muted">A separate product</span>
+              <p className="mt-1.5 text-[15px] leading-relaxed text-text-secondary">
+                Need off-the-shelf market sizing instead? <span className="font-semibold text-text-primary">Market Reports</span>{" "}
+                is our syndicated research platform, built on the same AI engine.
+              </p>
+            </div>
+            <Link
+              href="https://market-reports.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex shrink-0 items-center gap-2 rounded-full border border-border px-5 py-2.5 text-[13px] font-semibold text-text-primary transition-colors hover:border-blue hover:text-blue-ink"
+            >
+              Visit Market Reports ↗
+            </Link>
+          </div>
+        </ScrollReveal>
+      </section>
+
       {/* ── Final CTA ── */}
       <section className="mx-auto max-w-6xl px-6 pb-28 pt-4">
         <div className="rounded-3xl bg-black px-8 py-16 text-center sm:px-16">
           <h2 className="mx-auto max-w-xl font-display text-[30px] font-bold leading-tight text-white">
-            Bring us the <span style={{ color: "var(--pink)" }}>question</span>. We&apos;ll bring the{" "}
-            <span style={{ color: "var(--green)" }}>evidence</span>.
+            Is your business <span style={{ color: "var(--pink)" }}>AI-ready</span>? Get an{" "}
+            <span style={{ color: "var(--green)" }}>AI Opportunity Assessment</span>.
           </h2>
           <p className="mx-auto mt-4 max-w-md text-[15px] leading-relaxed text-white/70">
-            Tell us the decision riding on it — we&apos;ll scope a discovery call within a few business
-            days.
+            Tell us the workflow you want automated or the agent you need evaluated — we&apos;ll scope a
+            discovery call within a few business days.
           </p>
           <Link
             href="/contact"
             className="mt-8 inline-flex items-center gap-2 rounded-full px-7 py-4 text-[14px] font-semibold text-white transition-transform hover:scale-[1.03]"
             style={{ background: "var(--blue)" }}
           >
-            Schedule a Discovery Call →
+            Book an AI Assessment →
           </Link>
         </div>
       </section>

@@ -4,7 +4,7 @@ import { DashboardPhoto } from "@/components/DashboardPhoto";
 
 export const metadata: Metadata = {
   title: "Contact — Quintessence Analytics",
-  description: "Start a conversation with Quintessence Analytics about a custom research or analytics engagement.",
+  description: "Book an AI Assessment or start a conversation with Quintessence Analytics about an AI agent, automation, or governance engagement.",
 };
 
 export default function ContactPage() {
@@ -18,7 +18,7 @@ export default function ContactPage() {
             <span style={{ color: "var(--green)" }}>evidence</span>.
           </h1>
           <p className="mt-5 text-[19px] leading-relaxed text-text-secondary">
-            Tell us the market, the timeframe, and what&apos;s riding on the answer. An analyst will
+            Tell us the workflow, the agent, or the risk you&apos;re trying to solve for. An analyst will
             reply within one business day with next steps — no automated sales sequence.
           </p>
 

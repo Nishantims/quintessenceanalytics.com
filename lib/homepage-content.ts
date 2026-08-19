@@ -71,22 +71,22 @@ export interface TechCapability {
 
 export const TECH_CAPABILITIES: TechCapability[] = [
   {
-    title: "Predictive modelling",
-    body: "Driver-level forecasting models, not a single black-box prediction — every projection ships with the assumptions behind it.",
+    title: "AI agents & automation",
+    body: "Task-oriented agents built with AI-native, Claude-assisted development — the same approach that lets us move in weeks, not quarters.",
     accent: "blue",
   },
   {
-    title: "Generative AI, human-reviewed",
-    body: "Large-language-model drafting for narrative and summarization, with a mandatory human review step before anything ships.",
+    title: "Agent evaluation & assurance",
+    body: "Accuracy, hallucination, tool use, and security testing, with a mandatory human review step before anything ships.",
     accent: "pink",
   },
   {
-    title: "Automated data pipelines",
-    body: "Ingestion and reconciliation across your existing data sources, built to run on a schedule, not a one-time pull.",
+    title: "Governed data pipelines",
+    body: "Permission-aware ingestion and retrieval across your existing data sources, built to run on a schedule, not a one-time pull.",
     accent: "green",
   },
   {
-    title: "Interactive dashboards",
+    title: "Interactive decision systems",
     body: "Filterable by scenario, segment, and time period — a living tool your team can query, not a static export.",
     accent: "blue",
   },
@@ -104,8 +104,8 @@ export const WHY_CHOOSE_US: WhyPoint[] = [
   { title: "Scalable enterprise solutions", body: "Built to grow from one team's pilot to an organization-wide rollout." },
   { title: "Transparent methodology", body: "You see the assumptions and the model, not a black box you have to trust blindly." },
   { title: "Secure AI", body: "Your data stays yours — models are built on it, never used to train anything shared outside your engagement." },
-  { title: "Rapid delivery", body: "Scoped engagements move in weeks, not quarters, without cutting corners on review." },
-  { title: "Custom models", body: "Built around your specific data and question, not a generic template repackaged per client." },
+  { title: "Rapid, AI-native delivery", body: "AI-assisted development is how we actually build — real work in weeks, not quarters, without cutting corners on review." },
+  { title: "Custom-built, not templated", body: "Built around your specific data and workflow, not a generic template repackaged per client." },
   { title: "Executive-ready reporting", body: "Deliverables built to be presented as-is in the room where the decision gets made." },
   { title: "Long-term partnership", body: "Models get re-tuned as your business changes — this isn't a one-time deliverable." },
 ];
@@ -159,13 +159,18 @@ export const FAQS: Faq[] = [
       "No. Models are built specifically on your data, for your engagement. Your data is never used to train anything shared outside your own engagement.",
   },
   {
-    question: "What if our market or problem doesn't fit one of the ten services?",
+    question: "What if our workflow doesn't fit one of the six services?",
     answer:
-      "That's exactly what Custom AI Consulting is for — we scope engagements around the actual question, not a fixed deliverable template.",
+      "Tell us the workflow or decision, not which service you think it maps to — we scope the engagement around the actual problem, not a fixed deliverable template.",
   },
   {
     question: "Can we start with something small before a full engagement?",
     answer:
-      "Yes — the AI Insight Starter product is built for exactly that: an affordable, self-serve way to see the approach before committing to a full engagement.",
+      "Yes — the AI Readiness Assessment is built for exactly that: a fixed-scope, 2-3 week engagement that maps the real opportunity before you commit to a pilot.",
+  },
+  {
+    question: "How is AI-assisted development different from a generic AI wrapper?",
+    answer:
+      "We build with Claude and modern AI development tooling because it's the fastest, most reliable way to ship a real agent or automation today — the same senior-analyst review and evaluation methodology applies regardless of how the code gets written.",
   },
 ];

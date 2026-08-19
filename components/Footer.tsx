@@ -1,12 +1,12 @@
 import Link from "next/link";
 
 const SERVICES = [
-  "Predictive Analytics",
-  "Decision Intelligence",
-  "Market Intelligence",
-  "Executive Dashboards",
-  "Generative AI Solutions",
-  "Custom AI Consulting",
+  "AI Agent Development & Automation",
+  "AI Agent Quality & Evaluation",
+  "AI Governance & Risk",
+  "AI Workflow Automation",
+  "AI Data & Knowledge Systems",
+  "AI Decision Systems",
 ];
 
 export function Footer() {
@@ -24,8 +24,9 @@ export function Footer() {
               </span>
             </div>
             <p className="mt-4 max-w-xs text-[14px] leading-relaxed text-dark-text/60">
-              An AI analytics and decision intelligence company. We turn enterprise data into decisions
-              boards can act on, with a senior analyst reviewing every AI output.
+              Enterprise AI solutions &amp; AI assurance. We build AI agents, automate real workflows, and
+              evaluate AI systems for reliability, security, and governance — every output reviewed by a
+              senior analyst.
             </p>
             <p className="mt-4 text-[13px] text-dark-text/45">
               Parent company of{" "}
@@ -51,8 +52,10 @@ export function Footer() {
           <div>
             <p className="text-[12px] font-semibold uppercase tracking-wide text-dark-text/45">Company</p>
             <ul className="mt-4 space-y-2.5">
+              <li><Link href="/pricing" className="text-[14px] text-dark-text/70 hover:text-pink">Pricing</Link></li>
+              <li><Link href="/industries" className="text-[14px] text-dark-text/70 hover:text-pink">Industries</Link></li>
+              <li><Link href="/insights" className="text-[14px] text-dark-text/70 hover:text-pink">Insights</Link></li>
               <li><Link href="/about" className="text-[14px] text-dark-text/70 hover:text-pink">About</Link></li>
-              <li><Link href="/services" className="text-[14px] text-dark-text/70 hover:text-pink">Services</Link></li>
               <li><Link href="/contact" className="text-[14px] text-dark-text/70 hover:text-pink">Contact</Link></li>
               <li><Link href="https://market-reports.com" target="_blank" rel="noopener noreferrer" className="text-[14px] text-dark-text/70 hover:text-pink">Market Reports ↗</Link></li>
             </ul>

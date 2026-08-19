@@ -5,7 +5,7 @@ import { DashboardPhoto } from "@/components/DashboardPhoto";
 export const metadata: Metadata = {
   title: "About — Quintessence Analytics",
   description:
-    "Quintessence Analytics is an AI analytics and decision intelligence company, and the parent company of Market Reports.",
+    "Quintessence Analytics is an enterprise AI solutions & AI assurance company, and the parent company of Market Reports.",
 };
 
 const PRINCIPLES = [
@@ -42,7 +42,7 @@ export default function AboutPage() {
           on top of it.
         </h1>
         <p className="mx-auto mt-5 max-w-xl text-[18px] leading-relaxed text-text-secondary">
-          Quintessence Analytics is an AI analytics and decision intelligence company. Market Reports —
+          Quintessence Analytics is an enterprise AI solutions &amp; AI assurance company. Market Reports —
           our subscription platform of syndicated industry reports — is the first product built on top
           of our methodology. This page exists because the methodology is the product, whichever form
           it ships in.
