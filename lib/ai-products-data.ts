@@ -21,7 +21,7 @@ export const AI_PRODUCTS: AiProduct[] = [
   {
     name: "AI Readiness Assessment",
     tagline: "Where AI actually pays off in your business, and a 90-day roadmap to get there.",
-    priceUsd: "From $1,200",
+    priceUsd: "Starting at $1,200",
     priceInr: "₹1L",
     duration: "2–3 weeks",
     features: [
@@ -34,7 +34,7 @@ export const AI_PRODUCTS: AiProduct[] = [
   {
     name: "AI Agent Quality Assessment",
     tagline: "Find out if the AI agent you're about to trust with real work is actually ready.",
-    priceUsd: "From $1,800",
+    priceUsd: "Starting at $1,800",
     priceInr: "₹1.5L",
     duration: "2–3 weeks",
     features: [
@@ -48,7 +48,7 @@ export const AI_PRODUCTS: AiProduct[] = [
   {
     name: "AI Automation Pilot",
     tagline: "One real workflow, automated end to end, measured before you scale it.",
-    priceUsd: "From $2,400",
+    priceUsd: "Starting at $2,400",
     priceInr: "₹2L",
     duration: "3–6 weeks",
     features: [
@@ -74,14 +74,14 @@ export interface EnterpriseProduct {
 export const ENTERPRISE_PRODUCTS: EnterpriseProduct[] = [
   {
     name: "AI Governance Assessment",
-    priceUsd: "From $2,400",
+    priceUsd: "Starting at $2,400",
     priceInr: "₹2L",
     duration: "2–4 weeks",
     deliverables: "AI/agent inventory, data-access review, controls, risk matrix, governance roadmap.",
   },
   {
     name: "AI Knowledge System Pilot",
-    priceUsd: "From $2,400",
+    priceUsd: "Starting at $2,400",
     priceInr: "₹2L",
     duration: "3–6 weeks",
     deliverables: "Enterprise document ingestion, retrieval/RAG, permissions, evaluation, source-grounded responses.",
@@ -95,7 +95,7 @@ export const ENTERPRISE_PRODUCTS: EnterpriseProduct[] = [
   },
   {
     name: "Continuous Monitoring",
-    priceUsd: "From $600/mo",
+    priceUsd: "Starting at $600/mo",
     priceInr: "₹50,000/mo",
     duration: "Recurring",
     deliverables: "Ongoing evaluation, drift and incident monitoring, and governance upkeep after an implementation ships — the recurring relationship the starter offers lead into.",

@@ -8,11 +8,12 @@ import { FaqAccordion } from "@/components/FaqAccordion";
 import { SERVICES } from "@/lib/services-data";
 import { AI_PRODUCTS } from "@/lib/ai-products-data";
 import { INDUSTRIES } from "@/lib/industries-data";
-import { OUTCOMES, CASE_STUDIES, TECH_CAPABILITIES, WHY_CHOOSE_US, TESTIMONIALS, FAQS } from "@/lib/homepage-content";
+import { OUTCOMES, CASE_STUDIES, TECH_CAPABILITIES, WHY_CHOOSE_US, TESTIMONIALS, FAQS, TRUST_POINTS, TOOLS_WE_BUILD } from "@/lib/homepage-content";
 
 const ACCENT_VAR = { pink: "var(--pink)", blue: "var(--blue)", green: "var(--green)" };
 
 const WHAT_WE_DO = [
+  { title: "AI Tools", body: "Any application you need built, AI-powered or not — custom software scoped to your exact workflow, not a fixed product.", accent: "green" as const },
   { title: "AI Agents", body: "Task-oriented agents that retrieve, reason, use approved tools, and finish the workflow.", accent: "blue" as const },
   { title: "AI Assurance", body: "Evaluation and testing that finds an agent's failure modes before your customers do.", accent: "pink" as const },
   { title: "AI Governance", body: "An independent inventory, permissions review, and audit trail for the AI you already run.", accent: "green" as const },
@@ -136,11 +137,11 @@ export default function HomePage() {
               What we do
             </span>
             <h2 className="mt-3 max-w-lg font-display text-[32px] font-bold leading-tight text-text-primary">
-              Five ways we turn AI into a{" "}
+              Six ways we turn AI into a{" "}
               <span style={{ color: "var(--pink)" }}>working outcome</span>
             </h2>
           </ScrollReveal>
-          <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {WHAT_WE_DO.map((w, i) => (
               <ScrollReveal key={w.title} delayMs={i * 60}>
                 <div className="h-full rounded-2xl border border-border bg-surface-raised p-6">
@@ -151,6 +152,34 @@ export default function HomePage() {
               </ScrollReveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── Tools We Build ── */}
+      <section className="mx-auto max-w-6xl px-6 py-24">
+        <ScrollReveal>
+          <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--green)" }}>
+            Tools we build
+          </span>
+          <h2 className="mt-3 max-w-lg font-display text-[32px] font-bold leading-tight text-text-primary">
+            Ten examples of what{" "}
+            <span style={{ color: "var(--blue)" }}>AI Tools</span> looks like in practice
+          </h2>
+          <p className="mt-3 max-w-2xl text-[13.5px] text-text-muted">
+            Representative of the kind of tool we build under AI Tools — not attributed to a specific named
+            client. Tell us what you need built; it doesn&apos;t have to match one of these exactly.
+          </p>
+        </ScrollReveal>
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          {TOOLS_WE_BUILD.map((t, i) => (
+            <ScrollReveal key={t.title} delayMs={i * 40}>
+              <div className="h-full rounded-xl border border-border bg-surface p-5">
+                <span className="inline-block h-2 w-2 rounded-full" style={{ background: ACCENT_VAR[t.accent] }} aria-hidden />
+                <h3 className="mt-3 font-display text-[14.5px] font-bold text-text-primary">{t.title}</h3>
+                <p className="mt-2 text-[12.5px] leading-relaxed text-text-secondary">{t.body}</p>
+              </div>
+            </ScrollReveal>
+          ))}
         </div>
       </section>
 
@@ -264,6 +293,33 @@ export default function HomePage() {
               See the full expansion path, from pilot to enterprise implementation →
             </Link>
           </p>
+        </div>
+      </section>
+
+      {/* ── Trust & Guarantee ── */}
+      <section className="border-y border-border bg-surface">
+        <div className="mx-auto max-w-6xl px-6 py-24">
+          <ScrollReveal>
+            <div className="text-center">
+              <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--blue)" }}>
+                Trust &amp; guarantee
+              </span>
+              <h2 className="mx-auto mt-3 max-w-xl font-display text-[32px] font-bold leading-tight text-text-primary">
+                What you&apos;re actually protected{" "}
+                <span style={{ color: "var(--pink)" }}>by</span>
+              </h2>
+            </div>
+          </ScrollReveal>
+          <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {TRUST_POINTS.map((t, i) => (
+              <ScrollReveal key={t.title} delayMs={i * 60}>
+                <div className="h-full rounded-2xl border border-border bg-surface-raised p-6">
+                  <h3 className="font-display text-[15.5px] font-bold text-text-primary">{t.title}</h3>
+                  <p className="mt-2 text-[13.5px] leading-relaxed text-text-secondary">{t.body}</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 

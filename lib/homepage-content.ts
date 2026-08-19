@@ -132,6 +132,48 @@ export const TESTIMONIALS: Testimonial[] = [
   },
 ];
 
+export interface TrustPoint {
+  title: string;
+  body: string;
+}
+
+// A bounded, checkable commitment tied to the deliverables actually listed
+// on each fixed-scope offer - not an unverifiable "results guaranteed"
+// claim, since outcomes depend on the client's own data and adoption, not
+// just our delivery.
+export const TRUST_POINTS: TrustPoint[] = [
+  { title: "Scope-Completion Guarantee", body: "Every deliverable listed on your offer gets delivered — or we keep working at no extra charge until it is." },
+  { title: "Fixed-Price, No Surprises", body: "The price you're quoted on the discovery call is the price you pay — nothing added after the fact." },
+  { title: "No Long-Term Lock-In", body: "Fixed-scope engagements, not a multi-year contract you can't get out of." },
+  { title: "Senior-Analyst Reviewed", body: "Every AI-generated output is reviewed by a senior analyst before it reaches you, without exception." },
+  { title: "NDA On Request", body: "Confidentiality terms set before any of your data or workflow details are shared with us." },
+  { title: "Global, Dual-Currency", body: "Quoted and billable in USD or INR, for clients anywhere in the world." },
+];
+
+export interface ToolExample {
+  title: string;
+  body: string;
+  accent: "pink" | "blue" | "green";
+}
+
+// Representative examples of the kind of tool built under the AI Tools
+// service line - illustrative of capability and scope, not a claim about a
+// specific named client engagement. Real, client-attributed examples
+// replace these as engagements clear for publication (same pattern as
+// CASE_STUDIES above).
+export const TOOLS_WE_BUILD: ToolExample[] = [
+  { title: "Support Ticket Triage Agent", body: "Classifies and routes inbound tickets, and drafts a first-response reply for your team to approve.", accent: "blue" },
+  { title: "Meeting Notes & Action-Item Extractor", body: "Turns a call recording or transcript into structured notes with owners and due dates.", accent: "pink" },
+  { title: "Invoice & Receipt Data Extractor", body: "Pulls line-item data from PDFs and photos straight into a spreadsheet or accounting system.", accent: "green" },
+  { title: "Review Response Assistant", body: "Drafts on-brand replies to Google and Yelp reviews for a human to approve before posting.", accent: "blue" },
+  { title: "Lead Qualification Agent", body: "Scores and routes inbound leads against your own criteria before they hit a rep's inbox.", accent: "pink" },
+  { title: "Internal Knowledge Search", body: "A chat interface over your internal docs and wikis so staff get answers instead of searching folders.", accent: "green" },
+  { title: "Sales Proposal Generator", body: "Assembles a first-draft proposal or quote straight from a scoping call transcript.", accent: "blue" },
+  { title: "Website Concierge", body: "An FAQ and lead-capture chat widget embedded on your own site, tuned to your offer.", accent: "pink" },
+  { title: "Market Opportunity Dashboard", body: "A lightweight, self-serve sizing and scoring view for one product idea, built on our own research engine.", accent: "green" },
+  { title: "AI Audit-Trail Logger", body: "Tracks which AI systems you run, who has access, and flags permissions that have gone stale.", accent: "blue" },
+];
+
 export interface Faq {
   question: string;
   answer: string;

@@ -9,16 +9,14 @@ interface NavItem {
   external?: boolean;
 }
 
-// Logo already links home (below), so "Home" doesn't need its own nav
-// slot - that space goes to the six-service catalog's supporting pages
-// instead. Market Reports stays as an external link, per the blueprint's
-// explicit instruction to keep it secondary rather than a primary nav item.
+// Kept deliberately short - Industries/Insights/About are still real pages
+// (linked from the footer), just not primary nav slots, which got cluttered
+// once the catalog grew past four items. Market Reports stays as an external
+// link, per the blueprint's explicit instruction to keep it secondary rather
+// than a primary nav item.
 const NAV: NavItem[] = [
   { label: "Services", href: "/services" },
   { label: "Pricing", href: "/pricing" },
-  { label: "Industries", href: "/industries" },
-  { label: "Insights", href: "/insights" },
-  { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
   { label: "Market Reports", href: "https://market-reports.com", external: true },
 ];
@@ -32,9 +30,7 @@ export function Header() {
         </Link>
 
         <div className="flex items-center gap-8">
-          {/* Seven items now (was four) - needs lg's extra width, not md's,
-           * to fit alongside the theme toggle and CTA without crowding. */}
-          <nav className="hidden items-center gap-6 lg:flex">
+          <nav className="hidden items-center gap-6 md:flex">
             {NAV.map((item) => (
               <Link
                 key={item.href}

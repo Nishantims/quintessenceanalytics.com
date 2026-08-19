@@ -24,7 +24,7 @@ export default function PricingPage() {
         </p>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-16">
+      <section className="mx-auto max-w-7xl px-6 pb-16">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 items-stretch">
           {AI_PRODUCTS.map((product) => (
             <AiProductCard key={product.name} product={product} />
@@ -38,7 +38,7 @@ export default function PricingPage() {
       </section>
 
       <section className="border-y border-border bg-surface">
-        <div className="mx-auto max-w-5xl px-6 py-24">
+        <div className="mx-auto max-w-6xl px-6 py-24">
           <div className="text-center">
             <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--green)" }}>
               The expansion path
@@ -65,7 +65,7 @@ export default function PricingPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-24">
+      <section className="mx-auto max-w-7xl px-6 py-24">
         <div className="rounded-3xl px-8 py-16 text-center sm:px-16" style={{ background: "var(--dark-surface)" }}>
           <h2 className="mx-auto max-w-lg font-display text-[28px] font-bold leading-tight text-dark-text">
             Not sure which offer fits? Tell us the{" "}
