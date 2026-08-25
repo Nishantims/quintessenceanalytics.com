@@ -5,6 +5,7 @@ import {
   CheckCircle2, Tag, Unlock, UserCheck, FileLock2, Globe,
   Target, GraduationCap, Lightbulb, TrendingUp, Eye, Lock, Rocket, Puzzle, Presentation, Handshake,
   Gauge, Bell, Clock, Database,
+  Inbox, ClipboardList, Receipt, MessageCircle, Filter, Search, FileText, MessagesSquare, LayoutDashboard, History,
   type LucideIcon,
 } from "lucide-react";
 import { DashboardPhoto } from "@/components/DashboardPhoto";
@@ -82,6 +83,19 @@ const TECH_ICONS: Record<string, LucideIcon> = {
   "Agent evaluation & assurance": ShieldCheck,
   "Governed data pipelines": Database,
   "Interactive decision systems": LineChart,
+};
+
+const TOOLS_ICONS: Record<string, LucideIcon> = {
+  "Support Ticket Triage Agent": Inbox,
+  "Meeting Notes & Action-Item Extractor": ClipboardList,
+  "Invoice & Receipt Data Extractor": Receipt,
+  "Review Response Assistant": MessageCircle,
+  "Lead Qualification Agent": Filter,
+  "Internal Knowledge Search": Search,
+  "Sales Proposal Generator": FileText,
+  "Website Concierge": MessagesSquare,
+  "Market Opportunity Dashboard": LayoutDashboard,
+  "AI Audit-Trail Logger": History,
 };
 
 // Shared "premium" card treatment reused across every accent-colored grid
@@ -311,11 +325,7 @@ export default function HomePage() {
         <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {TOOLS_WE_BUILD.map((t, i) => (
             <ScrollReveal key={t.title} delayMs={i * 40}>
-              <div className="h-full rounded-xl border border-border bg-surface p-5">
-                <span className="inline-block h-2 w-2 rounded-full" style={{ background: ACCENT_VAR[t.accent] }} aria-hidden />
-                <h3 className="mt-3 font-display text-[14.5px] font-bold text-text-primary">{t.title}</h3>
-                <p className="mt-2 text-[12.5px] leading-relaxed text-text-secondary">{t.body}</p>
-              </div>
+              <AccentCard icon={TOOLS_ICONS[t.title]} accent={ACCENT_VAR[t.accent]} title={t.title} body={t.body} />
             </ScrollReveal>
           ))}
         </div>
