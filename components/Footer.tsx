@@ -17,7 +17,7 @@ export function Footer() {
           <div>
             <div className="flex flex-col leading-none">
               <span className="font-body text-[19px] font-extrabold tracking-tight text-dark-text">
-                QA<span style={{ color: "var(--blue)" }}>.com</span>
+                QA<span className="qa-logo-cycle">.com</span>
               </span>
               <span className="mt-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-dark-text/50">
                 Quintessence Analytics

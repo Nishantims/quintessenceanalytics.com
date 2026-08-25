@@ -1,7 +1,7 @@
 export interface Outcome {
   title: string;
   body: string;
-  accent: "pink" | "blue" | "green";
+  accent: "pink" | "blue" | "green" | "purple" | "orange";
 }
 
 export const OUTCOMES: Outcome[] = [
@@ -23,7 +23,7 @@ export const OUTCOMES: Outcome[] = [
   {
     title: "Board-ready, every time",
     body: "Dashboards and reports built to be presented as-is, not reworked into a deck the night before a meeting.",
-    accent: "blue",
+    accent: "purple",
   },
 ];
 
@@ -32,7 +32,7 @@ export interface CaseStudy {
   challenge: string;
   approach: string;
   outcome: string;
-  accent: "pink" | "blue" | "green";
+  accent: "pink" | "blue" | "green" | "purple" | "orange";
 }
 
 // Representative engagement patterns, not attributed to a specific named
@@ -66,7 +66,7 @@ export const CASE_STUDIES: CaseStudy[] = [
 export interface TechCapability {
   title: string;
   body: string;
-  accent: "pink" | "blue" | "green";
+  accent: "pink" | "blue" | "green" | "purple" | "orange";
 }
 
 export const TECH_CAPABILITIES: TechCapability[] = [
@@ -88,7 +88,7 @@ export const TECH_CAPABILITIES: TechCapability[] = [
   {
     title: "Interactive decision systems",
     body: "Filterable by scenario, segment, and time period — a living tool your team can query, not a static export.",
-    accent: "blue",
+    accent: "orange",
   },
 ];
 
@@ -153,7 +153,7 @@ export const TRUST_POINTS: TrustPoint[] = [
 export interface ToolExample {
   title: string;
   body: string;
-  accent: "pink" | "blue" | "green";
+  accent: "pink" | "blue" | "green" | "purple" | "orange";
 }
 
 // Representative examples of the kind of tool built under the AI Tools
@@ -165,13 +165,13 @@ export const TOOLS_WE_BUILD: ToolExample[] = [
   { title: "Support Ticket Triage Agent", body: "Classifies and routes inbound tickets, and drafts a first-response reply for your team to approve.", accent: "blue" },
   { title: "Meeting Notes & Action-Item Extractor", body: "Turns a call recording or transcript into structured notes with owners and due dates.", accent: "pink" },
   { title: "Invoice & Receipt Data Extractor", body: "Pulls line-item data from PDFs and photos straight into a spreadsheet or accounting system.", accent: "green" },
-  { title: "Review Response Assistant", body: "Drafts on-brand replies to Google and Yelp reviews for a human to approve before posting.", accent: "blue" },
-  { title: "Lead Qualification Agent", body: "Scores and routes inbound leads against your own criteria before they hit a rep's inbox.", accent: "pink" },
-  { title: "Internal Knowledge Search", body: "A chat interface over your internal docs and wikis so staff get answers instead of searching folders.", accent: "green" },
-  { title: "Sales Proposal Generator", body: "Assembles a first-draft proposal or quote straight from a scoping call transcript.", accent: "blue" },
-  { title: "Website Concierge", body: "An FAQ and lead-capture chat widget embedded on your own site, tuned to your offer.", accent: "pink" },
-  { title: "Market Opportunity Dashboard", body: "A lightweight, self-serve sizing and scoring view for one product idea, built on our own research engine.", accent: "green" },
-  { title: "AI Audit-Trail Logger", body: "Tracks which AI systems you run, who has access, and flags permissions that have gone stale.", accent: "blue" },
+  { title: "Review Response Assistant", body: "Drafts on-brand replies to Google and Yelp reviews for a human to approve before posting.", accent: "purple" },
+  { title: "Lead Qualification Agent", body: "Scores and routes inbound leads against your own criteria before they hit a rep's inbox.", accent: "orange" },
+  { title: "Internal Knowledge Search", body: "A chat interface over your internal docs and wikis so staff get answers instead of searching folders.", accent: "blue" },
+  { title: "Sales Proposal Generator", body: "Assembles a first-draft proposal or quote straight from a scoping call transcript.", accent: "pink" },
+  { title: "Website Concierge", body: "An FAQ and lead-capture chat widget embedded on your own site, tuned to your offer.", accent: "green" },
+  { title: "Market Opportunity Dashboard", body: "A lightweight, self-serve sizing and scoring view for one product idea, built on our own research engine.", accent: "purple" },
+  { title: "AI Audit-Trail Logger", body: "Tracks which AI systems you run, who has access, and flags permissions that have gone stale.", accent: "orange" },
 ];
 
 export interface Faq {

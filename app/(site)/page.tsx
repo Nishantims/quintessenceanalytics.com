@@ -10,23 +10,29 @@ import { AI_PRODUCTS } from "@/lib/ai-products-data";
 import { INDUSTRIES } from "@/lib/industries-data";
 import { OUTCOMES, CASE_STUDIES, TECH_CAPABILITIES, WHY_CHOOSE_US, TESTIMONIALS, FAQS, TRUST_POINTS, TOOLS_WE_BUILD } from "@/lib/homepage-content";
 
-const ACCENT_VAR = { pink: "var(--pink)", blue: "var(--blue)", green: "var(--green)" };
+const ACCENT_VAR = {
+  pink: "var(--pink)",
+  blue: "var(--blue)",
+  green: "var(--green)",
+  purple: "var(--purple)",
+  orange: "var(--orange)",
+};
 
 const WHAT_WE_DO = [
   { title: "AI Tools", body: "Any application you need built, AI-powered or not — custom software scoped to your exact workflow, not a fixed product.", accent: "green" as const },
   { title: "AI Agents", body: "Task-oriented agents that retrieve, reason, use approved tools, and finish the workflow.", accent: "blue" as const },
   { title: "AI Assurance", body: "Evaluation and testing that finds an agent's failure modes before your customers do.", accent: "pink" as const },
-  { title: "AI Governance", body: "An independent inventory, permissions review, and audit trail for the AI you already run.", accent: "green" as const },
-  { title: "Automation", body: "One real workflow, automated end to end, with a human approval step built in.", accent: "blue" as const },
+  { title: "AI Governance", body: "An independent inventory, permissions review, and audit trail for the AI you already run.", accent: "purple" as const },
+  { title: "Automation", body: "One real workflow, automated end to end, with a human approval step built in.", accent: "orange" as const },
   { title: "Decision Systems", body: "Predictive analytics and dashboards, analyst-reviewed at every tier.", accent: "pink" as const },
 ];
 
 const STAGES = [
-  { n: "1", stage: "Identify", capability: "AI Readiness Assessment", cta: "Assess your business", href: "/pricing" },
-  { n: "2", stage: "Build", capability: "AI Agent / Automation Pilot", cta: "Start a pilot", href: "/pricing" },
-  { n: "3", stage: "Assure", capability: "AI Agent Quality & Evaluation", cta: "Evaluate an agent", href: "/services#ai-agent-quality-evaluation" },
-  { n: "4", stage: "Govern", capability: "AI Governance & Risk", cta: "Assess AI risk", href: "/services#ai-governance-risk" },
-  { n: "5", stage: "Operate", capability: "Continuous AI Monitoring", cta: "Discuss monitoring", href: "/contact" },
+  { n: "1", stage: "Identify", capability: "AI Readiness Assessment", cta: "Assess your business", href: "/pricing", accent: "pink" as const },
+  { n: "2", stage: "Build", capability: "AI Agent / Automation Pilot", cta: "Start a pilot", href: "/pricing", accent: "blue" as const },
+  { n: "3", stage: "Assure", capability: "AI Agent Quality & Evaluation", cta: "Evaluate an agent", href: "/services#ai-agent-quality-evaluation", accent: "orange" as const },
+  { n: "4", stage: "Govern", capability: "AI Governance & Risk", cta: "Assess AI risk", href: "/services#ai-governance-risk", accent: "purple" as const },
+  { n: "5", stage: "Operate", capability: "Continuous AI Monitoring", cta: "Discuss monitoring", href: "/contact", accent: "green" as const },
 ];
 
 const ASSURANCE_STEPS = ["Scope", "Test", "Evaluate", "Remediate", "Retest", "Monitor"];
@@ -92,19 +98,31 @@ export default function HomePage() {
             </h2>
           </ScrollReveal>
           <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {STAGES.map((s, i) => (
-              <ScrollReveal key={s.stage} delayMs={i * 60}>
-                <Link href={s.href} className="group flex h-full flex-col rounded-2xl border border-border bg-surface-raised p-6 transition-colors hover:border-blue">
-                  <span className="font-data text-[12px] text-text-muted">{s.n}</span>
-                  <h3 className="mt-2 font-display text-[17px] font-bold text-text-primary">{s.stage}</h3>
-                  <p className="mt-2 flex-1 text-[13px] leading-relaxed text-text-secondary">{s.capability}</p>
-                  <span className="mt-4 flex items-center gap-1.5 text-[12.5px] font-semibold" style={{ color: "var(--blue)" }}>
-                    {s.cta}
-                    <span className="transition-transform group-hover:translate-x-1" aria-hidden>→</span>
-                  </span>
-                </Link>
-              </ScrollReveal>
-            ))}
+            {STAGES.map((s, i) => {
+              const accent = ACCENT_VAR[s.accent];
+              return (
+                <ScrollReveal key={s.stage} delayMs={i * 60}>
+                  <Link
+                    href={s.href}
+                    className="group relative flex h-full flex-col rounded-2xl border border-border bg-surface-raised p-6 pt-7 transition-all hover:-translate-y-1 hover:shadow-[0_12px_32px_-12px_hsl(var(--shadow-color)/0.4)]"
+                  >
+                    <span className="absolute inset-x-0 top-0 h-1 rounded-t-2xl" style={{ background: accent }} aria-hidden />
+                    <span
+                      className="flex h-9 w-9 items-center justify-center rounded-full font-data text-[13px] font-bold"
+                      style={{ background: `color-mix(in srgb, ${accent} 16%, transparent)`, color: accent }}
+                    >
+                      {s.n}
+                    </span>
+                    <h3 className="mt-4 font-display text-[17px] font-bold text-text-primary">{s.stage}</h3>
+                    <p className="mt-2 flex-1 text-[13px] leading-relaxed text-text-secondary">{s.capability}</p>
+                    <span className="mt-4 flex items-center gap-1.5 text-[12.5px] font-semibold" style={{ color: accent }}>
+                      {s.cta}
+                      <span className="transition-transform group-hover:translate-x-1" aria-hidden>→</span>
+                    </span>
+                  </Link>
+                </ScrollReveal>
+              );
+            })}
           </div>
         </div>
       </section>

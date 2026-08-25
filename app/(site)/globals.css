@@ -1,11 +1,12 @@
 @import "tailwindcss";
 
 /* ── Design tokens ─────────────────────────────────────────────────────────
-   Quintessence Analytics — brand palette per client spec: pink, blue, and
-   green as the three vivid signal colors, grounded in black/white/grey so
-   the vibrancy reads as premium rather than loud. The three accents are
-   used as distinct identities (pink = flagship/CTA, blue = product/AI,
-   green = growth/outcomes) and never blended into one another.
+   Quintessence Analytics — brand palette: pink, blue, green, purple, and
+   orange as five vivid signal colors, grounded in black/white/grey so the
+   vibrancy reads as premium rather than loud. Each accent is a distinct
+   identity (pink = flagship/CTA, blue = product/AI, green = growth/
+   outcomes, purple = trust/governance, orange = energy/momentum) and never
+   blended into one another.
 ------------------------------------------------------------------------- */
 /* Dark is the unconditional default (client requirement) — it does NOT
    follow the OS prefers-color-scheme. :root carries the dark palette
@@ -25,9 +26,13 @@
   --pink:   #FF80AD;
   --blue:   #3D8BFF;
   --green: #33DD88;
+  --purple: #B891FF;
+  --orange: #FFA94D;
   --pink-ink:   #FF80AD;
   --blue-ink:   #3D8BFF;
   --green-ink: #33DD88;
+  --purple-ink: #B891FF;
+  --orange-ink: #FFA94D;
 
   /* Fixed, theme-independent — for sections that are DELIBERATELY always a
      dark banner regardless of the light/dark toggle (Footer, the "How we
@@ -53,9 +58,13 @@
   --pink:   #FF80AD;
   --blue:   #3D8BFF;
   --green: #33DD88;
+  --purple: #B891FF;
+  --orange: #FFA94D;
   --pink-ink:   #FF80AD;
   --blue-ink:   #3D8BFF;
   --green-ink: #33DD88;
+  --purple-ink: #B891FF;
+  --orange-ink: #FFA94D;
 }
 
 :root[data-theme="light"] {
@@ -72,9 +81,39 @@
   --pink:   #FF6699;
   --blue:   #0066FF;
   --green: #00CC66;
+  --purple: #8B5CF6;
+  --orange: #FF8A1E;
   --pink-ink:   #C20050;
   --blue-ink:   #0047B3;
   --green-ink: #00994D;
+  --purple-ink: #6D28D9;
+  --orange-ink: #C2410C;
+}
+
+/* QA.com wordmark's ".com" — cycles through all five brand accents, one
+   color held for 5s before switching to the next (25s full loop), rather
+   than a continuous blend, so the change reads as a distinct color swap
+   every 5 seconds as specifically requested. Each color is held flat for
+   most of its 20%-wide segment with a quick crossfade into the next,
+   avoiding a jarring instant cut while still landing on a clean color at
+   any given moment (unlike a pure linear blend, which spends most of its
+   time on in-between mixed shades). */
+@keyframes qa-logo-cycle {
+  0%, 16% { color: var(--blue); }
+  20%, 36% { color: var(--pink); }
+  40%, 56% { color: var(--green); }
+  60%, 76% { color: var(--purple); }
+  80%, 96% { color: var(--orange); }
+  100% { color: var(--blue); }
+}
+.qa-logo-cycle {
+  animation: qa-logo-cycle 25s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .qa-logo-cycle {
+    animation: none;
+    color: var(--blue);
+  }
 }
 
 @theme inline {
@@ -90,9 +129,13 @@
   --color-pink: var(--pink);
   --color-blue: var(--blue);
   --color-green: var(--green);
+  --color-purple: var(--purple);
+  --color-orange: var(--orange);
   --color-pink-ink: var(--pink-ink);
   --color-blue-ink: var(--blue-ink);
   --color-green-ink: var(--green-ink);
+  --color-purple-ink: var(--purple-ink);
+  --color-orange-ink: var(--orange-ink);
   --color-dark-surface: var(--dark-surface);
   --color-dark-text: var(--dark-text);
 

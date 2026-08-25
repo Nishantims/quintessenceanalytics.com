@@ -8,7 +8,7 @@ export function Logo({ size = 21 }: { size?: number }) {
         className="font-body font-extrabold tracking-tight text-text-primary"
         style={{ fontSize: size }}
       >
-        QA<span style={{ color: "var(--blue)" }}>.com</span>
+        QA<span className="qa-logo-cycle">.com</span>
       </span>
       <span className="mt-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-text-muted">
         Quintessence Analytics

@@ -5,6 +5,8 @@ const ACCENT_VAR: Record<Service["accent"], string> = {
   pink: "var(--pink)",
   blue: "var(--blue)",
   green: "var(--green)",
+  purple: "var(--purple)",
+  orange: "var(--orange)",
 };
 
 export function ServiceCard({ service, index }: { service: Service; index: number }) {

@@ -4,7 +4,7 @@ export interface Service {
   short: string;
   description: string;
   bullets: string[];
-  accent: "pink" | "blue" | "green";
+  accent: "pink" | "blue" | "green" | "purple" | "orange";
 }
 
 // Six core AI services, repositioned from the prior twelve-discipline
@@ -51,7 +51,7 @@ export const SERVICES: Service[] = [
       "Human-oversight policy, incident response, and lifecycle controls, not a policy PDF nobody follows",
       "Built as an independent check, not graded by the same team that built the agent",
     ],
-    accent: "green",
+    accent: "purple",
   },
   {
     slug: "ai-workflow-automation",
@@ -64,7 +64,7 @@ export const SERVICES: Service[] = [
       "A human approval path built into the flow, not removed for the sake of a demo",
       "A measurement dashboard showing exactly what the automation is and isn't handling",
     ],
-    accent: "blue",
+    accent: "orange",
   },
   {
     slug: "ai-data-knowledge-systems",
