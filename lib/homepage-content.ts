@@ -95,19 +95,20 @@ export const TECH_CAPABILITIES: TechCapability[] = [
 export interface WhyPoint {
   title: string;
   body: string;
+  accent: "pink" | "blue" | "green" | "purple" | "orange";
 }
 
 export const WHY_CHOOSE_US: WhyPoint[] = [
-  { title: "Business-focused AI", body: "Every model is built around a business decision, not a technology demo." },
-  { title: "Industry expertise", body: "Analysts who understand the sector, not just the dataset." },
-  { title: "Actionable insights", body: "Every output ships with a recommended next step, not just a chart." },
-  { title: "Scalable enterprise solutions", body: "Built to grow from one team's pilot to an organization-wide rollout." },
-  { title: "Transparent methodology", body: "You see the assumptions and the model, not a black box you have to trust blindly." },
-  { title: "Secure AI", body: "Your data stays yours — models are built on it, never used to train anything shared outside your engagement." },
-  { title: "Rapid, AI-native delivery", body: "AI-assisted development is how we actually build — real work in weeks, not quarters, without cutting corners on review." },
-  { title: "Custom-built, not templated", body: "Built around your specific data and workflow, not a generic template repackaged per client." },
-  { title: "Executive-ready reporting", body: "Deliverables built to be presented as-is in the room where the decision gets made." },
-  { title: "Long-term partnership", body: "Models get re-tuned as your business changes — this isn't a one-time deliverable." },
+  { title: "Business-focused AI", body: "Every model is built around a business decision, not a technology demo.", accent: "pink" },
+  { title: "Industry expertise", body: "Analysts who understand the sector, not just the dataset.", accent: "blue" },
+  { title: "Actionable insights", body: "Every output ships with a recommended next step, not just a chart.", accent: "green" },
+  { title: "Scalable enterprise solutions", body: "Built to grow from one team's pilot to an organization-wide rollout.", accent: "purple" },
+  { title: "Transparent methodology", body: "You see the assumptions and the model, not a black box you have to trust blindly.", accent: "orange" },
+  { title: "Secure AI", body: "Your data stays yours — models are built on it, never used to train anything shared outside your engagement.", accent: "blue" },
+  { title: "Rapid, AI-native delivery", body: "AI-assisted development is how we actually build — real work in weeks, not quarters, without cutting corners on review.", accent: "pink" },
+  { title: "Custom-built, not templated", body: "Built around your specific data and workflow, not a generic template repackaged per client.", accent: "green" },
+  { title: "Executive-ready reporting", body: "Deliverables built to be presented as-is in the room where the decision gets made.", accent: "orange" },
+  { title: "Long-term partnership", body: "Models get re-tuned as your business changes — this isn't a one-time deliverable.", accent: "purple" },
 ];
 
 export interface Testimonial {
@@ -135,6 +136,7 @@ export const TESTIMONIALS: Testimonial[] = [
 export interface TrustPoint {
   title: string;
   body: string;
+  accent: "pink" | "blue" | "green" | "purple" | "orange";
 }
 
 // A bounded, checkable commitment tied to the deliverables actually listed
@@ -142,12 +144,12 @@ export interface TrustPoint {
 // claim, since outcomes depend on the client's own data and adoption, not
 // just our delivery.
 export const TRUST_POINTS: TrustPoint[] = [
-  { title: "Scope-Completion Guarantee", body: "Every deliverable listed on your offer gets delivered — or we keep working at no extra charge until it is." },
-  { title: "Fixed-Price, No Surprises", body: "The price you're quoted on the discovery call is the price you pay — nothing added after the fact." },
-  { title: "No Long-Term Lock-In", body: "Fixed-scope engagements, not a multi-year contract you can't get out of." },
-  { title: "Senior-Analyst Reviewed", body: "Every AI-generated output is reviewed by a senior analyst before it reaches you, without exception." },
-  { title: "NDA On Request", body: "Confidentiality terms set before any of your data or workflow details are shared with us." },
-  { title: "Global, Dual-Currency", body: "Quoted and billable in USD or INR, for clients anywhere in the world." },
+  { title: "Scope-Completion Guarantee", body: "Every deliverable listed on your offer gets delivered — or we keep working at no extra charge until it is.", accent: "green" },
+  { title: "Fixed-Price, No Surprises", body: "The price you're quoted on the discovery call is the price you pay — nothing added after the fact.", accent: "blue" },
+  { title: "No Long-Term Lock-In", body: "Fixed-scope engagements, not a multi-year contract you can't get out of.", accent: "orange" },
+  { title: "Senior-Analyst Reviewed", body: "Every AI-generated output is reviewed by a senior analyst before it reaches you, without exception.", accent: "purple" },
+  { title: "NDA On Request", body: "Confidentiality terms set before any of your data or workflow details are shared with us.", accent: "pink" },
+  { title: "Global, Dual-Currency", body: "Quoted and billable in USD or INR, for clients anywhere in the world.", accent: "blue" },
 ];
 
 export interface ToolExample {

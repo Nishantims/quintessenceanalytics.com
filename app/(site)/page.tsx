@@ -1,4 +1,12 @@
 import Link from "next/link";
+import {
+  Wrench, Bot, ShieldCheck, Scale, Workflow, LineChart,
+  HeartPulse, Factory, Cpu, Landmark, ShoppingCart, Zap, Trophy, Car, Radio, Building2,
+  CheckCircle2, Tag, Unlock, UserCheck, FileLock2, Globe,
+  Target, GraduationCap, Lightbulb, TrendingUp, Eye, Lock, Rocket, Puzzle, Presentation, Handshake,
+  Gauge, Bell, Clock, Database,
+  type LucideIcon,
+} from "lucide-react";
 import { DashboardPhoto } from "@/components/DashboardPhoto";
 import { ServiceCard } from "@/components/ServiceCard";
 import { AiProductCard } from "@/components/AiProductCard";
@@ -17,6 +25,117 @@ const ACCENT_VAR = {
   purple: "var(--purple)",
   orange: "var(--orange)",
 };
+
+const WHAT_WE_DO_ICONS: Record<string, LucideIcon> = {
+  "AI Tools": Wrench,
+  "AI Agents": Bot,
+  "AI Assurance": ShieldCheck,
+  "AI Governance": Scale,
+  Automation: Workflow,
+  "Decision Systems": LineChart,
+};
+
+const INDUSTRY_ICONS: Record<string, LucideIcon> = {
+  "healthcare-pharma": HeartPulse,
+  manufacturing: Factory,
+  technology: Cpu,
+  "financial-services": Landmark,
+  "retail-ecommerce": ShoppingCart,
+  "energy-utilities": Zap,
+  sports: Trophy,
+  "automotive-mobility": Car,
+  telecommunications: Radio,
+  "government-smart-cities": Building2,
+};
+
+const TRUST_ICONS: Record<string, LucideIcon> = {
+  "Scope-Completion Guarantee": CheckCircle2,
+  "Fixed-Price, No Surprises": Tag,
+  "No Long-Term Lock-In": Unlock,
+  "Senior-Analyst Reviewed": UserCheck,
+  "NDA On Request": FileLock2,
+  "Global, Dual-Currency": Globe,
+};
+
+const WHY_ICONS: Record<string, LucideIcon> = {
+  "Business-focused AI": Target,
+  "Industry expertise": GraduationCap,
+  "Actionable insights": Lightbulb,
+  "Scalable enterprise solutions": TrendingUp,
+  "Transparent methodology": Eye,
+  "Secure AI": Lock,
+  "Rapid, AI-native delivery": Rocket,
+  "Custom-built, not templated": Puzzle,
+  "Executive-ready reporting": Presentation,
+  "Long-term partnership": Handshake,
+};
+
+const OUTCOME_ICONS: Record<string, LucideIcon> = {
+  "Faster decisions": Gauge,
+  "Fewer surprises": Bell,
+  "Analyst time back": Clock,
+  "Board-ready, every time": Presentation,
+};
+
+const TECH_ICONS: Record<string, LucideIcon> = {
+  "AI agents & automation": Bot,
+  "Agent evaluation & assurance": ShieldCheck,
+  "Governed data pipelines": Database,
+  "Interactive decision systems": LineChart,
+};
+
+// Shared "premium" card treatment reused across every accent-colored grid
+// on this page: an icon badge tinted to the accent, a soft blurred glow in
+// the corner for depth, and the card's border picking up the accent on
+// hover (via a CSS custom property, since Tailwind can't take a dynamic
+// per-item color as a static class).
+function AccentCard({
+  icon: Icon,
+  accent,
+  title,
+  body,
+  href,
+}: {
+  icon: LucideIcon;
+  accent: string;
+  title: string;
+  body: string;
+  href?: string;
+}) {
+  const className =
+    "group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface-raised p-6 transition-all hover:-translate-y-0.5 hover:border-[color:var(--card-accent)]";
+  const style = { "--card-accent": accent } as React.CSSProperties;
+  const content = (
+    <>
+      <span
+        className="pointer-events-none absolute -right-6 -top-6 h-28 w-28 rounded-full opacity-[0.14] blur-2xl transition-opacity group-hover:opacity-25"
+        style={{ background: accent }}
+        aria-hidden
+      />
+      <span
+        className="relative flex h-10 w-10 items-center justify-center rounded-xl"
+        style={{ background: `color-mix(in srgb, ${accent} 16%, transparent)` }}
+      >
+        <Icon className="h-5 w-5" style={{ color: accent }} strokeWidth={2} />
+      </span>
+      <h3 className="relative mt-4 font-display text-[15.5px] font-bold text-text-primary">{title}</h3>
+      <p className="relative mt-2 flex-1 text-[13px] leading-relaxed text-text-secondary">{body}</p>
+    </>
+  );
+
+  if (href) {
+    return (
+      <Link href={href} className={className} style={style}>
+        {content}
+      </Link>
+    );
+  }
+  return (
+    <div className={className} style={style}>
+      {content}
+    </div>
+  );
+}
 
 const WHAT_WE_DO = [
   { title: "AI Tools", body: "Any application you need built, AI-powered or not — custom software scoped to your exact workflow, not a fixed product.", accent: "green" as const },
@@ -104,18 +223,23 @@ export default function HomePage() {
                 <ScrollReveal key={s.stage} delayMs={i * 60}>
                   <Link
                     href={s.href}
-                    className="group relative flex h-full flex-col rounded-2xl border border-border bg-surface-raised p-6 pt-7 transition-all hover:-translate-y-1 hover:shadow-[0_12px_32px_-12px_hsl(var(--shadow-color)/0.4)]"
+                    className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface-raised p-6 transition-all hover:-translate-y-1 hover:border-[color:var(--card-accent)] hover:shadow-[0_12px_32px_-12px_hsl(var(--shadow-color)/0.4)]"
+                    style={{ "--card-accent": accent } as React.CSSProperties}
                   >
-                    <span className="absolute inset-x-0 top-0 h-1 rounded-t-2xl" style={{ background: accent }} aria-hidden />
                     <span
-                      className="flex h-9 w-9 items-center justify-center rounded-full font-data text-[13px] font-bold"
+                      className="pointer-events-none absolute -right-6 -top-6 h-28 w-28 rounded-full opacity-[0.14] blur-2xl transition-opacity group-hover:opacity-25"
+                      style={{ background: accent }}
+                      aria-hidden
+                    />
+                    <span
+                      className="relative flex h-9 w-9 items-center justify-center rounded-full font-data text-[13px] font-bold"
                       style={{ background: `color-mix(in srgb, ${accent} 16%, transparent)`, color: accent }}
                     >
                       {s.n}
                     </span>
-                    <h3 className="mt-4 font-display text-[17px] font-bold text-text-primary">{s.stage}</h3>
-                    <p className="mt-2 flex-1 text-[13px] leading-relaxed text-text-secondary">{s.capability}</p>
-                    <span className="mt-4 flex items-center gap-1.5 text-[12.5px] font-semibold" style={{ color: accent }}>
+                    <h3 className="relative mt-4 font-display text-[17px] font-bold text-text-primary">{s.stage}</h3>
+                    <p className="relative mt-2 flex-1 text-[13px] leading-relaxed text-text-secondary">{s.capability}</p>
+                    <span className="relative mt-4 flex items-center gap-1.5 text-[12.5px] font-semibold" style={{ color: accent }}>
                       {s.cta}
                       <span className="transition-transform group-hover:translate-x-1" aria-hidden>→</span>
                     </span>
@@ -162,11 +286,7 @@ export default function HomePage() {
           <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {WHAT_WE_DO.map((w, i) => (
               <ScrollReveal key={w.title} delayMs={i * 60}>
-                <div className="h-full rounded-2xl border border-border bg-surface-raised p-6">
-                  <span className="inline-block h-2 w-2 rounded-full" style={{ background: ACCENT_VAR[w.accent] }} aria-hidden />
-                  <h3 className="mt-3 font-display text-[17px] font-bold text-text-primary">{w.title}</h3>
-                  <p className="mt-2 text-[13.5px] leading-relaxed text-text-secondary">{w.body}</p>
-                </div>
+                <AccentCard icon={WHAT_WE_DO_ICONS[w.title]} accent={ACCENT_VAR[w.accent]} title={w.title} body={w.body} />
               </ScrollReveal>
             ))}
           </div>
@@ -188,7 +308,7 @@ export default function HomePage() {
             client. Tell us what you need built; it doesn&apos;t have to match one of these exactly.
           </p>
         </ScrollReveal>
-        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {TOOLS_WE_BUILD.map((t, i) => (
             <ScrollReveal key={t.title} delayMs={i * 40}>
               <div className="h-full rounded-xl border border-border bg-surface p-5">
@@ -212,13 +332,16 @@ export default function HomePage() {
             <span style={{ color: "var(--green)" }}>AI delivery methodology</span>
           </h2>
         </ScrollReveal>
-        <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {INDUSTRIES.map((ind, i) => (
             <ScrollReveal key={ind.slug} delayMs={i * 40}>
-              <Link href={`/industries#${ind.slug}`} className="block h-full rounded-xl border border-border bg-surface p-5 transition-colors hover:border-blue">
-                <h3 className="font-display text-[15px] font-bold text-text-primary">{ind.name}</h3>
-                <p className="mt-2 text-[12.5px] leading-relaxed text-text-secondary">{ind.value}</p>
-              </Link>
+              <AccentCard
+                icon={INDUSTRY_ICONS[ind.slug]}
+                accent={ACCENT_VAR[ind.accent]}
+                title={ind.name}
+                body={ind.value}
+                href={`/industries#${ind.slug}`}
+              />
             </ScrollReveal>
           ))}
         </div>
@@ -331,10 +454,7 @@ export default function HomePage() {
           <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {TRUST_POINTS.map((t, i) => (
               <ScrollReveal key={t.title} delayMs={i * 60}>
-                <div className="h-full rounded-2xl border border-border bg-surface-raised p-6">
-                  <h3 className="font-display text-[15.5px] font-bold text-text-primary">{t.title}</h3>
-                  <p className="mt-2 text-[13.5px] leading-relaxed text-text-secondary">{t.body}</p>
-                </div>
+                <AccentCard icon={TRUST_ICONS[t.title]} accent={ACCENT_VAR[t.accent]} title={t.title} body={t.body} />
               </ScrollReveal>
             ))}
           </div>
@@ -355,11 +475,7 @@ export default function HomePage() {
         <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {OUTCOMES.map((o, i) => (
             <ScrollReveal key={o.title} delayMs={i * 60}>
-              <div className="h-full rounded-2xl border border-border bg-surface-raised p-6">
-                <span className="inline-block h-2 w-2 rounded-full" style={{ background: ACCENT_VAR[o.accent] }} aria-hidden />
-                <h3 className="mt-3 font-display text-[16px] font-bold text-text-primary">{o.title}</h3>
-                <p className="mt-2 text-[13.5px] leading-relaxed text-text-secondary">{o.body}</p>
-              </div>
+              <AccentCard icon={OUTCOME_ICONS[o.title]} accent={ACCENT_VAR[o.accent]} title={o.title} body={o.body} />
             </ScrollReveal>
           ))}
         </div>
@@ -418,11 +534,7 @@ export default function HomePage() {
         <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {TECH_CAPABILITIES.map((t, i) => (
             <ScrollReveal key={t.title} delayMs={i * 60}>
-              <div className="h-full rounded-2xl border border-border bg-surface-raised p-6">
-                <span className="inline-block h-2 w-2 rounded-full" style={{ background: ACCENT_VAR[t.accent] }} aria-hidden />
-                <h3 className="mt-3 font-display text-[16px] font-bold text-text-primary">{t.title}</h3>
-                <p className="mt-2 text-[13.5px] leading-relaxed text-text-secondary">{t.body}</p>
-              </div>
+              <AccentCard icon={TECH_ICONS[t.title]} accent={ACCENT_VAR[t.accent]} title={t.title} body={t.body} />
             </ScrollReveal>
           ))}
         </div>
@@ -440,13 +552,10 @@ export default function HomePage() {
               <span style={{ color: "var(--pink)" }}>stay</span>
             </h2>
           </ScrollReveal>
-          <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {WHY_CHOOSE_US.map((w, i) => (
               <ScrollReveal key={w.title} delayMs={i * 40}>
-                <div className="h-full rounded-xl border border-border bg-surface p-5">
-                  <h3 className="font-display text-[14.5px] font-bold text-text-primary">{w.title}</h3>
-                  <p className="mt-2 text-[12.5px] leading-relaxed text-text-secondary">{w.body}</p>
-                </div>
+                <AccentCard icon={WHY_ICONS[w.title]} accent={ACCENT_VAR[w.accent]} title={w.title} body={w.body} />
               </ScrollReveal>
             ))}
           </div>
