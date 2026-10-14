@@ -6,7 +6,7 @@ const SERVICES = [
   "AI Governance & Risk",
   "AI Workflow Automation",
   "AI Data & Knowledge Systems",
-  "AI Decision Systems",
+  "Enterprise Data Analytics",
 ];
 
 export function Footer() {

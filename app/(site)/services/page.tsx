@@ -6,13 +6,15 @@ import { DashboardPhoto } from "@/components/DashboardPhoto";
 export const metadata: Metadata = {
   title: "Services — Quintessence Analytics",
   description:
-    "Six core enterprise AI services: AI agent development & automation, AI agent quality & evaluation, AI governance & risk, AI workflow automation, AI data & knowledge systems, and AI decision systems.",
+    "Six core enterprise AI services: AI workflow automation, enterprise data analytics, AI agent development & automation, AI agent quality & evaluation, AI governance & risk, and AI data & knowledge systems.",
 };
 
 const ACCENT_VAR: Record<string, string> = {
   pink: "var(--pink)",
   blue: "var(--blue)",
   green: "var(--green)",
+  purple: "var(--purple)",
+  orange: "var(--orange)",
 };
 
 export default function ServicesPage() {
@@ -27,7 +29,8 @@ export default function ServicesPage() {
         <p className="mx-auto mt-5 max-w-xl text-[18px] leading-relaxed text-text-secondary">
           Six disciplines that move an enterprise from AI experimentation to production — agents that do
           real work, evaluated before they ship, governed once they&apos;re live. Pick the one you need,
-          or bring us a workflow that spans all six.
+          or bring us a workflow that spans all six. Top AI services at your budget: we scope every
+          engagement to a fixed price that fits.
         </p>
       </section>
 
@@ -73,6 +76,29 @@ export default function ServicesPage() {
             </div>
           </div>
         ))}
+      </section>
+
+      <section className="mx-auto max-w-5xl px-6 pb-20">
+        <div className="rounded-3xl border border-border bg-surface px-8 py-10 sm:px-12">
+          <span className="text-[13px] font-semibold uppercase tracking-wide" style={{ color: "var(--blue)" }}>Strategic intelligence</span>
+          <h2 className="mt-3 font-display text-[26px] font-bold leading-snug text-text-primary">
+            Need the market evidence <span style={{ color: "var(--blue)" }}>behind the decision?</span>
+          </h2>
+          <p className="mt-3 max-w-2xl text-[16px] leading-relaxed text-text-secondary">
+            Our sister company Market-Reports.com runs the research side: executive strategic intelligence
+            reports, competitive benchmarking, market entry, product innovation, investment and acquisition
+            intelligence, and continuous monthly intelligence - for any industry, at your budget.
+          </p>
+          <a
+            href="https://www.market-reports.com/intelligence-services"
+            target="_blank"
+            rel="noreferrer"
+            className="mt-6 inline-flex items-center gap-2 rounded-full px-6 py-3 text-[14px] font-semibold text-white transition-transform hover:scale-[1.03]"
+            style={{ background: "var(--blue)" }}
+          >
+            See the intelligence services ↗
+          </a>
+        </div>
       </section>
 
       <section className="mx-auto max-w-6xl px-6 pb-28">

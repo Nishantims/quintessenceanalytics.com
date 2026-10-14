@@ -7,13 +7,41 @@ export interface Service {
   accent: "pink" | "blue" | "green" | "purple" | "orange";
 }
 
-// Six core AI services, repositioned from the prior twelve-discipline
+// Six core AI services (owner priority 2026-10-14: AI Workflow Automation and Enterprise Data
+// Analytics first - narrowly scoped implementations and data-readiness-qualified analytics), repositioned from the prior twelve-discipline
 // "AI analytics & decision intelligence" catalog toward a focused Enterprise
 // AI Solutions & AI Assurance offering. Market Intelligence and Competitive
 // Benchmarking have moved off this primary list — that capability continues
 // under Market Reports (see the homepage's Market Reports section), not as
 // a QA.com service in its own right.
 export const SERVICES: Service[] = [
+  {
+    slug: "ai-workflow-automation",
+    title: "AI Workflow Automation",
+    short: "Automating one real, repetitive, rule-heavy process end to end — proven before it scales.",
+    description:
+      "We automate the specific process that's currently eating the most manual hours — invoice validation and approval, email triage into your CRM, document review and routing — combining AI judgment with your existing systems and a human approval step, then measure it before asking you to trust it with more.",
+    bullets: [
+      "One workflow automated end to end first, with integrations into the systems you already run",
+      "A human approval path built into the flow, not removed for the sake of a demo",
+      "A measurement dashboard showing exactly what the automation is and isn't handling",
+    ],
+    accent: "orange",
+  },
+  {
+    slug: "enterprise-data-analytics",
+    title: "Enterprise Data Analytics",
+    short: "Forecasts, dashboards and decision systems on your own data - starting with a data-readiness check.",
+    description:
+      "Analytics only pays off when the data underneath is ready for it. We start with a short data-readiness check - what data you have, where it lives, how clean and connected it is - and only then build: driver-level forecasts, interactive dashboards and decision systems that monitor the real signal, analyze it and recommend the next move, with the assumptions attached.",
+    bullets: [
+      "A data-readiness check first: sources, quality, gaps and the quickest route to value",
+      "Driver-level forecasts with the assumptions attached, not a single unexplained number",
+      "Interactive, filterable dashboards built to be queried, not a static export",
+      "Every AI output reviewed by a senior analyst before it ever reaches a client",
+    ],
+    accent: "green",
+  },
   {
     slug: "ai-agent-development",
     title: "AI Agent Development & Automation",
@@ -54,19 +82,6 @@ export const SERVICES: Service[] = [
     accent: "purple",
   },
   {
-    slug: "ai-workflow-automation",
-    title: "AI Workflow Automation",
-    short: "Automating one real, repetitive, rule-heavy process end to end — proven before it scales.",
-    description:
-      "We automate the specific process that's currently eating the most manual hours — invoice validation and approval, email triage into your CRM, document review and routing — combining AI judgment with your existing systems and a human approval step, then measure it before asking you to trust it with more.",
-    bullets: [
-      "One workflow automated end to end first, with integrations into the systems you already run",
-      "A human approval path built into the flow, not removed for the sake of a demo",
-      "A measurement dashboard showing exactly what the automation is and isn't handling",
-    ],
-    accent: "orange",
-  },
-  {
     slug: "ai-data-knowledge-systems",
     title: "AI Data & Knowledge Systems",
     short: "Turning your documents and data into something an AI agent can actually search and trust.",
@@ -78,18 +93,5 @@ export const SERVICES: Service[] = [
       "Built to support the agents and automations above, not a standalone science project",
     ],
     accent: "pink",
-  },
-  {
-    slug: "ai-decision-systems",
-    title: "AI Decision Systems",
-    short: "Predictive analytics and dashboards, packaged as a decision system, not a static report.",
-    description:
-      "The forecasting and dashboard work Quintessence Analytics already does well doesn't disappear — it becomes one more input into the same decision architecture: monitor the real signal, analyze it, predict what's coming, recommend the move, alert when something changes, and act — with a senior analyst reviewing every AI-generated output before it reaches you.",
-    bullets: [
-      "Driver-level forecasts with the assumptions attached, not a single unexplained number",
-      "Interactive, filterable dashboards built to be queried, not a static export",
-      "Every AI output reviewed by a senior analyst before it ever reaches a client",
-    ],
-    accent: "green",
   },
 ];
