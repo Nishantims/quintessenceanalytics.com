@@ -1,26 +1,26 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AiProductCard } from "@/components/AiProductCard";
-import { AI_PRODUCTS, ENTERPRISE_PRODUCTS } from "@/lib/ai-products-data";
+import { AI_PRODUCTS, ENTERPRISE_PRODUCTS, SERVICES_FROM } from "@/lib/ai-products-data";
 
 export const metadata: Metadata = {
-  title: "Pricing — Quintessence Analytics",
+  title: "Services & Engagements — Quintessence Analytics",
   description:
-    "Three fixed-scope entry offers starting from $1,200 / ₹1L, expanding into enterprise AI implementation and continuous monitoring engagements from $6,000 / ₹5L+.",
+    "AI services start from $1,000: fixed-scope entry offers that expand into enterprise AI implementation and continuous monitoring, each scoped to your budget.",
 };
 
 export default function PricingPage() {
   return (
     <>
       <section className="mx-auto max-w-4xl px-6 pt-20 pb-14 text-center">
-        <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--pink)" }}>Pricing</span>
+        <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--pink)" }}>Engagements</span>
         <h1 className="mx-auto mt-4 max-w-2xl font-display text-[40px] font-bold leading-[1.1] text-text-primary">
           Start small, fixed-scope. Expand once the{" "}
           <span style={{ color: "var(--blue)" }}>ROI is proven</span>.
         </h1>
         <p className="mx-auto mt-5 max-w-xl text-[18px] leading-relaxed text-text-secondary">
-          No undefined consulting engagements. Every offer below has a starting price, a real delivery
-          window, and a specific list of what you get — anywhere in the world.
+          Services start from <strong className="text-text-primary">{SERVICES_FROM}</strong>. No undefined consulting
+          engagements: every offer below has a real delivery window and a specific list of what you get — anywhere in the world.
         </p>
       </section>
 
@@ -31,8 +31,8 @@ export default function PricingPage() {
           ))}
         </div>
         <p className="mx-auto mt-8 max-w-2xl text-center text-[13px] leading-relaxed text-text-muted">
-          These are starting prices, not fixed-scope promises — final pricing depends on your data,
-          integrations, the number of workflows or agents involved, and security requirements. You&apos;ll
+          Services start from {SERVICES_FROM}. Each engagement is scoped to your budget — the final price depends on
+          your data, integrations, the number of workflows or agents involved, and security requirements. You&apos;ll
           get a specific number during the discovery call, before anything is billed.
         </p>
       </section>
@@ -56,8 +56,7 @@ export default function PricingPage() {
                   <p className="mt-1.5 text-[13.5px] leading-relaxed text-text-secondary">{p.deliverables}</p>
                 </div>
                 <div className="shrink-0 text-left sm:text-right">
-                  <p className="font-data text-[17px] font-semibold text-text-primary">{p.priceUsd}</p>
-                  <p className="text-[12px] text-text-muted">{p.priceInr} · {p.duration}</p>
+                  <p className="text-[12px] font-semibold uppercase tracking-wide text-text-muted">{p.duration}</p>
                 </div>
               </div>
             ))}

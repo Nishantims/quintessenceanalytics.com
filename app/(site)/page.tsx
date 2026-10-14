@@ -15,7 +15,7 @@ import { CapabilityMarquee } from "@/components/CapabilityMarquee";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { SERVICES } from "@/lib/services-data";
-import { AI_PRODUCTS } from "@/lib/ai-products-data";
+import { AI_PRODUCTS, SERVICES_FROM } from "@/lib/ai-products-data";
 import { INDUSTRIES } from "@/lib/industries-data";
 import { OUTCOMES, CASE_STUDIES, TECH_CAPABILITIES, WHY_CHOOSE_US, TESTIMONIALS, FAQS, TRUST_POINTS, TOOLS_WE_BUILD } from "@/lib/homepage-content";
 
@@ -427,8 +427,8 @@ export default function HomePage() {
                 <span style={{ color: "var(--blue)" }}>start this month</span>
               </h2>
               <p className="mx-auto mt-4 max-w-lg text-[19px] leading-relaxed text-text-secondary">
-                No undefined consulting engagement — a real starting price, a real delivery window, and a
-                specific list of what you get.
+                Services start from {SERVICES_FROM}. No undefined consulting engagement — a real delivery
+                window and a specific list of what you get.
               </p>
             </div>
           </ScrollReveal>

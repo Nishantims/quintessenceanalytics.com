@@ -1,28 +1,20 @@
 export interface AiProduct {
   name: string;
   tagline: string;
-  /** Primary display price, USD — the audience is targeted globally. */
-  priceUsd: string;
-  /** Secondary price, shown alongside the USD figure for an India-based buyer. */
-  priceInr: string;
   duration: string;
   features: string[];
   accent: "pink" | "blue" | "green";
   featured?: boolean;
 }
 
-// Real starting-price bands, not "custom pricing only" - these are starting
-// prices, not fixed-scope promises; final pricing depends on data,
-// integrations, number of workflows/agents, and security requirements (see
-// the note under the pricing section on /pricing). USD is the primary
-// display currency since the offer targets customers globally; INR is shown
-// alongside for an India-based buyer, at roughly ₹83/$1.
+/** The one price the site shows (owner, 2026-10-14): no per-offer prices, every engagement is scoped to the budget. */
+export const SERVICES_FROM = "$1,000";
+
+// The entry offers. No per-offer prices on the site: each is scoped and quoted on the discovery call.
 export const AI_PRODUCTS: AiProduct[] = [
   {
     name: "AI Readiness Assessment",
     tagline: "Where AI actually pays off in your business, and a 90-day roadmap to get there.",
-    priceUsd: "Starting at $1,200",
-    priceInr: "₹1L",
     duration: "2–3 weeks",
     features: [
       "AI opportunity map scored against your real processes, not a generic checklist",
@@ -34,8 +26,6 @@ export const AI_PRODUCTS: AiProduct[] = [
   {
     name: "AI Agent Quality Assessment",
     tagline: "Find out if the AI agent you're about to trust with real work is actually ready.",
-    priceUsd: "Starting at $1,800",
-    priceInr: "₹1.5L",
     duration: "2–3 weeks",
     features: [
       "A test suite and evaluation scorecard built around your agent's real failure modes",
@@ -48,8 +38,6 @@ export const AI_PRODUCTS: AiProduct[] = [
   {
     name: "AI Automation Pilot",
     tagline: "One real workflow, automated end to end, measured before you scale it.",
-    priceUsd: "Starting at $2,400",
-    priceInr: "₹2L",
     duration: "3–6 weeks",
     features: [
       "One workflow automated end to end with your existing systems, not a proof of concept",
@@ -62,41 +50,31 @@ export const AI_PRODUCTS: AiProduct[] = [
 
 export interface EnterpriseProduct {
   name: string;
-  priceUsd: string;
-  priceInr: string;
   duration: string;
   deliverables: string;
 }
 
 // The expansion path beyond the three starter offers above - shown on
 // /pricing, not the homepage, per the productized-offers structure in the
-// blueprint. Same "starting price, not a fixed quote" rule applies.
+// blueprint. Quoted per engagement, like the entry offers.
 export const ENTERPRISE_PRODUCTS: EnterpriseProduct[] = [
   {
     name: "AI Governance Assessment",
-    priceUsd: "Starting at $2,400",
-    priceInr: "₹2L",
     duration: "2–4 weeks",
     deliverables: "AI/agent inventory, data-access review, controls, risk matrix, governance roadmap.",
   },
   {
     name: "AI Knowledge System Pilot",
-    priceUsd: "Starting at $2,400",
-    priceInr: "₹2L",
     duration: "3–6 weeks",
     deliverables: "Enterprise document ingestion, retrieval/RAG, permissions, evaluation, source-grounded responses.",
   },
   {
     name: "Enterprise AI Implementation",
-    priceUsd: "$6,000 – $36,000+",
-    priceInr: "₹5L – ₹30L+",
     duration: "Scoped to the engagement",
     deliverables: "Full agent/automation build-out across multiple workflows, integrated governance, and a measurement layer sized to the business, not the pilot.",
   },
   {
     name: "Continuous Monitoring",
-    priceUsd: "Starting at $600/mo",
-    priceInr: "₹50,000/mo",
     duration: "Recurring",
     deliverables: "Ongoing evaluation, drift and incident monitoring, and governance upkeep after an implementation ships — the recurring relationship the starter offers lead into.",
   },

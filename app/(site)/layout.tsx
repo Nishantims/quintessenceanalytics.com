@@ -22,7 +22,7 @@ const plexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: "Quintessence Analytics — Enterprise AI Solutions & AI Assurance",
   description:
-    "Quintessence Analytics builds enterprise AI agents, automates real workflows, and evaluates AI systems for reliability, security, and governance — from a $1,200 AI Readiness Assessment to full enterprise implementation. Parent company of Market Reports.",
+    "Quintessence Analytics builds enterprise AI agents, automates real workflows, and evaluates AI systems for reliability, security, and governance — services start from $1,000, from an AI Readiness Assessment to full enterprise implementation. Parent company of Market Reports.",
   metadataBase: new URL("https://quintessenceanalytics.com"),
   openGraph: {
     title: "Quintessence Analytics — Enterprise AI Solutions & AI Assurance",
