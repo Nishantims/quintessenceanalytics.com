@@ -150,7 +150,7 @@ function lastMoveParagraph(lastMove: NonNullable<NarrativeInput['lastMove']>): s
 function learningParagraph(input: NarrativeInput): string {
   if (input.forcedMate) {
     return input.forcedMate.forPlayer
-      ? 'Lesson: when a forced mate exists, calculate it completely before playing anything else — a guaranteed win is never worth risking.'
+      ? 'Lesson: when a forced mate exists, calculate it completely before playing anything else — a certain win is never worth risking.'
       : 'Lesson: once the opponent has a forced mate, search only for the one move that survives — everything else loses immediately.'
   }
   if (input.isPlayerInCheck) {

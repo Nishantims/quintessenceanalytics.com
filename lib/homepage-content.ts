@@ -144,7 +144,7 @@ export interface TrustPoint {
 // claim, since outcomes depend on the client's own data and adoption, not
 // just our delivery.
 export const TRUST_POINTS: TrustPoint[] = [
-  { title: "Scope-Completion Guarantee", body: "Every deliverable listed on your offer gets delivered — or we keep working at no extra charge until it is.", accent: "green" },
+  { title: "Scope-Completion Commitment", body: "Every deliverable listed on your offer gets delivered — or we keep working at no extra charge until it is.", accent: "green" },
   { title: "Fixed-Price, No Surprises", body: "The price you're quoted on the discovery call is the price you pay — nothing added after the fact.", accent: "blue" },
   { title: "No Long-Term Lock-In", body: "Fixed-scope engagements, not a multi-year contract you can't get out of.", accent: "orange" },
   { title: "Senior-Analyst Reviewed", body: "Every AI-generated output is reviewed by a senior analyst before it reaches you, without exception.", accent: "purple" },

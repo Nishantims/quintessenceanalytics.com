@@ -48,7 +48,7 @@ export default function TermsPage() {
         </Section>
 
         <Section title="Accuracy of analysis">
-          <p>Every evaluation, grade, and recommendation in the app is the real, direct output of a real Stockfish engine or a real, documented formula — never invented or estimated by an AI model. That said, engine analysis reflects the engine's own real search at the depth used; it is a genuine, strong analytical tool, not a claim of perfect or infallible play. Chess-2000 does not guarantee a specific rating outcome — real improvement depends on how the feedback is actually used, over real, consistent practice.</p>
+          <p>Every evaluation, grade, and recommendation in the app is the real, direct output of a real Stockfish engine or a real, documented formula — never invented or estimated by an AI model. That said, engine analysis reflects the engine's own real search at the depth used; it is a genuine, strong analytical tool, not a claim of perfect or infallible play. Chess-2000 does not promise a specific rating outcome — real improvement depends on how the feedback is actually used, over real, consistent practice.</p>
         </Section>
 
         <Section title="Account and access">

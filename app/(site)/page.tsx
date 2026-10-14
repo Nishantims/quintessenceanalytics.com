@@ -50,7 +50,7 @@ const INDUSTRY_ICONS: Record<string, LucideIcon> = {
 };
 
 const TRUST_ICONS: Record<string, LucideIcon> = {
-  "Scope-Completion Guarantee": CheckCircle2,
+  "Scope-Completion Commitment": CheckCircle2,
   "Fixed-Price, No Surprises": Tag,
   "No Long-Term Lock-In": Unlock,
   "Senior-Analyst Reviewed": UserCheck,
@@ -447,13 +447,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Trust & Guarantee ── */}
+      {/* ── Trust & Commitments ── */}
       <section className="border-y border-border bg-surface">
         <div className="mx-auto max-w-6xl px-6 py-24">
           <ScrollReveal>
             <div className="text-center">
               <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--blue)" }}>
-                Trust &amp; guarantee
+                Trust &amp; commitments
               </span>
               <h2 className="mx-auto mt-3 max-w-xl font-display text-[32px] font-bold leading-tight text-text-primary">
                 What you&apos;re actually protected{" "}
