@@ -1,12 +1,10 @@
 import { Resend } from "resend";
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
 
-const CONTACT_EMAIL = "contact@market-reports.com";
-// Both QA.com and market-reports.com deliver contact-form submissions to
-// this same inbox - with no site identifier, there was no way to tell
-// which property a given enquiry actually came in on. Hardcoded per-repo
-// (not derived from the request) since this route only ever serves
-// quintessenceanalytics.com.
+const CONTACT_EMAIL = "contact@quintessenceanalytics.com";
+// Enquiries go to Quintessence's own mailbox (a shared mailbox in the same Microsoft 365 tenant as
+// market-reports.com, set up 2026-10-15). Hardcoded per-repo since this route only serves
+// quintessenceanalytics.com. The sender stays CONTACT_FROM_EMAIL (a Resend-verified domain).
 const SOURCE_SITE = "QA.com (quintessenceanalytics.com)";
 
 function escapeHtml(value: string): string {

@@ -84,7 +84,7 @@ export default async function SubscribePage() {
           <p className="font-bold text-ink mb-1">Payment</p>
           <p>Card, UPI (with QR code), netbanking, and wallets are all accepted via Razorpay&apos;s real checkout. This is a one-time payment for a fixed real period — it does not auto-renew.</p>
           <p className="mt-3">
-            Questions or payment issues? Contact <a href="mailto:nishant@market-reports.com" className="text-accent font-semibold">nishant@market-reports.com</a>.
+            Questions or payment issues? Contact <a href="mailto:contact@quintessenceanalytics.com" className="text-accent font-semibold">contact@quintessenceanalytics.com</a>.
           </p>
           <div className="flex gap-4 mt-4">
             <Link href="/Chess-2000/terms" className="text-accent font-semibold">Terms of Service</Link>

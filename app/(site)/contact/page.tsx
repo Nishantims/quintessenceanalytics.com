@@ -25,8 +25,8 @@ export default function ContactPage() {
           <div className="mt-10 space-y-6 border-t border-border pt-8">
             <div>
               <p className="text-[12px] font-semibold uppercase tracking-wide text-text-muted">Email</p>
-              <a href="mailto:contact@market-reports.com" className="mt-1 block text-[15px] font-semibold text-text-primary hover:text-pink">
-                contact@market-reports.com
+              <a href="mailto:contact@quintessenceanalytics.com" className="mt-1 block text-[15px] font-semibold text-text-primary hover:text-pink">
+                contact@quintessenceanalytics.com
               </a>
             </div>
             <div>

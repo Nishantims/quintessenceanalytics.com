@@ -177,7 +177,7 @@ export default function HomePage() {
         <section className="mb-8">
           <h2 className="font-heading text-2xl font-extrabold mb-4">Contact</h2>
           <div className="space-y-2 text-[14px] leading-relaxed text-ink-soft max-w-[720px]">
-            <p>Questions, payment issues, or feedback — reach out directly: <a href="mailto:nishant@market-reports.com" className="text-accent font-semibold">nishant@market-reports.com</a>.</p>
+            <p>Questions, payment issues, or feedback — reach out directly: <a href="mailto:contact@quintessenceanalytics.com" className="text-accent font-semibold">contact@quintessenceanalytics.com</a>.</p>
           </div>
         </section>
 

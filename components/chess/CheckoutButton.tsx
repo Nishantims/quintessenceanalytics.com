@@ -89,7 +89,7 @@ export function CheckoutButton({ plan, label, email }: { plan: 'monthly' | 'year
           plan,
         )
         if (!verify.success) {
-          setError(`Payment verification failed — contact nishant@market-reports.com with payment ID: ${response.razorpay_payment_id}`)
+          setError(`Payment verification failed — contact contact@quintessenceanalytics.com with payment ID: ${response.razorpay_payment_id}`)
           setState('idle')
           return
         }

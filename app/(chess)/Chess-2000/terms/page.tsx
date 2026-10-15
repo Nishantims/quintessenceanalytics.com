@@ -40,7 +40,7 @@ export default function TermsPage() {
 
         <Section title="Refunds">
           <p>Because access is granted immediately and in full upon payment, and because there is no recurring charge to cancel, subscriptions are generally non-refundable once the access period has started.</p>
-          <p>The one real exception: if a genuine payment or technical failure means you paid but were not actually granted access, contact <a href="mailto:nishant@market-reports.com" className="text-accent font-semibold">nishant@market-reports.com</a> with your payment reference — this will be investigated and resolved directly, with a real refund if the failure is confirmed on our end.</p>
+          <p>The one real exception: if a genuine payment or technical failure means you paid but were not actually granted access, contact <a href="mailto:contact@quintessenceanalytics.com" className="text-accent font-semibold">contact@quintessenceanalytics.com</a> with your payment reference — this will be investigated and resolved directly, with a real refund if the failure is confirmed on our end.</p>
         </Section>
 
         <Section title="Fair use">
@@ -60,7 +60,7 @@ export default function TermsPage() {
         </Section>
 
         <Section title="Contact">
-          <p>Questions about these terms, billing, or your subscription: <a href="mailto:nishant@market-reports.com" className="text-accent font-semibold">nishant@market-reports.com</a>.</p>
+          <p>Questions about these terms, billing, or your subscription: <a href="mailto:contact@quintessenceanalytics.com" className="text-accent font-semibold">contact@quintessenceanalytics.com</a>.</p>
         </Section>
 
         <div className="pt-6 border-t border-panel-line flex flex-wrap gap-x-6 gap-y-2 text-[12px] text-ink-faint">

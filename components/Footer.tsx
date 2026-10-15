@@ -65,8 +65,8 @@ export function Footer() {
             <p className="text-[12px] font-semibold uppercase tracking-wide text-dark-text/45">Get in touch</p>
             <ul className="mt-4 space-y-2.5 text-[14px] text-dark-text/70">
               <li>
-                <a href="mailto:contact@market-reports.com" className="hover:text-pink">
-                  contact@market-reports.com
+                <a href="mailto:contact@quintessenceanalytics.com" className="hover:text-pink">
+                  contact@quintessenceanalytics.com
                 </a>
               </li>
               <li className="pt-2">

@@ -153,8 +153,8 @@ export function ExclusiveContactBox() {
             <div className="mt-4">
               <p className="text-[13.5px] leading-relaxed text-text-primary">
                 Something went wrong sending that. Please try again, or email us at{" "}
-                <a href="mailto:contact@market-reports.com" className="font-semibold text-pink-ink underline">
-                  contact@market-reports.com
+                <a href="mailto:contact@quintessenceanalytics.com" className="font-semibold text-pink-ink underline">
+                  contact@quintessenceanalytics.com
                 </a>
                 .
               </p>

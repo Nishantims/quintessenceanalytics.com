@@ -50,7 +50,7 @@ export default function PrivacyPage() {
         </Section>
 
         <Section title="Your data, your control">
-          <p>You can cancel your subscription at any time (see <Link href="/Chess-2000/terms" className="text-accent font-semibold">Terms of Service</Link> for the real cancellation and refund policy). To request deletion of your account and associated subscription records, email <a href="mailto:nishant@market-reports.com" className="text-accent font-semibold">nishant@market-reports.com</a> — this will be handled directly and promptly, since this is a genuinely small, independent product, not a large support queue.</p>
+          <p>You can cancel your subscription at any time (see <Link href="/Chess-2000/terms" className="text-accent font-semibold">Terms of Service</Link> for the real cancellation and refund policy). To request deletion of your account and associated subscription records, email <a href="mailto:contact@quintessenceanalytics.com" className="text-accent font-semibold">contact@quintessenceanalytics.com</a> — this will be handled directly and promptly, since this is a genuinely small, independent product, not a large support queue.</p>
         </Section>
 
         <Section title="Changes to this policy">
@@ -58,7 +58,7 @@ export default function PrivacyPage() {
         </Section>
 
         <Section title="Contact">
-          <p>Questions about this policy: <a href="mailto:nishant@market-reports.com" className="text-accent font-semibold">nishant@market-reports.com</a>.</p>
+          <p>Questions about this policy: <a href="mailto:contact@quintessenceanalytics.com" className="text-accent font-semibold">contact@quintessenceanalytics.com</a>.</p>
         </Section>
 
         <div className="pt-6 border-t border-panel-line flex flex-wrap gap-x-6 gap-y-2 text-[12px] text-ink-faint">
