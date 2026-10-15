@@ -40,7 +40,7 @@ export async function POST(request: Request) {
 
   try {
     const { error } = await resend.emails.send({
-      from: process.env.CONTACT_FROM_EMAIL ?? "Quintessence Analytics <onboarding@resend.dev>",
+      from: "Quintessence Analytics <contact@quintessenceanalytics.com>",
       to: RECIPIENT_EMAIL,
       subject: `[Yum! Brands Proposal] New message from ${name}`,
       html: `

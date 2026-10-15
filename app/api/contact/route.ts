@@ -4,7 +4,9 @@ import { getSupabaseAdmin } from "@/lib/supabase-admin";
 const CONTACT_EMAIL = "contact@quintessenceanalytics.com";
 // Enquiries go to Quintessence's own mailbox (a shared mailbox in the same Microsoft 365 tenant as
 // market-reports.com, set up 2026-10-15). Hardcoded per-repo since this route only serves
-// quintessenceanalytics.com. The sender stays CONTACT_FROM_EMAIL (a Resend-verified domain).
+// quintessenceanalytics.com. Sent from the same address - quintessenceanalytics.com is verified in
+// Resend (2026-10-15), so this no longer depends on the CONTACT_FROM_EMAIL environment setting.
+const FROM_EMAIL = "Quintessence Analytics <contact@quintessenceanalytics.com>";
 const SOURCE_SITE = "QA.com (quintessenceanalytics.com)";
 
 function escapeHtml(value: string): string {
@@ -70,7 +72,7 @@ export async function POST(request: Request) {
 
   try {
     const { error } = await resend.emails.send({
-      from: process.env.CONTACT_FROM_EMAIL ?? "Quintessence Analytics <onboarding@resend.dev>",
+      from: FROM_EMAIL,
       to: CONTACT_EMAIL,
       replyTo: email,
       subject: `[QA.com] New enquiry from ${name}${company ? ` (${company})` : ""}`,
@@ -108,7 +110,7 @@ export async function POST(request: Request) {
     // (bad inbox, spam rejection) never blocks the enquiry itself, which has
     // already succeeded by this point.
     const { error: confirmError } = await resend.emails.send({
-      from: process.env.CONTACT_FROM_EMAIL ?? "Quintessence Analytics <onboarding@resend.dev>",
+      from: FROM_EMAIL,
       to: email,
       replyTo: CONTACT_EMAIL,
       subject: "We've received your enquiry — Quintessence Analytics",
