@@ -82,7 +82,7 @@ async function main() {
     const body = await res.text()
     const slugs = [
       'ai-agent-development', 'ai-agent-quality-evaluation', 'ai-governance-risk',
-      'ai-workflow-automation', 'ai-data-knowledge-systems', 'ai-decision-systems',
+      'ai-workflow-automation', 'ai-data-knowledge-systems', 'enterprise-data-analytics',
     ]
     const missing = slugs.filter((s) => !body.includes(s))
     assert(missing.length === 0, `missing service slugs: ${missing.join(', ')}`)
