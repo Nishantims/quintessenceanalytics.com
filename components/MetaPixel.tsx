@@ -1,12 +1,15 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
+import { CONSENT_EVENT, readConsent } from "@/components/CookieConsent";
 
 // Meta Pixel (Quintessence Analytics Business portfolio dataset), so Meta ads
-// can measure leads and retarget site visitors. Counts a PageView on the first
-// load and on every client-side page change; the contact form adds a Lead.
+// can measure leads and retarget site visitors. Loads only after the visitor
+// accepts cookies (CookieConsent), and is revoked if they later decline.
+// Counts a PageView on the first load and on every client-side page change;
+// the contact form adds a Lead.
 export const META_PIXEL_ID = "2541687396306024";
 
 type Fbq = (...args: unknown[]) => void;
@@ -17,8 +20,21 @@ export function trackMeta(event: string, params?: Record<string, unknown>) {
 }
 
 export function MetaPixel() {
+  const [consented, setConsented] = useState(false);
   const pathname = usePathname();
   const first = useRef(true);
+
+  useEffect(() => {
+    const check = () => {
+      const ok = readConsent() === "accepted";
+      setConsented(ok);
+      const fbq = (window as unknown as { fbq?: Fbq }).fbq;
+      if (fbq) fbq("consent", ok ? "grant" : "revoke");
+    };
+    check();
+    window.addEventListener(CONSENT_EVENT, check);
+    return () => window.removeEventListener(CONSENT_EVENT, check);
+  }, []);
 
   useEffect(() => {
     if (first.current) {
@@ -27,6 +43,8 @@ export function MetaPixel() {
     }
     trackMeta("PageView");
   }, [pathname]);
+
+  if (!consented) return null;
 
   return (
     <Script id="meta-pixel" strategy="afterInteractive">

@@ -1,4 +1,10 @@
 import Link from "next/link";
+import { CookieSettingsButton } from "@/components/CookieConsent";
+
+const SOCIAL = [
+  { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61595333826034" },
+  { label: "Instagram", href: "https://www.instagram.com/quintessenceanalytics/" },
+];
 
 const SERVICES = [
   "AI Agent Development & Automation",
@@ -69,6 +75,13 @@ export function Footer() {
                   contact@quintessenceanalytics.com
                 </a>
               </li>
+              {SOCIAL.map((s) => (
+                <li key={s.label}>
+                  <a href={s.href} target="_blank" rel="noopener noreferrer" className="hover:text-pink">
+                    {s.label} ↗
+                  </a>
+                </li>
+              ))}
               <li className="pt-2">
                 <Link
                   href="/contact"
@@ -82,7 +95,12 @@ export function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-dark-text/10 pt-8 text-[12px] text-dark-text/40 sm:flex-row sm:items-center">
-          <p>© {new Date().getFullYear()} Quintessence Analytics. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Quintessence Analytics Private Limited. All rights reserved.</p>
+          <p className="flex flex-wrap gap-4">
+            <Link href="/privacy" className="hover:text-pink">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-pink">Terms of Use</Link>
+            <CookieSettingsButton className="hover:text-pink" />
+          </p>
           <p className="font-data">Distilled from signal, not noise.</p>
         </div>
       </div>

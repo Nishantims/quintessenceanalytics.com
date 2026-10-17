@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import Link from "next/link";
 import { trackMeta } from "@/components/MetaPixel";
 
 type Status = "idle" | "submitting" | "success" | "error";
@@ -91,6 +92,10 @@ export function ContactForm() {
       >
         {status === "submitting" ? "Sending…" : "Send message"}
       </button>
+      <p className="text-[12px] text-text-muted">
+        We use what you send only to reply to you. See our{" "}
+        <Link href="/privacy" className="text-blue-ink hover:underline">Privacy Policy</Link>.
+      </p>
     </form>
   );
 }
