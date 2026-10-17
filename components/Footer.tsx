@@ -58,6 +58,7 @@ export function Footer() {
           <div>
             <p className="text-[12px] font-semibold uppercase tracking-wide text-dark-text/45">Company</p>
             <ul className="mt-4 space-y-2.5">
+              <li><Link href="/solutions" className="text-[14px] text-dark-text/70 hover:text-pink">Solutions</Link></li>
               <li><Link href="/pricing" className="text-[14px] text-dark-text/70 hover:text-pink">Engagements</Link></li>
               <li><Link href="/industries" className="text-[14px] text-dark-text/70 hover:text-pink">Industries</Link></li>
               <li><Link href="/insights" className="text-[14px] text-dark-text/70 hover:text-pink">Insights</Link></li>

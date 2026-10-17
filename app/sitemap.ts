@@ -6,6 +6,7 @@ const BASE = "https://quintessenceanalytics.com";
 const PAGES: { path: string; priority: number }[] = [
   { path: "", priority: 1 },
   { path: "/services", priority: 0.9 },
+  { path: "/solutions", priority: 0.9 },
   { path: "/pricing", priority: 0.8 },
   { path: "/contact", priority: 0.8 },
   { path: "/industries", priority: 0.7 },

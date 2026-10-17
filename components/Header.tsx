@@ -16,6 +16,7 @@ interface NavItem {
 // than a primary nav item.
 const NAV: NavItem[] = [
   { label: "Services", href: "/services" },
+  { label: "Solutions", href: "/solutions" },
   { label: "Engagements", href: "/pricing" },
   { label: "Contact", href: "/contact" },
   { label: "Market Reports", href: "https://market-reports.com", external: true },
