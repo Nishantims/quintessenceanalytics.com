@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ThemeScript } from "@/components/ThemeScript";
+import { MetaPixel } from "@/components/MetaPixel";
 
 // Inter everywhere — matches market-reports.com's own font exactly, per
 // explicit request, instead of this site having its own separate typeface.
@@ -54,6 +55,7 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <MetaPixel />
       </body>
     </html>
   );
