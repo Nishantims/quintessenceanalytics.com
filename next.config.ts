@@ -15,6 +15,19 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/api/chess-2000/**": ["./node_modules/@se-oss/stockfish/dist/**/*"],
   },
+  // One address for search engines: www.quintessenceanalytics.com permanently redirects to
+  // quintessenceanalytics.com (the canonical metadataBase). Google's Search Console verification file is
+  // left reachable on both so a www property stays verified.
+  async redirects() {
+    return [
+      {
+        source: "/:path((?!google0a89c048491ae9c8\.html$).*)",
+        has: [{ type: "host", value: "www.quintessenceanalytics.com" }],
+        destination: "https://quintessenceanalytics.com/:path",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
