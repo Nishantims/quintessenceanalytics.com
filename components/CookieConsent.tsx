@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-// Cookie choice for the advertising cookies (Meta Pixel). The choice is kept in localStorage under
-// CONSENT_KEY; MetaPixel listens for CONSENT_EVENT and only loads after "accepted". The banner shows until
+// Cookie choice for the advertising cookies (Google Ads, Meta Pixel). The choice is kept in localStorage under
+// CONSENT_KEY; MetaPixel and GoogleTag listen for CONSENT_EVENT and only load after "accepted". The banner shows until
 // a choice is made, and the "Cookie settings" button (footer, Privacy Policy) opens it again.
 export const CONSENT_KEY = "qa-cookie-consent";
 export const CONSENT_EVENT = "qa-cookie-consent-changed";
@@ -44,7 +44,7 @@ export function CookieConsent() {
   return (
     <div role="dialog" aria-label="Cookie choice" className="fixed inset-x-4 bottom-4 z-50 mx-auto max-w-2xl rounded-2xl border border-border bg-surface-raised p-5 shadow-2xl sm:flex sm:items-center sm:gap-5">
       <p className="text-[13px] leading-relaxed text-text-secondary">
-        We use advertising cookies (Meta Pixel) to measure our ads, only if you accept. Declining does not affect the
+        We use advertising cookies (Google Ads, Meta Pixel) to measure our ads, only if you accept. Declining does not affect the
         site. <Link href="/privacy" className="text-blue-ink hover:underline">Privacy Policy</Link>
       </p>
       <div className="mt-4 flex shrink-0 gap-2 sm:mt-0">

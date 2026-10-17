@@ -31,7 +31,7 @@ const SECTIONS: LegalSection[] = [
     body: (
       <>
         <p><strong className="text-text-primary">Information you give us.</strong> When you use a contact form or email us: your name, email address, company, the area you are interested in and your message, plus anything else you choose to include.</p>
-        <p><strong className="text-text-primary">Information collected when you browse — only if you accept cookies.</strong> If you click &quot;Accept&quot; on our cookie banner, the Meta Pixel records which pages you visit, basic browser and device information, your IP address and the fact that a contact form was sent (not what you wrote in it). If you decline, the Pixel is not loaded.</p>
+        <p><strong className="text-text-primary">Information collected when you browse — only if you accept cookies.</strong> If you click &quot;Accept&quot; on our cookie banner, the Google Ads tag and the Meta Pixel record which pages you visit, basic browser and device information, your IP address and the fact that a contact form was sent (not what you wrote in it). If you decline, neither is loaded.</p>
         <p><strong className="text-text-primary">Information our hosting needs.</strong> Our hosting provider keeps standard server logs (such as IP address, time and page requested) for security and to keep the site running.</p>
         <p><strong className="text-text-primary">Business contacts.</strong> We may email people at companies about services relevant to their role, using business contact details from publicly available sources. Every such email can be stopped by replying &quot;unsubscribe&quot;; we then keep only your email address on a do-not-contact list so we never email you again.</p>
       </>
@@ -44,7 +44,7 @@ const SECTIONS: LegalSection[] = [
         items={[
           "To reply to your enquiry, scope a proposal and deliver the work you engage us for.",
           "To send you relevant information about our services; you can opt out at any time.",
-          "To measure and improve our advertising on Facebook and Instagram — only if you accepted cookies.",
+          "To measure and improve our advertising on Google, Facebook and Instagram — only if you accepted cookies.",
           "To keep the site secure, prevent misuse and meet our legal obligations.",
         ]}
       />
@@ -73,6 +73,7 @@ const SECTIONS: LegalSection[] = [
             "Supabase — the database where contact-form enquiries are stored.",
             "Resend — delivery of contact-form notifications to our mailbox.",
             "Microsoft 365 — our email.",
+            "Google — advertising measurement through the Google Ads tag, only if you accepted cookies.",
             "Meta Platforms — advertising measurement through the Meta Pixel, only if you accepted cookies.",
           ]}
         />
@@ -110,6 +111,7 @@ const SECTIONS: LegalSection[] = [
             <><code className="text-[13px]">qa-cookie-consent</code> (stored in your browser) — remembers whether you accepted or declined cookies. Always used.</>,
             <><code className="text-[13px]">qa-theme</code> (stored in your browser) — remembers light or dark mode. Always used.</>,
             <><code className="text-[13px]">_fbp</code> and related Meta cookies — advertising measurement. Only after you click &quot;Accept&quot;; Meta keeps <code className="text-[13px]">_fbp</code> for up to 90 days.</>,
+            <>Google Ads cookies (such as <code className="text-[13px]">_gcl_au</code>) — advertising measurement. Only after you click &quot;Accept&quot;; kept for up to 90 days.</>,
           ]}
         />
         <p>You can change your choice at any time: <CookieSettingsButton className="text-blue-ink underline" />.</p>

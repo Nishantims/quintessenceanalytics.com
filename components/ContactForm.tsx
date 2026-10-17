@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
-import { trackMeta } from "@/components/MetaPixel";
+import { trackLead } from "@/lib/track";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -27,7 +27,7 @@ export function ContactForm() {
       const body = await res.json();
       if (!res.ok) throw new Error(body.error ?? "Something went wrong. Please try again.");
       setStatus("success");
-      trackMeta("Lead");
+      trackLead();
       form.reset();
     } catch (err) {
       setStatus("error");
