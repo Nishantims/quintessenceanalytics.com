@@ -32,6 +32,8 @@ export const metadata: Metadata = {
     siteName: "Quintessence Analytics",
     type: "website",
   },
+  // Meta (Facebook) Business portfolio domain verification for quintessenceanalytics.com.
+  other: { "facebook-domain-verification": "uzqfebmwyda1r90e0v245uf0zbqva2" },
 };
 
 export default function RootLayout({
