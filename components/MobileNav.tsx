@@ -50,7 +50,7 @@ export function MobileNav({ items }: { items: NavItem[] }) {
               onClick={() => setOpen(false)}
               className="mt-2 rounded-full bg-ink px-5 py-3 text-center text-[14px] font-semibold text-paper"
             >
-              Book an AI Assessment
+              Free task audit
             </Link>
           </nav>
         </div>

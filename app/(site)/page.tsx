@@ -179,16 +179,16 @@ export default function HomePage() {
           <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-border px-3.5 py-1.5 text-[14px] font-semibold uppercase tracking-wide text-text-secondary">
               <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--pink)" }} />
-              Enterprise AI solutions &amp; AI assurance
+              AI automation · software · data analytics
             </span>
             <h1 className="mt-6 font-display text-[42px] font-bold leading-[1.08] tracking-tight text-text-primary sm:text-[54px]">
-              Build AI. <span style={{ color: "var(--blue)" }}>Automate work.</span> Trust the{" "}
-              <span style={{ color: "var(--pink)" }}>outcome.</span>
+              Name the task your team repeats. <span style={{ color: "var(--blue)" }}>We automate</span>{" "}
+              <span style={{ color: "var(--pink)" }}>it.</span>
             </h1>
             <p className="mt-6 max-w-lg text-[19px] leading-relaxed text-text-secondary">
-              Quintessence Analytics helps enterprises move AI from experimentation to production —
-              building AI agents, automating real workflows, and evaluating AI systems for reliability,
-              security, and governance, with every output reviewed by a senior analyst. We&apos;re also the
+              Product listings, catalogue images, invoice matching, customer enquiries on WhatsApp, weekly
+              reports: Quintessence Analytics builds AI systems and software that take repetitive work off
+              your team, with your people approving every result. Pilots start at US$1,000. We&apos;re also the
               research engine behind{" "}
               <Link href="https://market-reports.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-ink underline decoration-blue/40 underline-offset-4 hover:decoration-blue">
                 Market Reports
@@ -201,13 +201,13 @@ export default function HomePage() {
                 className="rounded-full px-6 py-3.5 text-[14px] font-semibold text-white transition-transform hover:scale-[1.03]"
                 style={{ background: "var(--blue)" }}
               >
-                Book an AI Assessment
+                Book a free task audit
               </Link>
               <Link
-                href="/services"
+                href="/solutions"
                 className="rounded-full border border-border px-6 py-3.5 text-[14px] font-semibold text-text-primary transition-colors hover:border-green hover:text-green-ink"
               >
-                Explore AI Solutions
+                See 100 tasks we automate
               </Link>
             </div>
           </div>

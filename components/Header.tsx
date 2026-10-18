@@ -52,7 +52,7 @@ export function Header() {
               href="/contact"
               className="hidden rounded-full bg-ink px-5 py-2.5 text-[13px] font-semibold text-paper transition-transform hover:scale-[1.03] sm:inline-block"
             >
-              Book an AI Assessment
+              Free task audit
             </Link>
             <MobileNav items={NAV} />
           </div>
