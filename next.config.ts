@@ -15,19 +15,9 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/api/chess-2000/**": ["./node_modules/@se-oss/stockfish/dist/**/*"],
   },
-  // One address for search engines: www.quintessenceanalytics.com permanently redirects to
-  // quintessenceanalytics.com (the canonical metadataBase). Google's Search Console verification file is
-  // left reachable on both so a www property stays verified.
-  async redirects() {
-    return [
-      {
-        source: "/:path((?!google0a89c048491ae9c8\.html$).*)",
-        has: [{ type: "host", value: "www.quintessenceanalytics.com" }],
-        destination: "https://quintessenceanalytics.com/:path",
-        permanent: true,
-      },
-    ];
-  },
+  // One address for search engines: www.quintessenceanalytics.com (owner, 2026-10-26). The redirect from
+  // quintessenceanalytics.com to www is set in Vercel's domain settings, not here - a redirect here the other way
+  // round looped with it and took the site down.
 };
 
 export default nextConfig;

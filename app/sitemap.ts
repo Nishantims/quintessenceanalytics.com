@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 // The public pages of quintessenceanalytics.com for search engines. The Yum! Brands pages are
 // deliberately left out (they are noindex), as are the API routes.
-const BASE = "https://quintessenceanalytics.com";
+const BASE = "https://www.quintessenceanalytics.com";
 const PAGES: { path: string; priority: number }[] = [
   { path: "", priority: 1 },
   { path: "/services", priority: 0.9 },

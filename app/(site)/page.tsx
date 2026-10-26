@@ -171,7 +171,7 @@ const STAGES = [
 
 const ASSURANCE_STEPS = ["Scope", "Test", "Evaluate", "Remediate", "Retest", "Monitor"];
 
-// The homepage's own address, so Google indexes quintessenceanalytics.com and not the www. or http:// copies.
+// The homepage's own address, so Google indexes www.quintessenceanalytics.com and not the bare-domain or http:// copies.
 export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 export default function HomePage() {

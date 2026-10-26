@@ -26,12 +26,12 @@ export const metadata: Metadata = {
   title: "Quintessence Analytics — AI Automation, Software & Data Analytics",
   description:
     "Name the task your team repeats and we automate it: product listings, catalogue images, invoice matching, WhatsApp enquiries, reports and more. AI automation, software and data analytics from US$1,000. Parent company of Market Reports.",
-  metadataBase: new URL("https://quintessenceanalytics.com"),
+  metadataBase: new URL("https://www.quintessenceanalytics.com"),
   openGraph: {
     title: "Quintessence Analytics — AI Automation, Software & Data Analytics",
     description:
       "100 tasks we automate with AI and software - from product listings and catalogue images to invoice matching and customer enquiries. Free task audit; pilots from US$1,000.",
-    url: "https://quintessenceanalytics.com",
+    url: "https://www.quintessenceanalytics.com",
     siteName: "Quintessence Analytics",
     type: "website",
   },
