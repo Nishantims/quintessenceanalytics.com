@@ -4,6 +4,7 @@ import { SERVICES } from "@/lib/services-data";
 import { DashboardPhoto } from "@/components/DashboardPhoto";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/services" },
   title: "Services — Quintessence Analytics",
   description:
     "Six core enterprise AI services: AI workflow automation, enterprise data analytics, AI agent development & automation, AI agent quality & evaluation, AI governance & risk, and AI data & knowledge systems.",

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { LegalPage, Bullets, type LegalSection } from "@/components/LegalPage";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/terms" },
   title: "Terms of Use — Quintessence Analytics",
   description: "The terms that apply to using quintessenceanalytics.com and to engaging Quintessence Analytics for services.",
 };

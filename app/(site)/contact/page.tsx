@@ -3,6 +3,7 @@ import { ContactForm } from "@/components/ContactForm";
 import { DashboardPhoto } from "@/components/DashboardPhoto";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/contact" },
   title: "Contact — Quintessence Analytics",
   description: "Book an AI Assessment or start a conversation with Quintessence Analytics about an AI agent, automation, or governance engagement.",
 };

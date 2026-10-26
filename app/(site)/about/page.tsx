@@ -3,6 +3,7 @@ import Link from "next/link";
 import { DashboardPhoto } from "@/components/DashboardPhoto";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/about" },
   title: "About — Quintessence Analytics",
   description:
     "Quintessence Analytics is an enterprise AI solutions & AI assurance company, and the parent company of Market Reports.",

@@ -4,6 +4,7 @@ import { AiProductCard } from "@/components/AiProductCard";
 import { AI_PRODUCTS, ENTERPRISE_PRODUCTS, SERVICES_FROM } from "@/lib/ai-products-data";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/pricing" },
   title: "Services & Engagements — Quintessence Analytics",
   description:
     "AI services start from $1,000: fixed-scope entry offers that expand into enterprise AI implementation and continuous monitoring, each scoped to your budget.",

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/insights" },
   title: "Insights — Quintessence Analytics",
   description:
     "AI agent, assurance, and governance explainers, case studies, and field notes from Quintessence Analytics.",

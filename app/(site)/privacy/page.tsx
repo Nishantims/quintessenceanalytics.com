@@ -4,6 +4,7 @@ import { LegalPage, Bullets, type LegalSection } from "@/components/LegalPage";
 import { CookieSettingsButton } from "@/components/CookieConsent";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/privacy" },
   title: "Privacy Policy — Quintessence Analytics",
   description:
     "What personal information quintessenceanalytics.com collects, why, who it is shared with, how long it is kept, and your rights.",

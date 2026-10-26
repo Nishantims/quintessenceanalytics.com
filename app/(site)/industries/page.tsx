@@ -3,6 +3,7 @@ import Link from "next/link";
 import { INDUSTRIES } from "@/lib/industries-data";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/industries" },
   title: "Industries — Quintessence Analytics",
   description:
     "AI agents, automation, and governed decision systems applied to ten industries — healthcare, manufacturing, technology, financial services, retail, energy, sports, automotive, telecom, and government.",

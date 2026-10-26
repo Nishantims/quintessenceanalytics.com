@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   Wrench, Bot, ShieldCheck, Scale, Workflow, LineChart,
@@ -169,6 +170,9 @@ const STAGES = [
 ];
 
 const ASSURANCE_STEPS = ["Scope", "Test", "Evaluate", "Remediate", "Retest", "Monitor"];
+
+// The homepage's own address, so Google indexes quintessenceanalytics.com and not the www. or http:// copies.
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 export default function HomePage() {
   return (
