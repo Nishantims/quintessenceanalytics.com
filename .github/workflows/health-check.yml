@@ -14,7 +14,7 @@ on:
   workflow_dispatch: {}
 
 env:
-  BASE_URL: https://quintessenceanalytics.com
+  BASE_URL: https://www.quintessenceanalytics.com
 
 jobs:
   health-check:
