@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Wrench, Bot, ShieldCheck, Scale, Workflow, LineChart,
   HeartPulse, Factory, Cpu, Landmark, ShoppingCart, Zap, Trophy, Car, Radio, Building2,
@@ -110,12 +111,15 @@ function AccentCard({
   title,
   body,
   href,
+  image,
 }: {
   icon: LucideIcon;
   accent: string;
   title: string;
   body: string;
   href?: string;
+  /** Photo across the top of the card (industries, 2026-11-21); the icon sits on its lower edge. */
+  image?: string;
 }) {
   const className =
     "group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface-raised p-6 transition-all hover:-translate-y-0.5 hover:border-[color:var(--card-accent)]";
@@ -127,9 +131,15 @@ function AccentCard({
         style={{ background: accent }}
         aria-hidden
       />
+      {image && (
+        <div className="relative -mx-6 -mt-6 mb-[-20px] aspect-[16/10] overflow-hidden">
+          <Image src={image} alt="" fill sizes="(min-width: 1280px) 20vw, (min-width: 640px) 50vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/35 to-transparent" />
+        </div>
+      )}
       <span
-        className="relative flex h-10 w-10 items-center justify-center rounded-xl"
-        style={{ background: `color-mix(in srgb, ${accent} 16%, transparent)` }}
+        className={`relative flex h-10 w-10 items-center justify-center rounded-xl ${image ? "ring-4 ring-[color:var(--surface-raised,#fff)] bg-surface-raised" : ""}`}
+        style={{ background: image ? `color-mix(in srgb, ${accent} 16%, var(--surface-raised, #fff))` : `color-mix(in srgb, ${accent} 16%, transparent)` }}
       >
         <Icon className="h-5 w-5" style={{ color: accent }} strokeWidth={2} />
       </span>
@@ -270,16 +280,21 @@ export default function HomePage() {
       </section>
 
       {/* ── Who We Are ── */}
-      <section className="mx-auto max-w-4xl px-6 py-24 text-center">
+      <section className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-6 py-24 lg:grid-cols-2">
+        <ScrollReveal>
+          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-border">
+            <Image src="/images/who-we-are.webp" alt="Business analytics reviewed on a tablet" fill sizes="(min-width: 1024px) 45vw, 100vw" className="object-cover" />
+          </div>
+        </ScrollReveal>
         <ScrollReveal>
           <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--green)" }}>
             Who we are
           </span>
-          <h2 className="mx-auto mt-3 max-w-2xl font-display text-[32px] font-bold leading-tight text-text-primary">
+          <h2 className="mt-3 max-w-2xl font-display text-[32px] font-bold leading-tight text-text-primary">
             An enterprise AI partner built to ship{" "}
             <span style={{ color: "var(--blue)" }}>working systems</span>, not proofs of concept
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-[18px] leading-relaxed text-text-secondary">
+          <p className="mt-5 max-w-xl text-[18px] leading-relaxed text-text-secondary">
             We&apos;re not a technology vendor selling a platform, and we&apos;re not a slide-deck
             consultancy — we build AI agents and automation using AI-native, Claude-assisted development,
             which is exactly why we can move in weeks instead of quarters. Every engagement starts with
@@ -355,6 +370,7 @@ export default function HomePage() {
                 title={ind.name}
                 body={ind.value}
                 href={`/industries#${ind.slug}`}
+                image={`/images/industries/${ind.slug}.webp`}
               />
             </ScrollReveal>
           ))}

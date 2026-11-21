@@ -1,0 +1,57 @@
+{
+ "/images/who-we-are.webp": {
+  "photographer": "Jakub Żerdzicki",
+  "source": "https://images.unsplash.com/photo-1748609160056-7b95f30041f0",
+  "license": "Unsplash License (free commercial use)"
+ },
+ "/images/industries/healthcare-pharma.webp": {
+  "photographer": "Jair Lázaro",
+  "source": "https://images.unsplash.com/photo-1513224502586-d1e602410265",
+  "license": "Unsplash License (free commercial use)"
+ },
+ "/images/industries/manufacturing.webp": {
+  "photographer": "Homa Appliances",
+  "source": "https://images.unsplash.com/photo-1716191299980-a6e8827ba10b",
+  "license": "Unsplash License (free commercial use)"
+ },
+ "/images/industries/technology.webp": {
+  "photographer": "Alexandre Debiève",
+  "source": "https://images.unsplash.com/photo-1518770660439-4636190af475",
+  "license": "Unsplash License (free commercial use)"
+ },
+ "/images/industries/financial-services.webp": {
+  "photographer": "Michi von Ah",
+  "source": "https://images.unsplash.com/photo-1775327479121-a9dbe3f620eb",
+  "license": "Unsplash License (free commercial use)"
+ },
+ "/images/industries/retail-ecommerce.webp": {
+  "photographer": "Ruchindra Gunasekara",
+  "source": "https://images.unsplash.com/photo-1553413077-190dd305871c",
+  "license": "Unsplash License (free commercial use)"
+ },
+ "/images/industries/energy-utilities.webp": {
+  "photographer": "Nicholas Doherty",
+  "source": "https://images.unsplash.com/photo-1548337138-e87d889cc369",
+  "license": "Unsplash License (free commercial use)"
+ },
+ "/images/industries/sports.webp": {
+  "photographer": "Ameer Basheer",
+  "source": "https://images.unsplash.com/photo-1557174949-3b1f5b2e8fac",
+  "license": "Unsplash License (free commercial use)"
+ },
+ "/images/industries/automotive-mobility.webp": {
+  "photographer": "CHUTTERSNAP",
+  "source": "https://images.unsplash.com/photo-1593941707874-ef25b8b4a92b",
+  "license": "Unsplash License (free commercial use)"
+ },
+ "/images/industries/telecommunications.webp": {
+  "photographer": "Sergej",
+  "source": "https://images.unsplash.com/photo-1782055984204-43c6cdfb99b1",
+  "license": "Unsplash License (free commercial use)"
+ },
+ "/images/industries/government-smart-cities.webp": {
+  "photographer": "Pedro Lastra",
+  "source": "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df",
+  "license": "Unsplash License (free commercial use)"
+ }
+}
