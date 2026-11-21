@@ -1,3 +1,4 @@
+import { PhotoBand } from "@/components/PhotoBand";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { INDUSTRIES } from "@/lib/industries-data";
@@ -30,6 +31,10 @@ export default function IndustriesPage() {
           industry — what changes is which workflow is worth automating first, and what &quot;governed&quot;
           actually requires. Here&apos;s what that looks like by sector.
         </p>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 pb-16">
+        <PhotoBand src="/images/pages/industries.webp" alt="A city at night seen from above" />
       </section>
 
       <section className="mx-auto max-w-6xl px-6 pb-24">

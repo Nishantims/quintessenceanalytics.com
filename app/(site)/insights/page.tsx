@@ -1,3 +1,4 @@
+import { PhotoBand } from "@/components/PhotoBand";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -27,6 +28,9 @@ export default function InsightsPage() {
       >
         Ask us a question →
       </Link>
+      <div className="mt-14">
+        <PhotoBand src="/images/pages/insights.webp" alt="Performance charts on a laptop screen" tall />
+      </div>
     </section>
   );
 }

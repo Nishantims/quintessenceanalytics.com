@@ -1,7 +1,7 @@
 export interface Outcome {
   title: string;
   body: string;
-  accent: "pink" | "blue" | "green" | "purple" | "orange";
+  accent: "pink" | "blue" | "green";
 }
 
 export const OUTCOMES: Outcome[] = [
@@ -23,7 +23,7 @@ export const OUTCOMES: Outcome[] = [
   {
     title: "Board-ready, every time",
     body: "Dashboards and reports built to be presented as-is, not reworked into a deck the night before a meeting.",
-    accent: "purple",
+    accent: "blue",
   },
 ];
 
@@ -32,7 +32,7 @@ export interface CaseStudy {
   challenge: string;
   approach: string;
   outcome: string;
-  accent: "pink" | "blue" | "green" | "purple" | "orange";
+  accent: "pink" | "blue" | "green";
 }
 
 // Representative engagement patterns, not attributed to a specific named
@@ -66,7 +66,7 @@ export const CASE_STUDIES: CaseStudy[] = [
 export interface TechCapability {
   title: string;
   body: string;
-  accent: "pink" | "blue" | "green" | "purple" | "orange";
+  accent: "pink" | "blue" | "green";
 }
 
 export const TECH_CAPABILITIES: TechCapability[] = [
@@ -88,27 +88,27 @@ export const TECH_CAPABILITIES: TechCapability[] = [
   {
     title: "Interactive decision systems",
     body: "Filterable by scenario, segment, and time period — a living tool your team can query, not a static export.",
-    accent: "orange",
+    accent: "blue",
   },
 ];
 
 export interface WhyPoint {
   title: string;
   body: string;
-  accent: "pink" | "blue" | "green" | "purple" | "orange";
+  accent: "pink" | "blue" | "green";
 }
 
 export const WHY_CHOOSE_US: WhyPoint[] = [
   { title: "Business-focused AI", body: "Every model is built around a business decision, not a technology demo.", accent: "pink" },
   { title: "Industry expertise", body: "Analysts who understand the sector, not just the dataset.", accent: "blue" },
   { title: "Actionable insights", body: "Every output ships with a recommended next step, not just a chart.", accent: "green" },
-  { title: "Scalable enterprise solutions", body: "Built to grow from one team's pilot to an organization-wide rollout.", accent: "purple" },
-  { title: "Transparent methodology", body: "You see the assumptions and the model, not a black box you have to trust blindly.", accent: "orange" },
+  { title: "Scalable enterprise solutions", body: "Built to grow from one team's pilot to an organization-wide rollout.", accent: "pink" },
+  { title: "Transparent methodology", body: "You see the assumptions and the model, not a black box you have to trust blindly.", accent: "green" },
   { title: "Secure AI", body: "Your data stays yours — models are built on it, never used to train anything shared outside your engagement.", accent: "blue" },
   { title: "Rapid, AI-native delivery", body: "AI-assisted development is how we actually build — real work in weeks, not quarters, without cutting corners on review.", accent: "pink" },
   { title: "Custom-built, not templated", body: "Built around your specific data and workflow, not a generic template repackaged per client.", accent: "green" },
-  { title: "Executive-ready reporting", body: "Deliverables built to be presented as-is in the room where the decision gets made.", accent: "orange" },
-  { title: "Long-term partnership", body: "Models get re-tuned as your business changes — this isn't a one-time deliverable.", accent: "purple" },
+  { title: "Executive-ready reporting", body: "Deliverables built to be presented as-is in the room where the decision gets made.", accent: "pink" },
+  { title: "Long-term partnership", body: "Models get re-tuned as your business changes — this isn't a one-time deliverable.", accent: "blue" },
 ];
 
 export interface Testimonial {
@@ -136,7 +136,7 @@ export const TESTIMONIALS: Testimonial[] = [
 export interface TrustPoint {
   title: string;
   body: string;
-  accent: "pink" | "blue" | "green" | "purple" | "orange";
+  accent: "pink" | "blue" | "green";
 }
 
 // A bounded, checkable commitment tied to the deliverables actually listed
@@ -146,8 +146,8 @@ export interface TrustPoint {
 export const TRUST_POINTS: TrustPoint[] = [
   { title: "Scope-Completion Commitment", body: "Every deliverable listed on your offer gets delivered — or we keep working at no extra charge until it is.", accent: "green" },
   { title: "Fixed-Price, No Surprises", body: "The price you're quoted on the discovery call is the price you pay — nothing added after the fact.", accent: "blue" },
-  { title: "No Long-Term Lock-In", body: "Fixed-scope engagements, not a multi-year contract you can't get out of.", accent: "orange" },
-  { title: "Senior-Analyst Reviewed", body: "Every AI-generated output is reviewed by a senior analyst before it reaches you, without exception.", accent: "purple" },
+  { title: "No Long-Term Lock-In", body: "Fixed-scope engagements, not a multi-year contract you can't get out of.", accent: "pink" },
+  { title: "Senior-Analyst Reviewed", body: "Every AI-generated output is reviewed by a senior analyst before it reaches you, without exception.", accent: "blue" },
   { title: "NDA On Request", body: "Confidentiality terms set before any of your data or workflow details are shared with us.", accent: "pink" },
   { title: "Global, Dual-Currency", body: "Quoted and billable in USD or INR, for clients anywhere in the world.", accent: "blue" },
 ];
@@ -155,7 +155,7 @@ export const TRUST_POINTS: TrustPoint[] = [
 export interface ToolExample {
   title: string;
   body: string;
-  accent: "pink" | "blue" | "green" | "purple" | "orange";
+  accent: "pink" | "blue" | "green";
 }
 
 // Representative examples of the kind of tool built under the AI Tools
@@ -167,13 +167,13 @@ export const TOOLS_WE_BUILD: ToolExample[] = [
   { title: "Support Ticket Triage Agent", body: "Classifies and routes inbound tickets, and drafts a first-response reply for your team to approve.", accent: "blue" },
   { title: "Meeting Notes & Action-Item Extractor", body: "Turns a call recording or transcript into structured notes with owners and due dates.", accent: "pink" },
   { title: "Invoice & Receipt Data Extractor", body: "Pulls line-item data from PDFs and photos straight into a spreadsheet or accounting system.", accent: "green" },
-  { title: "Review Response Assistant", body: "Drafts on-brand replies to Google and Yelp reviews for a human to approve before posting.", accent: "purple" },
-  { title: "Lead Qualification Agent", body: "Scores and routes inbound leads against your own criteria before they hit a rep's inbox.", accent: "orange" },
+  { title: "Review Response Assistant", body: "Drafts on-brand replies to Google and Yelp reviews for a human to approve before posting.", accent: "pink" },
+  { title: "Lead Qualification Agent", body: "Scores and routes inbound leads against your own criteria before they hit a rep's inbox.", accent: "green" },
   { title: "Internal Knowledge Search", body: "A chat interface over your internal docs and wikis so staff get answers instead of searching folders.", accent: "blue" },
   { title: "Sales Proposal Generator", body: "Assembles a first-draft proposal or quote straight from a scoping call transcript.", accent: "pink" },
   { title: "Website Concierge", body: "An FAQ and lead-capture chat widget embedded on your own site, tuned to your offer.", accent: "green" },
-  { title: "Market Opportunity Dashboard", body: "A lightweight, self-serve sizing and scoring view for one product idea, built on our own research engine.", accent: "purple" },
-  { title: "AI Audit-Trail Logger", body: "Tracks which AI systems you run, who has access, and flags permissions that have gone stale.", accent: "orange" },
+  { title: "Market Opportunity Dashboard", body: "A lightweight, self-serve sizing and scoring view for one product idea, built on our own research engine.", accent: "pink" },
+  { title: "AI Audit-Trail Logger", body: "Tracks which AI systems you run, who has access, and flags permissions that have gone stale.", accent: "blue" },
 ];
 
 export interface Faq {

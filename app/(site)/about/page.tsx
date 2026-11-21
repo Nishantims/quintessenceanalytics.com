@@ -1,3 +1,4 @@
+import { PhotoBand } from "@/components/PhotoBand";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { DashboardPhoto } from "@/components/DashboardPhoto";
@@ -48,6 +49,10 @@ export default function AboutPage() {
           of our methodology. This page exists because the methodology is the product, whichever form
           it ships in.
         </p>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 pb-16">
+        <PhotoBand src="/images/pages/about.webp" alt="A desk with monitors and a laptop showing code at night" />
       </section>
 
       <section className="mx-auto max-w-3xl px-6 pb-16">

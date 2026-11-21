@@ -1,3 +1,4 @@
+import { PhotoBand } from "@/components/PhotoBand";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SERVICES } from "@/lib/services-data";
@@ -14,8 +15,6 @@ const ACCENT_VAR: Record<string, string> = {
   pink: "var(--pink)",
   blue: "var(--blue)",
   green: "var(--green)",
-  purple: "var(--purple)",
-  orange: "var(--orange)",
 };
 
 export default function ServicesPage() {
@@ -33,6 +32,10 @@ export default function ServicesPage() {
           or bring us a workflow that spans all six. Top AI services at your budget: we scope every
           engagement to a fixed price that fits.
         </p>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 pb-16">
+        <PhotoBand src="/images/pages/services.webp" alt="A laptop showing program code" />
       </section>
 
       <section className="mx-auto max-w-3xl px-6 pb-16">

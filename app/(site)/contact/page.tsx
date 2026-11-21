@@ -1,6 +1,6 @@
+import { PhotoBand } from "@/components/PhotoBand";
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/ContactForm";
-import { DashboardPhoto } from "@/components/DashboardPhoto";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/contact" },
@@ -39,7 +39,7 @@ export default function ContactPage() {
           </div>
 
           <div className="mt-10">
-            <DashboardPhoto src="/images/hero-dashboard.png" alt="Analytics dashboard overview on a laptop" />
+            <PhotoBand src="/images/pages/contact.webp" alt="A bright, modern office meeting space" tall />
           </div>
         </div>
 

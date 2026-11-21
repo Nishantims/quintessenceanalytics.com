@@ -53,5 +53,40 @@
   "photographer": "Pedro Lastra",
   "source": "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df",
   "license": "Unsplash License (free commercial use)"
+ },
+ "/images/pages/contact.webp": {
+  "photographer": "Nastuh Abootalebi",
+  "source": "https://images.unsplash.com/photo-1497366811353-6870744d04b2",
+  "license": "Unsplash License (free commercial use)"
+ },
+ "/images/pages/insights.webp": {
+  "photographer": "Luke Chesser",
+  "source": "https://images.unsplash.com/photo-1551288049-bebda4e38f71",
+  "license": "Unsplash License (free commercial use)"
+ },
+ "/images/pages/solutions.webp": {
+  "photographer": "Brecht Corbeel",
+  "source": "https://images.unsplash.com/photo-1782338938777-908f4e1db3be",
+  "license": "Unsplash License (free commercial use)"
+ },
+ "/images/pages/services.webp": {
+  "photographer": "Arnold Francisca",
+  "source": "https://images.unsplash.com/photo-1555066931-4365d14bab8c",
+  "license": "Unsplash License (free commercial use)"
+ },
+ "/images/pages/pricing.webp": {
+  "photographer": "jonakoh _",
+  "source": "https://images.unsplash.com/photo-1757466762489-52fea38071ad",
+  "license": "Unsplash License (free commercial use)"
+ },
+ "/images/pages/about.webp": {
+  "photographer": "Jannis Brandt",
+  "source": "https://images.unsplash.com/photo-1542315192-1f61a1792f33",
+  "license": "Unsplash License (free commercial use)"
+ },
+ "/images/pages/industries.webp": {
+  "photographer": "Polina Kuzovkova",
+  "source": "https://images.unsplash.com/photo-1603793510575-a8cf24361baa",
+  "license": "Unsplash License (free commercial use)"
  }
 }

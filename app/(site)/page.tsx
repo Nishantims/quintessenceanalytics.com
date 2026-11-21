@@ -25,8 +25,6 @@ const ACCENT_VAR = {
   pink: "var(--pink)",
   blue: "var(--blue)",
   green: "var(--green)",
-  purple: "var(--purple)",
-  orange: "var(--orange)",
 };
 
 const WHAT_WE_DO_ICONS: Record<string, LucideIcon> = {
@@ -166,16 +164,16 @@ const WHAT_WE_DO = [
   { title: "AI Tools", body: "Any application you need built, AI-powered or not — custom software scoped to your exact workflow, not a fixed product.", accent: "green" as const },
   { title: "AI Agents", body: "Task-oriented agents that retrieve, reason, use approved tools, and finish the workflow.", accent: "blue" as const },
   { title: "AI Assurance", body: "Evaluation and testing that finds an agent's failure modes before your customers do.", accent: "pink" as const },
-  { title: "AI Governance", body: "An independent inventory, permissions review, and audit trail for the AI you already run.", accent: "purple" as const },
-  { title: "Automation", body: "One real workflow, automated end to end, with a human approval step built in.", accent: "orange" as const },
+  { title: "AI Governance", body: "An independent inventory, permissions review, and audit trail for the AI you already run.", accent: "blue" as const },
+  { title: "Automation", body: "One real workflow, automated end to end, with a human approval step built in.", accent: "green" as const },
   { title: "Decision Systems", body: "Predictive analytics and dashboards, analyst-reviewed at every tier.", accent: "pink" as const },
 ];
 
 const STAGES = [
   { n: "1", stage: "Identify", capability: "AI Readiness Assessment", cta: "Assess your business", href: "/pricing", accent: "pink" as const },
   { n: "2", stage: "Build", capability: "AI Agent / Automation Pilot", cta: "Start a pilot", href: "/pricing", accent: "blue" as const },
-  { n: "3", stage: "Assure", capability: "AI Agent Quality & Evaluation", cta: "Evaluate an agent", href: "/services#ai-agent-quality-evaluation", accent: "orange" as const },
-  { n: "4", stage: "Govern", capability: "AI Governance & Risk", cta: "Assess AI risk", href: "/services#ai-governance-risk", accent: "purple" as const },
+  { n: "3", stage: "Assure", capability: "AI Agent Quality & Evaluation", cta: "Evaluate an agent", href: "/services#ai-agent-quality-evaluation", accent: "pink" as const },
+  { n: "4", stage: "Govern", capability: "AI Governance & Risk", cta: "Assess AI risk", href: "/services#ai-governance-risk", accent: "blue" as const },
   { n: "5", stage: "Operate", capability: "Continuous AI Monitoring", cta: "Discuss monitoring", href: "/contact", accent: "green" as const },
 ];
 

@@ -1,3 +1,4 @@
+import { PhotoBand } from "@/components/PhotoBand";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AiProductCard } from "@/components/AiProductCard";
@@ -23,6 +24,10 @@ export default function PricingPage() {
           Services start from <strong className="text-text-primary">{SERVICES_FROM}</strong>. No undefined consulting
           engagements: every offer below has a real delivery window and a specific list of what you get — anywhere in the world.
         </p>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 pb-16">
+        <PhotoBand src="/images/pages/pricing.webp" alt="A tidy desk with a laptop, notebook and keyboard" />
       </section>
 
       <section className="mx-auto max-w-7xl px-6 pb-16">

@@ -1,3 +1,4 @@
+import { PhotoBand } from "@/components/PhotoBand";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SolutionsCatalog } from "@/components/SolutionsCatalog";
@@ -37,6 +38,10 @@ export default function SolutionsPage() {
             Find your task
           </a>
         </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 pb-16">
+        <PhotoBand src="/images/pages/solutions.webp" alt="A glowing processor chip on a circuit board" />
       </section>
 
       <section className="mx-auto max-w-5xl px-6 pb-16">
