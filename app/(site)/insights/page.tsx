@@ -1,4 +1,4 @@
-import { PhotoBand } from "@/components/PhotoBand";
+import { SidePhoto } from "@/components/SidePhoto";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -11,13 +11,15 @@ export const metadata: Metadata = {
 
 export default function InsightsPage() {
   return (
-    <section className="mx-auto max-w-3xl px-6 pt-20 pb-28 text-center">
+    <section className="mx-auto max-w-6xl px-6 pt-20 pb-28">
+      <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+      <div>
       <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--blue)" }}>Insights</span>
-      <h1 className="mx-auto mt-4 max-w-xl font-display text-[36px] font-bold leading-[1.15] text-text-primary">
+      <h1 className="mt-4 max-w-xl font-display text-[36px] font-bold leading-[1.15] text-text-primary">
         The first articles are{" "}
         <span style={{ color: "var(--pink)" }}>in progress</span>
       </h1>
-      <p className="mx-auto mt-5 max-w-md text-[17px] leading-relaxed text-text-secondary">
+      <p className="mt-5 max-w-md text-[17px] leading-relaxed text-text-secondary">
         We&apos;re publishing real field notes on AI agents, evaluation, and governance as engagements
         wrap — not generic &quot;AI is changing the world&quot; content. Check back soon, or ask us directly.
       </p>
@@ -28,8 +30,8 @@ export default function InsightsPage() {
       >
         Ask us a question →
       </Link>
-      <div className="mt-14">
-        <PhotoBand src="/images/pages/insights.webp" alt="Performance charts on a laptop screen" tall />
+      </div>
+      <SidePhoto src="/images/side/insights.webp" alt="Performance charts on a laptop screen" priority />
       </div>
     </section>
   );

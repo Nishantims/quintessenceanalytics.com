@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { blurProps } from "@/lib/blur";
 
 export function DashboardPhoto({
   src,
@@ -18,6 +19,8 @@ export function DashboardPhoto({
         height={1024}
         priority={priority}
         className="h-auto w-full"
+        sizes="(min-width: 1024px) 640px, 100vw"
+        {...blurProps(src)}
       />
     </div>
   );

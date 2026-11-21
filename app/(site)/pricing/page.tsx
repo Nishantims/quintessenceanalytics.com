@@ -1,7 +1,7 @@
-import { PhotoBand } from "@/components/PhotoBand";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AiProductCard } from "@/components/AiProductCard";
+import { SidePhoto } from "@/components/SidePhoto";
 import { AI_PRODUCTS, ENTERPRISE_PRODUCTS, SERVICES_FROM } from "@/lib/ai-products-data";
 
 export const metadata: Metadata = {
@@ -14,20 +14,21 @@ export const metadata: Metadata = {
 export default function PricingPage() {
   return (
     <>
-      <section className="mx-auto max-w-4xl px-6 pt-20 pb-14 text-center">
-        <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--pink)" }}>Engagements</span>
-        <h1 className="mx-auto mt-4 max-w-2xl font-display text-[40px] font-bold leading-[1.1] text-text-primary">
-          Start small, fixed-scope. Expand once the{" "}
-          <span style={{ color: "var(--blue)" }}>ROI is proven</span>.
-        </h1>
-        <p className="mx-auto mt-5 max-w-xl text-[18px] leading-relaxed text-text-secondary">
-          Services start from <strong className="text-text-primary">{SERVICES_FROM}</strong>. No undefined consulting
-          engagements: every offer below has a real delivery window and a specific list of what you get — anywhere in the world.
-        </p>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-6 pb-16">
-        <PhotoBand src="/images/pages/pricing.webp" alt="A tidy desk with a laptop, notebook and keyboard" />
+      <section className="mx-auto max-w-6xl px-6 pt-20 pb-20">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+          <div>
+            <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--pink)" }}>Engagements</span>
+            <h1 className="mt-4 max-w-xl font-display text-[40px] font-bold leading-[1.1] text-text-primary">
+              Start small, fixed-scope. Expand once the{" "}
+              <span style={{ color: "var(--blue)" }}>ROI is proven</span>.
+            </h1>
+            <p className="mt-5 max-w-xl text-[18px] leading-relaxed text-text-secondary">
+              Services start from <strong className="text-text-primary">{SERVICES_FROM}</strong>. No undefined consulting
+              engagements: every offer below has a real delivery window and a specific list of what you get — anywhere in the world.
+            </p>
+          </div>
+          <SidePhoto src="/images/side/engagements.webp" alt="A team planning work on a wall of notes" priority />
+        </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-6 pb-16">
@@ -45,27 +46,30 @@ export default function PricingPage() {
 
       <section className="border-y border-border bg-surface">
         <div className="mx-auto max-w-6xl px-6 py-24">
-          <div className="text-center">
-            <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--green)" }}>
-              The expansion path
-            </span>
-            <h2 className="mx-auto mt-3 max-w-lg font-display text-[30px] font-bold leading-tight text-text-primary">
-              Starter assessment → pilot →{" "}
-              <span style={{ color: "var(--blue)" }}>enterprise implementation</span> → monitoring
-            </h2>
-          </div>
-          <div className="mt-12 divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface-raised">
-            {ENTERPRISE_PRODUCTS.map((p) => (
-              <div key={p.name} className="grid gap-3 p-6 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-6">
-                <div>
-                  <h3 className="font-display text-[16px] font-bold text-text-primary">{p.name}</h3>
-                  <p className="mt-1.5 text-[13.5px] leading-relaxed text-text-secondary">{p.deliverables}</p>
-                </div>
-                <div className="shrink-0 text-left sm:text-right">
-                  <p className="text-[12px] font-semibold uppercase tracking-wide text-text-muted">{p.duration}</p>
-                </div>
+          <div className="grid items-center gap-12 lg:grid-cols-[0.85fr_1.15fr]">
+            <SidePhoto src="/images/side/engagements-path.webp" alt="A staircase rising toward the light" />
+            <div>
+              <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--green)" }}>
+                The expansion path
+              </span>
+              <h2 className="mt-3 max-w-lg font-display text-[30px] font-bold leading-tight text-text-primary">
+                Starter assessment → pilot →{" "}
+                <span style={{ color: "var(--blue)" }}>enterprise implementation</span> → monitoring
+              </h2>
+              <div className="mt-8 divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface-raised">
+                {ENTERPRISE_PRODUCTS.map((p) => (
+                  <div key={p.name} className="grid gap-3 p-6 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-6">
+                    <div>
+                      <h3 className="font-display text-[16px] font-bold text-text-primary">{p.name}</h3>
+                      <p className="mt-1.5 text-[13.5px] leading-relaxed text-text-secondary">{p.deliverables}</p>
+                    </div>
+                    <div className="shrink-0 text-left sm:text-right">
+                      <p className="text-[12px] font-semibold uppercase tracking-wide text-text-muted">{p.duration}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>

@@ -1,14 +1,20 @@
-import { PhotoBand } from "@/components/PhotoBand";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SERVICES } from "@/lib/services-data";
-import { DashboardPhoto } from "@/components/DashboardPhoto";
+import { SidePhoto } from "@/components/SidePhoto";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/services" },
   title: "Services — Quintessence Analytics",
   description:
     "Six core enterprise AI services: AI workflow automation, enterprise data analytics, AI agent development & automation, AI agent quality & evaluation, AI governance & risk, and AI data & knowledge systems.",
+};
+
+// Photos on every other service, alternating sides after the hero photo on the right (owner, 2026-11-21).
+const SERVICE_PHOTOS: Record<number, { src: string; alt: string; wide?: boolean }> = {
+  1: { src: "/images/services-dashboard.webp", alt: "System performance analytics dashboard on a laptop", wide: true },
+  3: { src: "/images/side/service-evaluation.webp", alt: "A magnifying glass held over a laptop keyboard" },
+  5: { src: "/images/side/service-knowledge.webp", alt: "Streams of light through a long hall, like data in motion" },
 };
 
 const ACCENT_VAR: Record<string, string> = {
@@ -20,31 +26,30 @@ const ACCENT_VAR: Record<string, string> = {
 export default function ServicesPage() {
   return (
     <>
-      <section className="mx-auto max-w-4xl px-6 pt-20 pb-14 text-center">
-        <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--pink)" }}>Services</span>
-        <h1 className="mx-auto mt-4 max-w-2xl font-display text-[40px] font-bold leading-[1.1] text-text-primary">
-          Build AI. Automate work.{" "}
-          <span style={{ color: "var(--blue)" }}>Trust the outcome.</span>
-        </h1>
-        <p className="mx-auto mt-5 max-w-xl text-[18px] leading-relaxed text-text-secondary">
-          Six disciplines that move an enterprise from AI experimentation to production — agents that do
-          real work, evaluated before they ship, governed once they&apos;re live. Pick the one you need,
-          or bring us a workflow that spans all six. Top AI services at your budget: we scope every
-          engagement to a fixed price that fits.
-        </p>
+      <section className="mx-auto max-w-6xl px-6 pt-20 pb-20">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+          <div>
+            <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: "var(--pink)" }}>Services</span>
+            <h1 className="mt-4 max-w-xl font-display text-[40px] font-bold leading-[1.1] text-text-primary">
+              Build AI. Automate work.{" "}
+              <span style={{ color: "var(--blue)" }}>Trust the outcome.</span>
+            </h1>
+            <p className="mt-5 max-w-xl text-[18px] leading-relaxed text-text-secondary">
+              Six disciplines that move an enterprise from AI experimentation to production — agents that do
+              real work, evaluated before they ship, governed once they&apos;re live. Pick the one you need,
+              or bring us a workflow that spans all six. Top AI services at your budget: we scope every
+              engagement to a fixed price that fits.
+            </p>
+          </div>
+          <SidePhoto src="/images/side/services.webp" alt="A laptop showing program code" priority />
+        </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-16">
-        <PhotoBand src="/images/pages/services.webp" alt="A laptop showing program code" />
-      </section>
-
-      <section className="mx-auto max-w-3xl px-6 pb-16">
-        <DashboardPhoto src="/images/services-dashboard.png" alt="System performance analytics dashboard on a laptop" />
-      </section>
-
-      <section className="mx-auto max-w-5xl divide-y divide-border px-6 pb-24">
+      <section className="mx-auto max-w-6xl divide-y divide-border px-6 pb-24">
         {SERVICES.map((service, i) => (
           <div key={service.slug} id={service.slug} className="scroll-mt-24 py-14 first:pt-0">
+            <div className={SERVICE_PHOTOS[i] ? "grid items-center gap-10 lg:grid-cols-2 lg:gap-14" : ""}>
+            {SERVICE_PHOTOS[i] && i % 4 === 1 && <SidePhoto {...SERVICE_PHOTOS[i]} />}
             <div className="grid gap-8 lg:grid-cols-[auto_1fr] lg:gap-12">
               <div className="flex items-start gap-4 lg:flex-col lg:items-start lg:gap-2">
                 <span className="font-data text-[15px] text-text-muted">{String(i + 1).padStart(2, "0")}</span>
@@ -64,7 +69,7 @@ export default function ServicesPage() {
                 <p className="mt-4 max-w-2xl text-[19px] leading-relaxed text-text-secondary">
                   {service.description}
                 </p>
-                <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+                <ul className={`mt-6 grid gap-3 ${SERVICE_PHOTOS[i] ? "" : "sm:grid-cols-2"}`}>
                   {service.bullets.map((b) => (
                     <li key={b} className="flex gap-2.5 text-[14px] leading-relaxed text-text-primary">
                       <span
@@ -77,6 +82,8 @@ export default function ServicesPage() {
                   ))}
                 </ul>
               </div>
+            </div>
+            {SERVICE_PHOTOS[i] && i % 4 === 3 && <SidePhoto {...SERVICE_PHOTOS[i]} />}
             </div>
           </div>
         ))}

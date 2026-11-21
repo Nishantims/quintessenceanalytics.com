@@ -1,4 +1,4 @@
-import { PhotoBand } from "@/components/PhotoBand";
+import { SidePhoto } from "@/components/SidePhoto";
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/ContactForm";
 
@@ -39,7 +39,7 @@ export default function ContactPage() {
           </div>
 
           <div className="mt-10">
-            <PhotoBand src="/images/pages/contact.webp" alt="A bright, modern office meeting space" tall />
+            <SidePhoto src="/images/side/contact.webp" alt="A bright, modern office meeting space" />
           </div>
         </div>
 

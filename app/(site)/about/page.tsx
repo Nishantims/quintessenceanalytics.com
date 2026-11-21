@@ -1,7 +1,6 @@
-import { PhotoBand } from "@/components/PhotoBand";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { DashboardPhoto } from "@/components/DashboardPhoto";
+import { SidePhoto } from "@/components/SidePhoto";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/about" },
@@ -37,30 +36,29 @@ const ACCENT_VAR: Record<string, string> = {
 export default function AboutPage() {
   return (
     <>
-      <section className="mx-auto max-w-4xl px-6 pt-20 pb-16 text-center">
-        <span className="text-[15px] font-semibold uppercase tracking-wide text-blue-ink">About</span>
-        <h1 className="mx-auto mt-4 max-w-2xl font-display text-[40px] font-bold leading-[1.1] text-text-primary">
-          We built the <span style={{ color: "var(--pink)" }}>AI engine</span> first, then the reports
-          on top of it.
-        </h1>
-        <p className="mx-auto mt-5 max-w-xl text-[18px] leading-relaxed text-text-secondary">
-          Quintessence Analytics is an enterprise AI solutions &amp; AI assurance company. Market Reports —
-          our subscription platform of syndicated industry reports — is the first product built on top
-          of our methodology. This page exists because the methodology is the product, whichever form
-          it ships in.
-        </p>
+      <section className="mx-auto max-w-6xl px-6 pt-20 pb-20">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+          <div>
+            <span className="text-[15px] font-semibold uppercase tracking-wide text-blue-ink">About</span>
+            <h1 className="mt-4 max-w-xl font-display text-[40px] font-bold leading-[1.1] text-text-primary">
+              We built the <span style={{ color: "var(--pink)" }}>AI engine</span> first, then the reports
+              on top of it.
+            </h1>
+            <p className="mt-5 max-w-xl text-[18px] leading-relaxed text-text-secondary">
+              Quintessence Analytics is an enterprise AI solutions &amp; AI assurance company. Market Reports —
+              our subscription platform of syndicated industry reports — is the first product built on top
+              of our methodology. This page exists because the methodology is the product, whichever form
+              it ships in.
+            </p>
+          </div>
+          <SidePhoto src="/images/side/about.webp" alt="A desk with monitors and a laptop showing code at night" priority />
+        </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-16">
-        <PhotoBand src="/images/pages/about.webp" alt="A desk with monitors and a laptop showing code at night" />
-      </section>
-
-      <section className="mx-auto max-w-3xl px-6 pb-16">
-        <DashboardPhoto src="/images/about-dashboard.png" alt="Analytics dashboard overview on a laptop" />
-      </section>
-
-      <section className="mx-auto max-w-5xl px-6 pb-24">
-        <div className="grid gap-10 rounded-3xl border border-border bg-surface p-10 lg:grid-cols-2 lg:p-14">
+      <section className="mx-auto max-w-6xl px-6 pb-24">
+        <div className="grid items-center gap-12 lg:grid-cols-[0.95fr_1.05fr]">
+        <SidePhoto src="/images/about-dashboard.webp" alt="Analytics dashboard overview on a laptop" wide />
+        <div className="grid gap-10 rounded-3xl border border-border bg-surface p-10 lg:p-12">
           <div>
             <h2 className="font-display text-[24px] font-bold text-text-primary">
               Why <span style={{ color: "var(--green)" }}>&quot;Quintessence&quot;</span>
@@ -84,6 +82,7 @@ export default function AboutPage() {
               engagement.
             </p>
           </div>
+        </div>
         </div>
       </section>
 

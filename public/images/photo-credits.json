@@ -54,39 +54,69 @@
   "source": "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df",
   "license": "Unsplash License (free commercial use)"
  },
- "/images/pages/contact.webp": {
+ "/images/side/service-evaluation.webp": {
+  "photographer": "Agence Olloweb",
+  "source": "https://images.unsplash.com/photo-1516382799247-87df95d790b7",
+  "license": "Unsplash License (free commercial use)"
+ },
+ "/images/side/contact.webp": {
   "photographer": "Nastuh Abootalebi",
   "source": "https://images.unsplash.com/photo-1497366811353-6870744d04b2",
   "license": "Unsplash License (free commercial use)"
  },
- "/images/pages/insights.webp": {
-  "photographer": "Luke Chesser",
-  "source": "https://images.unsplash.com/photo-1551288049-bebda4e38f71",
+ "/images/side/partnership.webp": {
+  "photographer": "Rock Staar",
+  "source": "https://images.unsplash.com/photo-1638262052640-82e94d64664a",
   "license": "Unsplash License (free commercial use)"
  },
- "/images/pages/solutions.webp": {
-  "photographer": "Brecht Corbeel",
-  "source": "https://images.unsplash.com/photo-1782338938777-908f4e1db3be",
-  "license": "Unsplash License (free commercial use)"
- },
- "/images/pages/services.webp": {
+ "/images/side/services.webp": {
   "photographer": "Arnold Francisca",
   "source": "https://images.unsplash.com/photo-1555066931-4365d14bab8c",
   "license": "Unsplash License (free commercial use)"
  },
- "/images/pages/pricing.webp": {
-  "photographer": "jonakoh _",
-  "source": "https://images.unsplash.com/photo-1757466762489-52fea38071ad",
+ "/images/side/insights.webp": {
+  "photographer": "Luke Chesser",
+  "source": "https://images.unsplash.com/photo-1551288049-bebda4e38f71",
   "license": "Unsplash License (free commercial use)"
  },
- "/images/pages/about.webp": {
+ "/images/side/solutions.webp": {
+  "photographer": "Brecht Corbeel",
+  "source": "https://images.unsplash.com/photo-1782338938777-908f4e1db3be",
+  "license": "Unsplash License (free commercial use)"
+ },
+ "/images/side/about.webp": {
   "photographer": "Jannis Brandt",
   "source": "https://images.unsplash.com/photo-1542315192-1f61a1792f33",
   "license": "Unsplash License (free commercial use)"
  },
- "/images/pages/industries.webp": {
+ "/images/side/solutions-steps.webp": {
+  "photographer": "ZHENYU LUO",
+  "source": "https://images.unsplash.com/photo-1655393001768-d946c97d6fd1",
+  "license": "Unsplash License (free commercial use)"
+ },
+ "/images/side/engagements-path.webp": {
+  "photographer": "Reuben Hustler",
+  "source": "https://images.unsplash.com/photo-1525381846010-6463f02f61ac",
+  "license": "Unsplash License (free commercial use)"
+ },
+ "/images/side/engagements.webp": {
+  "photographer": "Startaê Team",
+  "source": "https://images.unsplash.com/photo-1529119368496-2dfda6ec2804",
+  "license": "Unsplash License (free commercial use)"
+ },
+ "/images/side/service-knowledge.webp": {
+  "photographer": "Joshua Sortino",
+  "source": "https://images.unsplash.com/photo-1488229297570-58520851e868",
+  "license": "Unsplash License (free commercial use)"
+ },
+ "/images/side/industries.webp": {
   "photographer": "Polina Kuzovkova",
   "source": "https://images.unsplash.com/photo-1603793510575-a8cf24361baa",
+  "license": "Unsplash License (free commercial use)"
+ },
+ "/images/side/partnership-mea.webp": {
+  "photographer": "Nejc Soklič",
+  "source": "https://images.unsplash.com/photo-1739900292622-a7f860175aad",
   "license": "Unsplash License (free commercial use)"
  }
 }

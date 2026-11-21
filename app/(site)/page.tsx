@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import { blurProps } from "@/lib/blur";
 import {
   Wrench, Bot, ShieldCheck, Scale, Workflow, LineChart,
   HeartPulse, Factory, Cpu, Landmark, ShoppingCart, Zap, Trophy, Car, Radio, Building2,
@@ -131,7 +132,7 @@ function AccentCard({
       />
       {image && (
         <div className="relative -mx-6 -mt-6 mb-[-20px] aspect-[16/10] overflow-hidden">
-          <Image src={image} alt="" fill sizes="(min-width: 1280px) 20vw, (min-width: 640px) 50vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
+          <Image src={image} alt="" fill sizes="(min-width: 1280px) 20vw, (min-width: 640px) 50vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-105" {...blurProps(image)} />
           <div className="absolute inset-0 bg-gradient-to-t from-black/35 to-transparent" />
         </div>
       )}
@@ -224,7 +225,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <DashboardPhoto src="/images/hero-dashboard.png" alt="Analytics dashboard overview on a laptop" priority />
+          <DashboardPhoto src="/images/hero-dashboard.webp" alt="Analytics dashboard overview on a laptop" priority />
         </div>
       </section>
 
@@ -281,7 +282,7 @@ export default function HomePage() {
       <section className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-6 py-24 lg:grid-cols-2">
         <ScrollReveal>
           <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-border">
-            <Image src="/images/who-we-are.webp" alt="Business analytics reviewed on a tablet" fill sizes="(min-width: 1024px) 45vw, 100vw" className="object-cover" />
+            <Image src="/images/who-we-are.webp" alt="Business analytics reviewed on a tablet" fill sizes="(min-width: 1024px) 45vw, 100vw" className="object-cover" {...blurProps("/images/who-we-are.webp")} />
           </div>
         </ScrollReveal>
         <ScrollReveal>
