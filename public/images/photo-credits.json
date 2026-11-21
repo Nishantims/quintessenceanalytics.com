@@ -118,5 +118,11 @@
   "photographer": "Nejc Soklič",
   "source": "https://images.unsplash.com/photo-1739900292622-a7f860175aad",
   "license": "Unsplash License (free commercial use)"
+ },
+ "/images/hero-meeting.webp": {
+  "photographer": "Headway",
+  "source": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4",
+  "license": "Unsplash License (free commercial use)",
+  "note": "cropped, warm light grade added"
  }
 }

@@ -192,16 +192,24 @@ export default function HomePage() {
           <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-border px-3.5 py-1.5 text-[14px] font-semibold uppercase tracking-wide text-text-secondary">
               <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--pink)" }} />
-              AI automation · software · data analytics
+              Agentic AI · automation · software · analytics
             </span>
             <h1 className="mt-6 font-display text-[42px] font-bold leading-[1.08] tracking-tight text-text-primary sm:text-[54px]">
-              Name the task your team repeats. <span style={{ color: "var(--blue)" }}>We automate</span>{" "}
-              <span style={{ color: "var(--pink)" }}>it.</span>
+              <span className="block">Don&apos;t just watch the AI revolution.</span>
+              {/* One line, read as a process (owner, 2026-11-21). */}
+              <span className="mt-3 flex items-center gap-[0.35em] whitespace-nowrap text-[0.55em] sm:text-[0.7em]">
+                <span style={{ color: "var(--blue)" }}>Adopt it</span>
+                <span aria-hidden className="text-text-secondary/60">&rarr;</span>
+                <span style={{ color: "var(--pink)" }}>Lead it</span>
+                <span aria-hidden className="text-text-secondary/60">&rarr;</span>
+                <span style={{ color: "var(--green)" }}>Own it.</span>
+              </span>
             </h1>
             <p className="mt-6 max-w-lg text-[19px] leading-relaxed text-text-secondary">
-              Product listings, catalogue images, invoice matching, customer enquiries on WhatsApp, weekly
-              reports: Quintessence Analytics builds AI systems and software that take repetitive work off
-              your team, with your people approving every result. Pilots start at US$1,000. We&apos;re also the
+              <span className="font-semibold text-text-primary">We help you ride the AI wave and turn it into
+              strategic impact for your business.</span>{" "}Quintessence Analytics designs, builds and runs AI agents
+              and software that take over repetitive work, from product listings to WhatsApp enquiries, with
+              your people approving every result. Live in weeks, with pilots from US$1,000. We&apos;re also the
               research engine behind{" "}
               <Link href="https://market-reports.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-ink underline decoration-blue/40 underline-offset-4 hover:decoration-blue">
                 Market Reports
@@ -225,7 +233,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <DashboardPhoto src="/images/hero-dashboard.webp" alt="Analytics dashboard overview on a laptop" priority />
+          <DashboardPhoto src="/images/hero-meeting.webp" alt="A client meeting around a laptop in a warmly lit office" priority />
         </div>
       </section>
 

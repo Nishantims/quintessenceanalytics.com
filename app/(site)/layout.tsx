@@ -25,7 +25,7 @@ const plexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: "Quintessence Analytics — AI Automation, Software & Data Analytics",
   description:
-    "Name the task your team repeats and we automate it: product listings, catalogue images, invoice matching, WhatsApp enquiries, reports and more. AI automation, software and data analytics from US$1,000. Parent company of Market Reports.",
+    "Don't just watch the AI revolution. Adopt it, lead it, own it. We help businesses ride the AI wave and turn it into strategic impact: AI agents, automation, software and analytics, with your people approving every result. Pilots from US$1,000. Parent company of Market Reports.",
   metadataBase: new URL("https://www.quintessenceanalytics.com"),
   openGraph: {
     title: "Quintessence Analytics — AI Automation, Software & Data Analytics",
